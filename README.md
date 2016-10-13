@@ -41,3 +41,31 @@ echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,build-
 # by id
 echo "y" | android update sdk -u -a -t 1,2,3,...,n
 ```
+
+## Getting Started
+
+Set the working directory to the root of this project.
+
+```console
+# build the docker image
+docker build -t android-sdk android-sdk
+
+# run the docker container, mount an empty directory 'sdk' from host to the container
+docker run -it -v $(pwd)/sdk:/sdk android-sdk /bin/bash
+
+# copy the downloaded SDK to the mounted 'sdk' directory
+cp -a $ANDROID_HOME/. /sdk
+
+# quit the container
+exit
+
+# stop and remove the container
+docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+
+# go to the 'sdk' directory on the host which has persisted data, update SDK
+sdk/tools/android update sdk ...
+
+# mount the updated SDK to container again
+docker run -it -v $(pwd)/sdk:/opt/android-sdk-linux android-sdk /bin/bash
+```
+You can share the updated SDK directory from the host to any container, and remember, always update from the host, not inside container.
