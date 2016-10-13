@@ -20,28 +20,6 @@ docker info | grep 'Storage Driver'
 cat /proc/filesystems
 ```
 
-## Android Commands Reference
-
-* Check installed Android SDK tools version
-```console
-cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision
-cat $ANDROID_HOME/platform-tools/source.properties | grep Pkg.Revision
-```
-
-* List available packages from remote SDK repository
-```console
-android list sdk -e
-```
-
-* Update the SDK
-```console
-# by name
-echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-24.0.1,android-24
-
-# by id
-echo "y" | android update sdk -u -a -t 1,2,3,...,n
-```
-
 ## Getting Started
 
 Set the working directory to the root of this project.
@@ -69,3 +47,25 @@ sdk/tools/android update sdk ...
 docker run -it -v $(pwd)/sdk:/opt/android-sdk-linux android-sdk /bin/bash
 ```
 You can share the updated SDK directory from the host to any container, and remember, always update from the host, not inside container.
+
+## Android Commands Reference
+
+* Check installed Android SDK tools version
+```console
+cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision
+cat $ANDROID_HOME/platform-tools/source.properties | grep Pkg.Revision
+```
+
+* List available packages from remote SDK repository
+```console
+android list sdk -e
+```
+
+* Update the SDK
+```console
+# by name
+echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-24.0.1,android-24
+
+# by id
+echo "y" | android update sdk -u -a -t 1,2,3,...,n
+```
