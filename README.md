@@ -9,4 +9,4 @@ Android SDK Docker Image
 
 ## Notes
 
-* Run Android SDK update directly from the **Dockerfile** or inside the container would fail with `AUFS` storage driver, due to some file operations are not supported by this storage driver, but change it to `Btrfs` could work.  You can check your current storage driver option by `docker info | grep 'Storage Driver'`.
+* Run Android SDK update directly from the **Dockerfile** or inside the **container** would fail with `AUFS` storage driver, due to some file operations are not supported by this storage driver, but change it to `Btrfs` could work.  You can check your current storage driver option by `docker info | grep 'Storage Driver'`.
