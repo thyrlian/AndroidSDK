@@ -22,6 +22,8 @@ cat /proc/filesystems
 
 ## Getting Started
 
+**Only for non-Btrfs users**
+
 Set the working directory to the root of this project.
 
 ```console
