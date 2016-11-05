@@ -71,3 +71,7 @@ echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,build-
 # by id
 echo "y" | android update sdk -u -a -t 1,2,3,...,n
 ```
+
+## License
+
+Copyright (c) 2016 Jing Li. It is released under the [MIT License](http://opensource.org/licenses/MIT). See the [LICENSE](https://github.com/thyrlian/AndroidSDK/blob/master/LICENSE) file for details.
