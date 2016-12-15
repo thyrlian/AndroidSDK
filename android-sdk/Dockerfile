@@ -30,9 +30,9 @@ RUN apt-get install -y --no-install-recommends openjdk-8-jdk
 # download and install Android SDK
 WORKDIR /opt
 RUN wget -q $(wget -q -O- 'https://developer.android.com/sdk' | \
-    grep -o "\"https://.*android-sdk.*linux.*\"" | sed "s/\"//g") \
-    && tar -xzf android-sdk*linux*.tgz \
-    && rm android-sdk*linux*.tgz
+    grep -o "\"https://.*android.*tools.*linux.*\"" | sed "s/\"//g") \
+    && tar -xzf tools_*-linux*.zip \
+    && rm tools_*-linux*.zip
 
 
 # set the environment variables
