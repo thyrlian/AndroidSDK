@@ -1,0 +1,15 @@
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+install:
+  - git clone https://github.com/thyrlian/AndroidSDK ~/AndroidSDK
+
+script:
+  - docker build -t android-sdk ~/AndroidSDK/android-sdk
+
+after_script:
+  - docker images
