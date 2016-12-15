@@ -4,7 +4,7 @@ Android SDK Docker Image
 
 [![](https://img.shields.io/badge/Docker%20Hub-info-blue.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 
-<img src="https://github.com/thyrlian/AndroidSDK/blob/master/Images/AndroidSDK.png?raw=true" width="200">
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/logo.png?raw=true" width="200">
 
 ## Important Notes
 
