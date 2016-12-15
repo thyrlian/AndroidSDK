@@ -23,6 +23,10 @@ RUN dpkg --add-architecture i386 \
 RUN apt-get install -y wget
 
 
+# install zip
+RUN apt-get install -y zip
+
+
 # install Java
 RUN apt-get install -y --no-install-recommends openjdk-8-jdk
 
@@ -31,7 +35,7 @@ RUN apt-get install -y --no-install-recommends openjdk-8-jdk
 WORKDIR /opt
 RUN wget -q $(wget -q -O- 'https://developer.android.com/sdk' | \
     grep -o "\"https://.*android.*tools.*linux.*\"" | sed "s/\"//g") \
-    && tar -xzf tools_*-linux*.zip \
+    && unzip tools_*-linux*.zip \
     && rm tools_*-linux*.zip
 
 
