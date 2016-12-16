@@ -11,5 +11,4 @@ install:
 script:
   - docker build -t android-sdk ~/AndroidSDK/android-sdk
   - docker images
-  - docker run -i -t android-sdk /bin/bash
-  - android --help
+  - echo "android --help" | docker run -i android-sdk
