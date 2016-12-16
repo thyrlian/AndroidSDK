@@ -25,16 +25,17 @@ RUN apt-get install -y zip
 RUN apt-get install -y --no-install-recommends openjdk-8-jdk
 
 # download and install Android SDK
-RUN cd /opt && wget -q $(wget -q -O- 'https://developer.android.com/sdk' | \
+RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk \
+    && wget -q $(wget -q -O- 'https://developer.android.com/sdk' | \
     grep -o "\"https://.*android.*tools.*linux.*\"" | sed "s/\"//g") \
     && unzip tools_*-linux*.zip \
     && rm tools_*-linux*.zip
 
 # set the environment variables
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-ENV ANDROID_HOME /opt/tools
+ENV ANDROID_HOME /opt/android-sdk
 ENV ANDROID_LICENSES ${ANDROID_HOME}/licenses
-ENV PATH ${PATH}:${ANDROID_HOME}
+ENV PATH ${PATH}:${ANDROID_HOME}/tools
 
 # accept the license agreements of the SDK components
 RUN [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES
