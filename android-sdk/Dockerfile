@@ -35,7 +35,7 @@ RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV ANDROID_HOME /opt/android-sdk
 ENV ANDROID_LICENSES ${ANDROID_HOME}/licenses
-ENV PATH ${PATH}:${ANDROID_HOME}/tools
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin
 
 # accept the license agreements of the SDK components
 RUN [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES

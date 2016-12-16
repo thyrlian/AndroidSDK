@@ -61,7 +61,7 @@ cat $ANDROID_HOME/platform-tools/source.properties | grep Pkg.Revision
 
 * List installed and available packages
 ```console
-$ANDROID_HOME/tools/bin/sdkmanager --list
+sdkmanager --list
 ```
 
 * List available packages from remote SDK repository
