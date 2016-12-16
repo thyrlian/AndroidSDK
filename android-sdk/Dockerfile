@@ -34,6 +34,7 @@ RUN cd /opt && wget -q $(wget -q -O- 'https://developer.android.com/sdk' | \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV ANDROID_HOME /opt/tools
 ENV ANDROID_LICENSES ${ANDROID_HOME}/licenses
+ENV PATH ${PATH}:${ANDROID_HOME}
 
 # accept the license agreements of the SDK components
 RUN [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES
