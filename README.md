@@ -59,6 +59,11 @@ cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision
 cat $ANDROID_HOME/platform-tools/source.properties | grep Pkg.Revision
 ```
 
+* List installed and available packages
+```console
+$ANDROID_HOME/bin/sdkmanager --list
+```
+
 * List available packages from remote SDK repository
 ```console
 android list sdk -e
@@ -67,7 +72,7 @@ android list sdk -e
 * Update the SDK
 ```console
 # by name
-echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-24.0.1,android-24
+echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,extra-android-m2repository,build-tools-24.0.1,android-24
 
 # by id
 echo "y" | android update sdk -u -a -t 1,2,3,...,n
