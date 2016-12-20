@@ -11,4 +11,4 @@ install:
 script:
   - docker build -t android-sdk ~/AndroidSDK/android-sdk
   - docker images
-  - echo "sdkmanager --list" | docker run -i android-sdk
+  - echo "gradle -v && sdkmanager --list" | docker run -i android-sdk
