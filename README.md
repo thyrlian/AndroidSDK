@@ -44,10 +44,10 @@ exit
 docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 
 # go to the 'sdk' directory on the host which has persisted data, update SDK
-sdk/tools/android update sdk ...
+echo "y" | sdk/tools/android update sdk ...
 
 # mount the updated SDK to container again
-docker run -it -v $(pwd)/sdk:/opt/android-sdk-linux android-sdk /bin/bash
+docker run -it -v $(pwd)/sdk:/opt/android-sdk android-sdk /bin/bash
 ```
 You can share the updated SDK directory from the host to any container, and remember, always update from the host, not inside container.
 
