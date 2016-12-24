@@ -28,26 +28,25 @@ cat /proc/filesystems
 Set the working directory to the root of this project.
 
 ```console
-# build the docker image
+# build the image
 docker build -t android-sdk android-sdk
+# or pull the image
+docker pull thyrlian/android-sdk
 
-# run the docker container, mount an empty directory 'sdk' from host to the container
-docker run -it -v $(pwd)/sdk:/sdk android-sdk /bin/bash
-
-# copy the downloaded SDK to the mounted 'sdk' directory
-cp -a $ANDROID_HOME/. /sdk
-
-# quit the container
-exit
-
-# stop and remove the container
-docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+# copy the pre-downloaded SDK to the mounted 'sdk' directory
+# if the image was built
+echo "cp -a /opt/android-sdk/. /sdk" | docker run -i -v $(pwd)/sdk:/sdk android-sdk && docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+# if the image was pulled
+echo "cp -a /opt/android-sdk/. /sdk" | docker run -i -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 
 # go to the 'sdk' directory on the host which has persisted data, update SDK
 echo "y" | sdk/tools/android update sdk ...
 
 # mount the updated SDK to container again
+# if the image was built
 docker run -it -v $(pwd)/sdk:/opt/android-sdk android-sdk /bin/bash
+# if the image was pulled
+docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
 ```
 You can share the updated SDK directory from the host to any container, and remember, always update from the host, not inside container.
 
