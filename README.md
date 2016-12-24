@@ -7,6 +7,10 @@ Android SDK Docker Image (including Gradle build tool)
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/logo.png?raw=true" width="200">
 
+## Philosophy
+
+Provide only the barebone SDK (the latest official minimal download package) gives you the most flexibility in tailoring your own SDK tools for your project.  You can maintain an external persisted SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again.
+
 ## Important Notes
 
 Run Android SDK update directly from the **Dockerfile** or inside the **container** would fail if the storage driver is the default `AUFS`, it is due to some file operations are not supported by this storage driver, but changing it to `Btrfs` would work.
