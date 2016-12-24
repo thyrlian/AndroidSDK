@@ -2,14 +2,14 @@
 
 Android SDK Docker Image (including Gradle build tool)
 
-[![](https://img.shields.io/badge/Docker%20Hub-info-blue.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-info-blue.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 [![Build Status](https://travis-ci.org/thyrlian/AndroidSDK.svg?branch=master)](https://travis-ci.org/thyrlian/AndroidSDK)
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/logo.png?raw=true" width="200">
 
 ## Important Notes
 
-Run Android SDK update directly from the **Dockerfile** or inside the **container** would fail with the default `AUFS` storage driver, due to some file operations are not supported by this storage driver, but change it to `Btrfs` would work.
+Run Android SDK update directly from the **Dockerfile** or inside the **container** would fail if the storage driver is the default `AUFS`, it is due to some file operations are not supported by this storage driver, but changing it to `Btrfs` would work.
 
 * Check Docker's current storage driver option
 ```console
@@ -25,7 +25,7 @@ cat /proc/filesystems
 
 **Only for non-Btrfs users**
 
-Set the working directory to the root of this project.
+Set the working directory to the root of this project, if you want to build the image by yourself.
 
 ```console
 # build the image
@@ -33,19 +33,15 @@ docker build -t android-sdk android-sdk
 # or pull the image
 docker pull thyrlian/android-sdk
 
-# copy the pre-downloaded SDK to the mounted 'sdk' directory
-# if the image was built
-echo "cp -a /opt/android-sdk/. /sdk" | docker run -i -v $(pwd)/sdk:/sdk android-sdk && docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
-# if the image was pulled
-echo "cp -a /opt/android-sdk/. /sdk" | docker run -i -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+# below commands assume that you've pulled the image
 
-# go to the 'sdk' directory on the host which has persisted data, update SDK
+# copy the pre-downloaded SDK to the mounted 'sdk' directory
+echo "cp -a \$ANDROID_HOME/. /sdk" | docker run -i -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker stop $(docker ps -a -q) > /dev/null && docker rm $(docker ps -a -q) > /dev/null
+
+# go to the 'sdk' directory on the host which has persisted data, update the SDK
 echo "y" | sdk/tools/android update sdk ...
 
 # mount the updated SDK to container again
-# if the image was built
-docker run -it -v $(pwd)/sdk:/opt/android-sdk android-sdk /bin/bash
-# if the image was pulled
 docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
 ```
 You can share the updated SDK directory from the host to any container, and remember, always update from the host, not inside container.
