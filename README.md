@@ -9,11 +9,26 @@ Android SDK Docker Image (including Gradle build tool)
 
 ## Philosophy
 
-Provide only the barebone SDK (the latest official minimal download package) gives you the most flexibility in tailoring your own SDK tools for your project.  You can maintain an external persisted SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again.
+Provide only the barebone SDK (the latest official minimal package) gives you the most flexibility in tailoring your own SDK tools for your project.  You can maintain an external persistent SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.
 
 ## Important Notes
 
-Run Android SDK update directly from the **Dockerfile** or inside the **container** would fail if the storage driver is the default `AUFS`, it is due to some file operations are not supported by this storage driver, but changing it to `Btrfs` would work.
+Run Android SDK update directly within the **Dockerfile** or inside the **container** would fail if the storage driver is `AUFS` (by default), it is due to some file operations (during updating) are not supported by this storage driver, but changing it to `Btrfs` would work.  However, as said, it's recommended to update the SDK from the external volume on host.
+
+What happens if it fails?
+```bash
+ls $ANDROID_HOME/tools/
+#=> empty, nothing is there
+# tools such as: android, sdkmanager, emulator, lint and etc. are gone
+
+android
+#=> bash: android: command not found
+
+sdkmanager
+#=> bash: /opt/android-sdk/tools/bin/sdkmanager: No such file or directory
+```
+
+To know more about the storage driver:
 
 * Check Docker's current storage driver option
 ```console
@@ -27,11 +42,9 @@ cat /proc/filesystems
 
 ## Getting Started
 
-**Only for non-Btrfs users**
-
 Set the working directory to the root of this project, if you want to build the image by yourself.
 
-```console
+```bash
 # build the image
 docker build -t android-sdk android-sdk
 # or pull the image
@@ -48,7 +61,7 @@ echo "y" | sdk/tools/android update sdk ...
 # mount the updated SDK to container again
 docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
 ```
-You can share the updated SDK directory from the host to any container, and remember, always update from the host, not inside container.
+You can share the updated SDK directory from the host to any container.  For non-Btrfs users, do remember, always update from the host, not inside the container.
 
 ## Android Commands Reference
 
