@@ -11,7 +11,7 @@ Android SDK Docker Image (including Gradle build tool)
 
 Provide only the barebone SDK (the latest official minimal package) gives you the most flexibility in tailoring your own SDK tools for your project.  You can maintain an external persistent SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.
 
-## Important Notes
+## Caveat
 
 Run Android SDK update directly within the **Dockerfile** or inside the **container** would fail if the storage driver is `AUFS` (by default), it is due to some file operations (during updating) are not supported by this storage driver, but changing it to `Btrfs` would work.  However, as said, it's recommended to update the SDK from the external volume on host.
 
