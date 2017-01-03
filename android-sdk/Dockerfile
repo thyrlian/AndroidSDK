@@ -42,7 +42,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
 ENV ANDROID_HOME /opt/android-sdk
 ENV ANDROID_LICENSES ${ANDROID_HOME}/licenses
-ENV PATH ${PATH}:${GRADLE_HOME}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin
+ENV PATH ${PATH}:${GRADLE_HOME}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin
 
 # accept the license agreements of the SDK components
 RUN [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES
