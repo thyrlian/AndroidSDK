@@ -90,6 +90,17 @@ echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,extra-
 echo "y" | android update sdk -u -a -t 1,2,3,...,n
 ```
 
+## Version History
+
+**1.0** (**latest**)
+
+Component | Version
+--------- | -------
+Ubuntu | 16.04.1 LTS (Xenial Xerus)
+Java | 1.8.0_111
+Gradle | 3.2.1
+AndroidSDK | 25.2.3
+
 ## License
 
 Copyright (c) 2016 Jing Li. It is released under the [MIT License](http://opensource.org/licenses/MIT). See the [LICENSE](https://github.com/thyrlian/AndroidSDK/blob/master/LICENSE) file for details.
