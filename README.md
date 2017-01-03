@@ -92,7 +92,11 @@ echo "y" | android update sdk -u -a -t 1,2,3,...,n
 
 ## Version History
 
-**1.0** (**latest**)
+**[1.0](https://hub.docker.com/r/thyrlian/android-sdk/tags/)** (**latest**)
+
+```console
+docker pull thyrlian/android-sdk:1.0
+```
 
 Component | Version
 --------- | -------
