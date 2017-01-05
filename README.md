@@ -103,4 +103,4 @@ AndroidSDK | 25.2.3
 
 ## License
 
-Copyright (c) 2016-2017 Jing Li. It is released under the [MIT License](http://opensource.org/licenses/MIT). See the [LICENSE](https://github.com/thyrlian/AndroidSDK/blob/master/LICENSE) file for details.
+Copyright (c) 2016-2017 Jing Li. It is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](https://github.com/thyrlian/AndroidSDK/blob/master/LICENSE) file for details.
