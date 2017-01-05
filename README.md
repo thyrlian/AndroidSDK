@@ -103,10 +103,10 @@ AndroidSDK | 25.2.3
 
 ## License
 
-Copyright (c) 2016-2017 Jing Li. It is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](https://github.com/thyrlian/AndroidSDK/blob/master/LICENSE) file for details.
+Copyright (c) 2016-2017 Jing Li. It is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/LICENSE) file for details.
 
 By continuing to use this Docker Image, you accept the terms in below license agreement.
 
-* [Android Software Development Kit License Agreement](https://github.com/thyrlian/AndroidSDK/blob/master/EULA/AndroidSoftwareDevelopmentKitLicenseAgreement) (or read it [here](https://developer.android.com/studio/terms.html))
-* [Android SDK Preview License Agreement](https://github.com/thyrlian/AndroidSDK/blob/master/EULA/AndroidSDKPreviewLicenseAgreement)
-* [Intel Android Extra License](https://github.com/thyrlian/AndroidSDK/blob/master/EULA/IntelAndroidExtraLicense)
+* [Android Software Development Kit License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSoftwareDevelopmentKitLicenseAgreement) (or read it [here](https://developer.android.com/studio/terms.html))
+* [Android SDK Preview License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSDKPreviewLicenseAgreement)
+* [Intel Android Extra License](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/IntelAndroidExtraLicense)
