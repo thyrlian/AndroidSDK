@@ -59,7 +59,7 @@ echo "cp -a \$ANDROID_HOME/. /sdk" | docker run -i -v $(pwd)/sdk:/sdk thyrlian/a
 echo "y" | sdk/tools/android update sdk ...
 
 # mount the updated SDK to container again
-docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
+docker run -it -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
 ```
 You can share the updated SDK directory from the host to any container.  For non-Btrfs users, do remember, always update from the host, not inside the container.
 
