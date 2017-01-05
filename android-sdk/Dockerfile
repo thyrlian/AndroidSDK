@@ -22,8 +22,6 @@ RUN apt-get install -y --no-install-recommends openjdk-8-jdk
 # install essential tools
 RUN apt-get install -y git wget zip
 
-# still unable to find libQt5Widgets.so.5 after setting DYLD_LIBRARY_PATH
-# export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$ANDROID_HOME/tools/lib64:$ANDROID_HOME/tools/lib64/qt/lib"
 RUN apt-get -y install qt5-default
 
 # download and install Gradle
