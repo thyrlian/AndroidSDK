@@ -81,6 +81,8 @@ According to [Google's documentation](https://developer.android.com/studio/run/e
 
 Read [How to Start Intel Hardware-assisted Virtualization (hypervisor) on Linux](https://software.intel.com/en-us/blogs/2012/03/12/how-to-start-intel-hardware-assisted-virtualization-hypervisor-on-linux-to-speed-up-intel-android-x86-emulator) for more details.
 
+Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if you haven't got it installed yet.
+
 * Check the capability of running KVM
 
 ```bash
