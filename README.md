@@ -97,7 +97,12 @@ KVM acceleration can be used
 
 * Load KVM module on the host
 ```console
-modprobe kvm-intel
+modprobe kvm_intel
+```
+
+* Check if KVM module is successfully loaded
+```console
+lsmod | grep kvm
 ```
 
 ### How to run emulator
