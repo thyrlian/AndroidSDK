@@ -7,6 +7,13 @@ Android SDK Docker Image (including Gradle build tool)
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/logo.png?raw=true" width="200">
 
+## Goals
+
+* It contains the complete Android SDK enviroment, is able to perform all regular Android jobs.
+* Solves the problem of "*It works on my machine, but not on XXX machine*".
+* Some tool (e.g. [Infer](https://github.com/facebook/infer)), which has complex dependencies might be in conflict with your local environment.  Installing the tool within a Docker container is the easiest and perfect solution.
+* Directly being used as Android CI build enviroment.
+
 ## Philosophy
 
 Provide only the barebone SDK (the latest official minimal package) gives you the most flexibility in tailoring your own SDK tools for your project.  You can maintain an external persistent SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.
