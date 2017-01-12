@@ -236,12 +236,17 @@ android list sdk -e
 ```
 
 * Update the SDK
-```console
+```bash
 # by name
 echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,extra-android-m2repository,build-tools-25.0.0,android-25
 
 # by id
 echo "y" | android update sdk -u -a -t 1,2,3,...,n
+```
+
+* Stop emulator
+```console
+adb -s <device_sn> emu kill
 ```
 
 ## Version History
