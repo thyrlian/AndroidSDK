@@ -4,6 +4,7 @@ Android SDK Docker Image (including Gradle build tool)
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-info-blue.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 [![Build Status](https://travis-ci.org/thyrlian/AndroidSDK.svg?branch=master)](https://travis-ci.org/thyrlian/AndroidSDK)
+[![Android Dev Digest](https://img.shields.io/badge/AndroidDevDigest-%23127-green.svg)](https://www.androiddevdigest.com/digest-127/)
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/logo.png?raw=true" width="200">
 
