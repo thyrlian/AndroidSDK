@@ -55,11 +55,14 @@ ADD banner.net /etc/
 ADD authorized_keys /tmp/
 EXPOSE 22
 RUN apt-get install -y openssh-server && \
+    locale-gen en en_US en_US.UTF-8 && \
     echo "Banner /etc/banner.net" >> /etc/ssh/sshd_config && \
     ssh-keygen -q -N "" -f /root/.ssh/id_rsa && \
-    touch /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && \
-    for file in /tmp/*.pub; do echo "\n" >> /root/.ssh/authorized_keys && cat $file >> /root/.ssh/authorized_keys && echo "\n" >> /root/.ssh/authorized_keys; done && \
-    rm /tmp/*.pub && \
-    locale-gen en en_US en_US.UTF-8
+    FILE_AUTH_KEYS="/root/.ssh/authorized_keys" && \
+    touch $FILE_AUTH_KEYS && chmod 600 $FILE_AUTH_KEYS && \
+    for file in /tmp/*.pub; \
+    do if [ -f "$file" ]; then echo "\n" >> $FILE_AUTH_KEYS && cat $file >> $FILE_AUTH_KEYS && echo "\n" >> $FILE_AUTH_KEYS; fi; \
+    done && \
+    (rm /tmp/*.pub 2> /dev/null || true)
 
 CMD ["/bin/bash", "-c", "service ssh start; while true; do sleep 3600; done"]
