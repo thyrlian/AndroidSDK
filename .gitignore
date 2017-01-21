@@ -1,2 +1,3 @@
 # SDK host directory (to be mounted into container)
 sdk/
+authorized_keys/

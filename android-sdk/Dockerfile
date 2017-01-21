@@ -49,3 +49,17 @@ RUN export ANDROID_LICENSES="$ANDROID_HOME/licenses" && \
     [ -f $ANDROID_LICENSES/android-sdk-preview-license ] || echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_LICENSES/android-sdk-preview-license && \
     [ -f $ANDROID_LICENSES/intel-android-extra-license ] || echo d975f751698a77b662f1254ddbeed3901e976f5a > $ANDROID_LICENSES/intel-android-extra-license && \
     unset ANDROID_LICENSES
+
+# install and configure SSH server
+ADD banner.net /etc/
+ADD authorized_keys /tmp/
+EXPOSE 22
+RUN apt-get install -y openssh-server && \
+    echo "Banner /etc/banner.net" >> /etc/ssh/sshd_config && \
+    ssh-keygen -q -N "" -f /root/.ssh/id_rsa && \
+    touch /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && \
+    for file in /tmp/*.pub; do echo "\n" >> /root/.ssh/authorized_keys && cat $file >> /root/.ssh/authorized_keys && echo "\n" >> /root/.ssh/authorized_keys; done && \
+    rm /tmp/*.pub && \
+    locale-gen en en_US en_US.UTF-8
+
+CMD ["/bin/bash", "-c", "service ssh start; while true; do sleep 3600; done"]
