@@ -72,6 +72,34 @@ docker run -it -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
 ```
 You can share the updated SDK directory from the host to any container.  For non-Btrfs users, do remember, always update from the host, not inside the container (you shouldn't be worried about that, because above instruction mounts the SDK volume in read-only mode).
 
+## SSH
+
+If you prefer to run the AndroidSDK service over SSH server, please try below steps:
+
+* Put your `id_rsa.pub` under `android-sdk/authorized_keys` (you can put as many as you want);
+
+* Build a local Docker image
+```console
+docker build -t android-sdk android-sdk
+```
+
+* Run a Docker container
+```console
+docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
+```
+
+* When the Docker container is up and running, you can ssh to it
+```console
+ssh root@<your_ip_address> -p 2222
+```
+
+Later, in case you need, you can still attach to the running container (not via ssh) by
+```console
+docker exec -it <container_id> /bin/bash
+```
+
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/SSH.png?raw=true">
+
 ## Emulator
 
 Running emulator inside container is not a problem, but the performance is quite limited.
