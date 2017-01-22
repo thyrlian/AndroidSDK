@@ -54,7 +54,8 @@ RUN export ANDROID_LICENSES="$ANDROID_HOME/licenses" && \
 ADD banner.net /etc/
 ADD authorized_keys /tmp/
 EXPOSE 22
-RUN apt-get install -y openssh-server && \
+RUN apt-get install -y openssh-server supervisor && \
+    mkdir -p /var/run/sshd /var/log/supervisor && \
     locale-gen en en_US en_US.UTF-8 && \
     echo "Banner /etc/banner.net" >> /etc/ssh/sshd_config && \
     ssh-keygen -q -N "" -f /root/.ssh/id_rsa && \
@@ -64,5 +65,5 @@ RUN apt-get install -y openssh-server && \
     do if [ -f "$file" ]; then echo "\n" >> $FILE_AUTH_KEYS && cat $file >> $FILE_AUTH_KEYS && echo "\n" >> $FILE_AUTH_KEYS; fi; \
     done && \
     (rm /tmp/*.pub 2> /dev/null || true)
-
-CMD ["/bin/bash", "-c", "service ssh start; while true; do sleep 3600; done"]
+ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+CMD ["/usr/bin/supervisord"]
