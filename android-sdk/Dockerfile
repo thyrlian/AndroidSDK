@@ -57,8 +57,16 @@ EXPOSE 22
 RUN apt-get install -y openssh-server supervisor && \
     mkdir -p /var/run/sshd /var/log/supervisor && \
     locale-gen en en_US en_US.UTF-8 && \
-    echo "Banner /etc/banner.net" >> /etc/ssh/sshd_config && \
+    FILE_SSHD_CONFIG="/etc/ssh/sshd_config" && \
+    echo "\nBanner /etc/banner.net" >> $FILE_SSHD_CONFIG && \
+    echo "\nPermitUserEnvironment=yes" >> $FILE_SSHD_CONFIG && \
     ssh-keygen -q -N "" -f /root/.ssh/id_rsa && \
+    FILE_SSH_ENV="/root/.ssh/environment" && \
+    touch $FILE_SSH_ENV && chmod 600 $FILE_SSH_ENV && \
+    echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> $FILE_SSH_ENV && \
+    echo "GRADLE_HOME=/opt/gradle" >> $FILE_SSH_ENV && \
+    echo "ANDROID_HOME=/opt/android-sdk" >> $FILE_SSH_ENV && \
+    echo "PATH=$PATH" >> $FILE_SSH_ENV && \
     FILE_AUTH_KEYS="/root/.ssh/authorized_keys" && \
     touch $FILE_AUTH_KEYS && chmod 600 $FILE_AUTH_KEYS && \
     for file in /tmp/*.pub; \
