@@ -74,26 +74,39 @@ You can share the updated SDK directory from the host to any container.  For non
 
 ## SSH
 
-If you prefer to run the AndroidSDK service over SSH server, please try below steps:
+It is also possible if you wanna connect to a container via SSH.  There are two different approaches.
 
-* Put your `id_rsa.pub` under `android-sdk/authorized_keys` (you can put as many as you want);
+* Build an image on your own, with a built-in `authorized_keys`
 
-* Build a local Docker image
-```console
+```bash
+# Put your `id_rsa.pub` under `android-sdk/authorized_keys` (as many as you want)
+
+# Build an image
 docker build -t android-sdk android-sdk
-```
 
-* Run a Docker container
-```console
+# Run a container
 docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
 ```
 
-* When the Docker container is up and running, you can ssh to it
+* Mount a local `authorized_keys` file to a container
+
+```bash
+# Create a local authorized_keys file
+
+# Run a container
+docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk
+
+# Copy the local authorized_keys file to the running container
+docker cp $(pwd)/authorized_keys `docker ps -aqf "ancestor=thyrlian/android-sdk"`:/root/.ssh
+```
+
+That's it!  Now it's up and running, you can ssh to it
+
 ```console
 ssh root@<your_ip_address> -p 2222
 ```
 
-Later, in case you need, you can still attach to the running container (not via ssh) by
+And, in case you need, you can still attach to the running container (not via ssh) by
 ```console
 docker exec -it <container_id> /bin/bash
 ```
