@@ -107,6 +107,7 @@ ssh root@<your_ip_address> -p 2222
 ```
 
 And, in case you need, you can still attach to the running container (not via ssh) by
+
 ```console
 docker exec -it <container_id> /bin/bash
 ```
