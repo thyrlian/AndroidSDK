@@ -88,7 +88,7 @@ docker build -t android-sdk android-sdk
 docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
 ```
 
-* Mount a local `authorized_keys` file to a container
+* Copy a local `authorized_keys` file to a container
 
 ```bash
 # Create a local authorized_keys file
