@@ -300,9 +300,12 @@ echo "y" | android update sdk -u -a -t 1,2,3,...,n
 adb -s <device_sn> emu kill
 ```
 
-## Version History
+## Change Log
 
 **[1.1](https://hub.docker.com/r/thyrlian/android-sdk/tags/)** `docker pull thyrlian/android-sdk:1.1`
+
+**What's New**
+* Added SSH server and configurations
 
 Component | Version
 --------- | -------
