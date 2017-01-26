@@ -302,6 +302,16 @@ adb -s <device_sn> emu kill
 
 ## Version History
 
+**[1.1](https://hub.docker.com/r/thyrlian/android-sdk/tags/)** `docker pull thyrlian/android-sdk:1.1`
+
+Component | Version
+--------- | -------
+Ubuntu | 16.04.1 LTS (Xenial Xerus)
+Java | 1.8.0_121
+Gradle | 3.2.1
+AndroidSDK | 25.2.3
+OpenSSH | 7.2p2
+
 **[1.0](https://hub.docker.com/r/thyrlian/android-sdk/tags/)** `docker pull thyrlian/android-sdk:1.0`
 
 Component | Version
