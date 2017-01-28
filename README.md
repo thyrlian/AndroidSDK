@@ -1,6 +1,6 @@
 # AndroidSDK
 
-Android SDK Docker Image (including Gradle build tool)
+Android SDK development environment Docker image
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-info-blue.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 [![Build Status](https://travis-ci.org/thyrlian/AndroidSDK.svg?branch=master)](https://travis-ci.org/thyrlian/AndroidSDK)
