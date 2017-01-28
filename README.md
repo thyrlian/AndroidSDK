@@ -304,6 +304,10 @@ adb -s <device_sn> emu kill
 
 ### 1.1
 
+```console
+docker pull thyrlian/android-sdk:1.1
+```
+
 **What's New**
 * Added SSH server and configurations
 
@@ -318,6 +322,10 @@ OpenSSH | 7.2p2
 ---
 
 ### 1.0
+
+```console
+docker pull thyrlian/android-sdk:1.0
+```
 
 Component | Version
 --------- | -------
