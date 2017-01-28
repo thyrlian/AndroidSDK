@@ -322,7 +322,7 @@ OpenSSH | 7.2p2
 Component | Version
 --------- | -------
 Ubuntu | 16.04.1 LTS (Xenial Xerus)
-Java | 1.8.0_111
+Java | 1.8.0_121
 Gradle | 3.2.1
 AndroidSDK | 25.2.3
 
