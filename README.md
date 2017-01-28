@@ -302,7 +302,7 @@ adb -s <device_sn> emu kill
 
 ## Change Log
 
-**[1.1](https://hub.docker.com/r/thyrlian/android-sdk/tags/)** `docker pull thyrlian/android-sdk:1.1`
+### 1.1
 
 **What's New**
 * Added SSH server and configurations
@@ -315,7 +315,9 @@ Gradle | 3.2.1
 AndroidSDK | 25.2.3
 OpenSSH | 7.2p2
 
-**[1.0](https://hub.docker.com/r/thyrlian/android-sdk/tags/)** `docker pull thyrlian/android-sdk:1.0`
+---
+
+### 1.0
 
 Component | Version
 --------- | -------
