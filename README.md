@@ -62,7 +62,7 @@ docker pull thyrlian/android-sdk
 # below commands assume that you've pulled the image
 
 # copy the pre-downloaded SDK to the mounted 'sdk' directory
-echo "cp -a \$ANDROID_HOME/. /sdk" | docker run -i -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker stop $(docker ps -a -q) > /dev/null && docker rm $(docker ps -a -q) > /dev/null
+docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null; docker run -d -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c 'cp -a $ANDROID_HOME/. /sdk' && docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null
 
 # go to the 'sdk' directory on the host which has persisted data, update the SDK
 echo "y" | sdk/tools/android update sdk ...
