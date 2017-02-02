@@ -65,6 +65,7 @@ docker pull thyrlian/android-sdk
 docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null; docker run -d -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c 'cp -a $ANDROID_HOME/. /sdk' && docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null
 
 # go to the 'sdk' directory on the host which has persisted data, update the SDK
+# JDK required on the host
 echo "y" | sdk/tools/android update sdk ...
 
 # mount the updated SDK to container again
