@@ -22,9 +22,9 @@ Provide only the barebone SDK (the latest official minimal package) gives you th
 
 ## Caveat
 
-Run Android SDK update directly within the **Dockerfile** or inside the **container** would fail if the storage driver is `AUFS` (by default), it is due to some file operations (during updating) are not supported by this storage driver, but changing it to `Btrfs` would work.  However, as said, it's recommended to update the SDK from the external volume on host.
+Run Android SDK update directly within the **Dockerfile** or inside the **container** would fail if the storage driver is `AUFS` (by default), it is due to some file operations (during updating) are not supported by this storage driver, but changing it to `Btrfs` would work.
 
-What happens if it fails?
+What happens if the update fails?
 ```bash
 ls $ANDROID_HOME/tools/
 #=> empty, nothing is there
@@ -49,12 +49,29 @@ docker info | grep 'Storage Driver'
 cat /proc/filesystems
 ```
 
-## Getting Started
+To prevent this problem from happening, and you don't wanna bother dealing with storage driver.  The only solution is to mount an external SDK volume from host to container.  Then you are free to try any of below approaches.
 
-Set the working directory to the root of this project, if you want to build the image by yourself.
+* Update SDK in the usual way but directly inside container.
+* Update SDK from host directory (**Remember**: the host machine must be the same target architecture as the container - `x86_64 Linux`).
+
+If you by accident update SDK on a host machine which has a mismatch target architecture than the container, some binaries won't be executable in container any longer.
+
+```bash
+gradle <some_task>
+#=> Error: java.util.concurrent.ExecutionException: java.lang.RuntimeException: AAPT process not ready to receive commands
+
+$ANDROID_HOME/build-tools/x.x.x/aapt
+#=> aapt: cannot execute binary file: Exec format error
+
+adb
+#=> adb: cannot execute binary file: Exec format error
+```
+
+## Getting Started
 
 ```bash
 # build the image
+# set the working directory to the project's root directory first
 docker build -t android-sdk android-sdk
 # or pull the image
 docker pull thyrlian/android-sdk
@@ -64,18 +81,24 @@ docker pull thyrlian/android-sdk
 # copy the pre-downloaded SDK to the mounted 'sdk' directory
 docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null; docker run -d -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c 'cp -a $ANDROID_HOME/. /sdk' && docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null
 
-# go to the 'sdk' directory on the host which has persisted data, update the SDK
+# go to the 'sdk' directory on the host, update the SDK
+# ONLY IF the host machine is the same target architecture as the container
 # JDK required on the host
 echo "y" | sdk/tools/android update sdk ...
 
 # mount the updated SDK to container again
+# if the host SDK directory is mounted to more than one container
+# to avoid multiple containers writing to the SDK directory at the same time
+# you should mount the SDK volume in read-only mode
 docker run -it -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
+
+# you can mount without read-only option, only if you need to update SDK inside container
+docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
 ```
-You can share the updated SDK directory from the host to any container.  For non-Btrfs users, do remember, always update from the host, not inside the container (you shouldn't be worried about that, because above instruction mounts the SDK volume in read-only mode).
 
 ## SSH
 
-It is also possible if you wanna connect to a container via SSH.  There are two different approaches.
+It is also possible if you wanna connect to container via SSH.  There are two different approaches.
 
 * Build an image on your own, with a built-in `authorized_keys`
 
