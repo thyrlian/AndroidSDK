@@ -138,6 +138,36 @@ docker exec -it <container_id> /bin/bash
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/SSH.png?raw=true">
 
+## NFS
+
+You can host the Android SDK in one place, and share it with different containers.  One solution is using NFS (Network File System).
+
+Here are instructions for configuring a NFS server (on Ubuntu):
+
+```bash
+sudo apt-get update
+sudo apt-get install -y nfs-kernel-server
+sudo mkdir -p /var/nfs/android-sdk
+
+# put the Android SDK under /var/nfs/android-sdk
+# if you haven't got any, run below commands
+sudo apt-get install -y wget zip
+cd /var/nfs/android-sdk
+sudo wget -q $(wget -q -O- 'https://developer.android.com/sdk' | grep -o "\"https://.*android.*tools.*linux.*\"" | sed "s/\"//g")
+sudo unzip tools_*-linux*.zip
+sudo rm tools_*-linux*.zip
+sudo mkdir licenses
+echo 8933bad161af4178b1185d1a37fbf41ea5269c55 | sudo tee licenses/android-sdk-license > /dev/null
+echo 84831b9409646a918e30573bab4c9c91346d8abd | sudo tee licenses/android-sdk-preview-license > /dev/null
+echo d975f751698a77b662f1254ddbeed3901e976f5a | sudo tee licenses/intel-android-extra-license > /dev/null
+
+# configure and launch NFS service
+sudo chown nobody:nogroup /var/nfs
+echo "/var/nfs         *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee --append /etc/exports > /dev/null
+sudo exportfs -a
+sudo service nfs-kernel-server start
+```
+
 ## Emulator
 
 Running emulator inside container is not a problem, but the performance is quite limited.
