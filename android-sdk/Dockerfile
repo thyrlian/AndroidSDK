@@ -22,7 +22,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y qt5-default
 
 # download and install Gradle
-ENV GRADLE_VERSION 3.3
+ENV GRADLE_VERSION 3.5
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
     unzip gradle*.zip && \
@@ -33,8 +33,8 @@ RUN cd /opt && \
 RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
     wget -q $(wget -q -O- 'https://developer.android.com/sdk' | \
     grep -o "\"https://.*android.*tools.*linux.*\"" | sed "s/\"//g") && \
-    unzip tools_*-linux*.zip && \
-    rm tools_*-linux*.zip
+    unzip *tools*linux*.zip && \
+    rm *tools*linux*.zip
 
 # set the environment variables
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
@@ -54,7 +54,7 @@ RUN export ANDROID_LICENSES="$ANDROID_HOME/licenses" && \
 ADD banner.net /etc/
 ADD authorized_keys /tmp/
 EXPOSE 22
-RUN apt-get install -y openssh-server supervisor && \
+RUN apt-get install -y openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisor && \
     locale-gen en en_US en_US.UTF-8 && \
     FILE_SSHD_CONFIG="/etc/ssh/sshd_config" && \
