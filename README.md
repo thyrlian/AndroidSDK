@@ -7,7 +7,7 @@ Android SDK development environment Docker image
 [![Android Dev Digest](https://img.shields.io/badge/AndroidDevDigest-%23127-green.svg)](https://www.androiddevdigest.com/digest-127/)
 [![Android开发技术周报 ](https://img.shields.io/badge/Android%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E5%91%A8%E6%8A%A5-%23114-yellowgreen.svg)](http://www.androidweekly.cn/android-dev-weekly-issue-114/)
 
-<img src="https://github.com/thyrlian/AndroidSDK/blob/master/logo.png?raw=true" width="200">
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/logo.png?raw=true" width="200">
 
 ## Goals
 
@@ -136,7 +136,7 @@ And, in case you need, you can still attach to the running container (not via ss
 docker exec -it <container_id> /bin/bash
 ```
 
-<img src="https://github.com/thyrlian/AndroidSDK/blob/master/SSH.png?raw=true">
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/SSH.png?raw=true">
 
 ## NFS
 
