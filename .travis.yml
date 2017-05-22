@@ -12,4 +12,4 @@ script:
   - docker build -t android-sdk ~/AndroidSDK/android-sdk
   - docker images
   - docker run -d android-sdk
-  - docker exec -it `docker ps -aqf "ancestor=android-sdk"` bash -c 'java -version && gradle -v && sdkmanager --list'
+  - docker exec -it `docker ps -aqf "ancestor=android-sdk"` bash -c 'cat /etc/*release | grep VERSION= && java -version && gradle -v && cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision && sdkmanager --list && apt list --installed | grep openssh-server'
