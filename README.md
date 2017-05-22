@@ -115,12 +115,12 @@ docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
 * Copy a local `authorized_keys` file to a container
 
 ```bash
-# Create a local authorized_keys file
+# Create a local `authorized_keys` file, which contains the content from your `id_rsa.pub`
 
 # Run a container
 docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk
 
-# Copy the local authorized_keys file to the running container
+# Copy the just created local authorized_keys file to the running container
 docker cp $(pwd)/authorized_keys `docker ps -aqf "ancestor=thyrlian/android-sdk"`:/root/.ssh
 ```
 
