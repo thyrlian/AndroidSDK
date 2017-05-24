@@ -356,7 +356,7 @@ adb -s <device_sn> emu kill
 
 ## Change Log
 
-### 1.3 (not yet released)
+### 1.3
 
 ```console
 docker pull thyrlian/android-sdk:1.3
