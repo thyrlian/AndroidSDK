@@ -1,11 +1,11 @@
 #!/bin/bash
 
-function check_installation_of_wget() {
+check_installation_of_wget() {
   which wget > /dev/null 2>&1
   return $?
 }
 
-function download_gradle_distributions() {
+download_gradle_distributions() {
   DOWNLOAD_DIRECTORY=$1
   echo "--------------------------------------------------"
   echo "Start to download Gradle distributions..."
