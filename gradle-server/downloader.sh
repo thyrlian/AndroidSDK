@@ -19,7 +19,7 @@ parse_gradle_distributions_links_and_download() {
   local directory=$1
   local amount=$2
   local url="https://services.gradle.org/distributions/"
-  local data=$(wget -q -O- $url | grep -o "\".*distributions.*all\.zip\"" | sed "s/\"//g" | sed "s/.*distributions/https:\/\/services.gradle.org\/distributions/g")
+  local data=$(wget -q -O- $url | grep -o "\".*distributions.*all\.zip\"" | grep -v "rc\|milestone" | sed "s/\"//g" | sed "s/.*distributions/https:\/\/services.gradle.org\/distributions/g")
   read -ra links <<< $data
   for i in "${!links[@]}"; do
     [ $i -eq $amount ] && break
