@@ -9,7 +9,7 @@ download_from_link_to_dir() {
   local link=$1
   local directory=$2
   echo "--------------------------------------------------"
-  echo "Start to download Gradle distributions..."
+  echo "Start to download Gradle distribution..."
   echo $link
   # TODO: Skip downloading if local file exists
   wget -q --show-progress -P $directory $link
