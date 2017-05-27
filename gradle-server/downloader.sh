@@ -16,6 +16,7 @@ download_from_link_to_dir() {
   else
     echo "Start to download Gradle distribution..."
     wget -q --show-progress -P $directory $link
+    printf "\n"
   fi
 }
 
