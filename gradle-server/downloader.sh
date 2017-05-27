@@ -9,10 +9,14 @@ download_from_link_to_dir() {
   local link=$1
   local directory=$2
   echo "--------------------------------------------------"
-  echo "Start to download Gradle distribution..."
   echo $link
-  # TODO: Skip downloading if local file exists
-  wget -q --show-progress -P $directory $link
+  local file="$directory/${link##*/}"
+  if [ -f $file ]; then
+    echo "File already exists, skip downloading."
+  else
+    echo "Start to download Gradle distribution..."
+    wget -q --show-progress -P $directory $link
+  fi
 }
 
 parse_gradle_distributions_links_and_download() {
