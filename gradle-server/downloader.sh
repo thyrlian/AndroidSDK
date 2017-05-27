@@ -22,9 +22,7 @@ parse_gradle_distributions_links_and_download() {
   local data=$(wget -q -O- $url | grep -o "\".*distributions.*all\.zip\"" | sed "s/\"//g" | sed "s/.*distributions/https:\/\/services.gradle.org\/distributions/g")
   read -ra links <<< $data
   for i in "${!links[@]}"; do
-    if [ $i -eq $amount ]; then
-      break
-    fi
+    [ $i -eq $amount ] && break
     download_from_link_to_dir ${links[i]} $directory
   done
 }
