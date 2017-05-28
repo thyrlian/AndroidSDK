@@ -174,6 +174,11 @@ There is still a little room for optimization: recent distribution of Gradle is 
 
 Fortunately, you can easily build such a mirror server docker image on your own.
 
+```bash
+docker build -t gradle-server gradle-server
+# by default it downloads the most recent 14 gradle distributions (excluding rc or milestone)
+```
+
 ## Emulator
 
 Running emulator inside container is not a problem, but the performance is quite limited.
