@@ -186,6 +186,11 @@ gradle-server/downloader.sh [DOWNLOAD_DIRECTORY] [DOWNLOAD_AMOUNT]
 docker run -d -p 80:80 -p 443:443 -v [DOWNLOAD_DIRECTORY]:/var/www/gradle.org/public_html/distributions gradle-server
 ```
 
+Copy the SSL certificate from container to host machine
+```bash
+docker cp `docker ps -aqf "ancestor=gradle-server"`:/etc/apache2/ssl/apache.crt apache.crt
+```
+
 ## Emulator
 
 Running emulator inside container is not a problem, but the performance is quite limited.
