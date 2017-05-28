@@ -168,6 +168,12 @@ sudo exportfs -a
 sudo service nfs-kernel-server start
 ```
 
+## Gradle distributions mirror server
+
+There is still a little room for optimization: recent distribution of Gradle is around 90MB, imagine different containers / build jobs have to perform downloading many times, and it has high influence upon your network bandwidth.  Setting up a local Gradle distributions mirror server would significantly boost your download speed.
+
+Fortunately, you can easily build such a mirror server docker image on your own.
+
 ## Emulator
 
 Running emulator inside container is not a problem, but the performance is quite limited.
