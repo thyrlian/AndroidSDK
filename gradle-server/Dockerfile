@@ -18,14 +18,14 @@ RUN apt-get update -y && \
 ENV GRADLE_DIST /var/www/gradle.org/public_html/distributions
 ADD downloader.sh $GRADLE_DIST/
 RUN apt-get install -y apache2 && \
-    sed -i 's/DocumentRoot.*/DocumentRoot \/var\/www\/gradle.org\/public_html/g' /etc/apache2/sites-available/000-default.conf && \
+    sed -i 's%\(^\s*DocumentRoot\s*\).*%\1/var/www/gradle.org/public_html%g' /etc/apache2/sites-available/000-default.conf && \
     echo "\n<Directory /var/www/gradle.org>\n        Options Indexes FollowSymLinks\n</Directory>\n" >> /etc/apache2/apache2.conf && \
     a2enmod ssl && \
     mkdir /etc/apache2/ssl && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt -subj "/C=DE/ST=Berlin/L=Berlin/CN=gradle.org" && \
-    sed -i 's/DocumentRoot.*/DocumentRoot \/var\/www\/gradle.org\/public_html/g' /etc/apache2/sites-available/default-ssl.conf && \
-    sed -i 's/SSLCertificateFile.*/SSLCertificateFile \/etc\/apache2\/ssl\/apache.crt/g' /etc/apache2/sites-available/default-ssl.conf && \
-    sed -i 's/SSLCertificateKeyFile.*/SSLCertificateKeyFile \/etc\/apache2\/ssl\/apache.key/g' /etc/apache2/sites-available/default-ssl.conf && \
+    sed -i 's%\(^\s*DocumentRoot\s*\).*%\1/var/www/gradle.org/public_html%g' /etc/apache2/sites-available/default-ssl.conf && \
+    sed -i 's%\(^\s*SSLCertificateFile\s*\).*%\1/etc/apache2/ssl/apache.crt%g' /etc/apache2/sites-available/default-ssl.conf && \
+    sed -i 's%\(^\s*SSLCertificateKeyFile\s*\).*%\1/etc/apache2/ssl/apache.key%g' /etc/apache2/sites-available/default-ssl.conf && \
     a2ensite default-ssl.conf && \
     $GRADLE_DIST/downloader.sh $GRADLE_DIST 14
 EXPOSE 80 443
