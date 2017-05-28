@@ -2,5 +2,9 @@
 sdk/
 authorized_keys
 
+### Certificate ###
+*.key
+*.crt
+
 ### macOS ###
 *.DS_Store
