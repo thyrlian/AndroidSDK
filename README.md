@@ -186,10 +186,20 @@ gradle-server/downloader.sh [DOWNLOAD_DIRECTORY] [DOWNLOAD_AMOUNT]
 docker run -d -p 80:80 -p 443:443 -v [DOWNLOAD_DIRECTORY]:/var/www/gradle.org/public_html/distributions gradle-server
 ```
 
-Copy the SSL certificate from container to host machine
 ```bash
+# copy the SSL certificate from gradle server container to host machine
 docker cp `docker ps -aqf "ancestor=gradle-server"`:/etc/apache2/ssl/apache.crt apache.crt
+# copy the SSL certificate from host machine to AndroidSDK container
+docker cp apache.crt `docker ps -aqf "ancestor=thyrlian/android-sdk"`:/home/apache.crt
+# add self-signed SSL certificate to Java keystore
+docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c '$JAVA_HOME/bin/keytool -import -trustcacerts -file /home/apache.crt -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt'
+# map gradle services domain to your local IP
+docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c 'echo "[YOUR_HOST_IP_ADDRESS_FOR_GRADLE_CONTAINER] services.gradle.org" >> /etc/hosts'
 ```
+
+Starting from now on, gradle wrapper will download gradle distributions from your local mirror server, lightning fast!  The downloaded distribution will be uncompressed to `/root/.gradle/wrapper/dists`.
+
+If you don't want to bother with SSL certificate, you can simply change the `distributionUrl` inside `[YOUR_PROJECT]/gradle/wrapper/gradle-wrapper.properties` from `https` to `http`.
 
 ## Emulator
 
