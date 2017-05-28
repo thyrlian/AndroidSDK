@@ -1,3 +1,6 @@
 # SDK host directory (to be mounted into container)
 sdk/
 authorized_keys
+
+### macOS ###
+*.DS_Store
