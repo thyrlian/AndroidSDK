@@ -138,6 +138,23 @@ docker exec -it <container_id> /bin/bash
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/SSH.png?raw=true">
 
+## Jenkins Configuration
+
+### Static Approach
+
+* Have a few Android SDK Docker containers launched beforehand (supposed to be long-running)
+* Set them as Jenkins nodes
+  * **Jenkins** -> **Manage Jenkins** -> **Manage Nodes** -> **New Node**
+  
+  (equivalent to: `JENKINS_URL/computer/new`)
+  
+  <img src="https://github.com/thyrlian/AndroidSDK/blob/jenkins-config/images/jenkins-nodes-config.png?raw=true">
+  
+  * Don't forget to click **Advanced...** button to be able to set the **Port**
+  * Add and select **Credentials** (use the private key which is from the same pair of the public key you've added to the `authorized_keys` file)
+  
+  <img src="https://github.com/thyrlian/AndroidSDK/blob/jenkins-config/images/jenkins-credentials.png?raw=true">
+
 ## NFS
 
 You can host the Android SDK in one place, and share it with different containers.  One solution is using NFS (Network File System).
