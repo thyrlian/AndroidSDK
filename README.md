@@ -389,6 +389,26 @@ adb -s <device_sn> emu kill
 
 ## Change Log
 
+### 1.4
+
+```console
+docker pull thyrlian/android-sdk:1.4
+```
+
+**What's New**
+* Upgraded Ubuntu from 16.04.1 to 16.04.2
+* Upgraded Gradle from 3.5 to 4.0
+
+Component | Version
+--------- | -------
+Ubuntu | 16.04.2 LTS (Xenial Xerus)
+Java | 1.8.0_131
+Gradle | 4.0
+AndroidSDK | 26.0.1
+OpenSSH | 7.2p2
+
+---
+
 ### 1.3
 
 ```console
@@ -397,7 +417,7 @@ docker pull thyrlian/android-sdk:1.3
 
 **What's New**
 * Upgraded Gradle from 3.3 to 3.5
-* Upgraded AndroidSDK from 25.2.3 to 26.0.2
+* Upgraded AndroidSDK from 25.2.3 to 26.0.1
 
 Component | Version
 --------- | -------
