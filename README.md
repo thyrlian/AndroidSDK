@@ -251,19 +251,23 @@ lsmod | grep kvm
 
 * Check available emulator system images from remote SDK repository (on the host machine)
 ```console
-sdk/tools/android list sdk --extended --no-ui --all
+sdkmanager --list --verbose
 ```
 
 * Download emulator system image(s) (on the host machine)
 ```bash
-echo "y" | sdk/tools/android update sdk --no-ui --all --filter <system_image_1,system_image_2,...>
+sdkmanager "system_image_1" "system_image_2"
 # e.g.:
-# sys-img-x86_64-android-24
-# sys-img-x86-android-24
-# sys-img-x86_64-google_apis-24
-# sys-img-x86-google_apis-24
-# sys-img-arm64-v8a-android-24
-# sys-img-armeabi-v7a-android-24
+# system-images;android-24;android-tv;x86
+# system-images;android-24;default;arm64-v8a
+# system-images;android-24;default;armeabi-v7a
+# system-images;android-24;default;x86
+# system-images;android-24;default;x86_64
+# system-images;android-24;google_apis;arm64-v8a
+# system-images;android-24;google_apis;armeabi-v7a
+# system-images;android-24;google_apis;x86
+# system-images;android-24;google_apis;x86_64
+# system-images;android-24;google_apis_playstore;x86
 ```
 
 * Run Docker container in privileged mode, so that it's able to access to all devices on the host
@@ -288,48 +292,33 @@ accel:
 accel
 ```
 
-* List existing Android targets
-```bash
-android list targets
-# ==================================================
-Available Android targets:
-----------
-id: 1 or "android-24"
-     Name: Android 7.0
-     Type: Platform
-     API level: 24
-     Revision: 2
-     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
- Tag/ABIs : default/arm64-v8a, default/armeabi-v7a, default/x86, default/x86_64, google_apis/x86, google_apis/x86_64
-# ==================================================
-```
-
 * Create a new Android Virtual Device
 ```bash
-echo "no" | android create avd -n <name> -t <target> -b <abi>
+echo "no" | avdmanager create avd -n <name> -k <sdk_id>
 # e.g.:
-echo "no" | android create avd -n avd24 -t android-24 -b default/x86_64
+echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;x86_64"
 ```
 
 * List existing Android Virtual Devices
 ```bash
-android list avd
+avdmanager list avd
 # ==================================================
 Available Android Virtual Devices:
-    Name: avd24
-    Path: /root/.android/avd/avd24.avd
-  Target: Android 7.0 (API level 24)
- Tag/ABI: default/x86_64
-    Skin: WVGA800
+    Name: test
+    Path: /root/.android/avd/test.avd
+  Target:
+          Based on: Android 7.0 (Nougat) Tag/ABI: default/x86_64
 # ==================================================
 
 # or
 
 emulator -list-avds
 # ==================================================
-avd24
+test
 # ==================================================
 ```
+
+> 32-bit Linux Android emulator binaries are DEPRECATED
 
 * Launch emulator in background
 ```console
