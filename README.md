@@ -84,7 +84,9 @@ docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null && do
 # go to the 'sdk' directory on the host, update the SDK
 # ONLY IF the host machine is the same target architecture as the container
 # JDK required on the host
-echo "y" | sdk/tools/android update sdk ...
+sdk/tools/bin/sdkmanager --update
+# or install specific packages
+sdk/tools/bin/sdkmanager "build-tools;x.y.z" "platforms;android-x" ...
 
 # mount the updated SDK to container again
 # if the host SDK directory is mounted to more than one container
@@ -363,23 +365,24 @@ cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision
 cat $ANDROID_HOME/platform-tools/source.properties | grep Pkg.Revision
 ```
 
+> The "`android`" command is deprecated.  For command-line tools, use `tools/bin/sdkmanager` and `tools/bin/avdmanager`.
+
 * List installed and available packages
 ```console
 sdkmanager --list
+# print full details instead of truncated path
+sdkmanager --list --verbose
 ```
 
-* List available packages from remote SDK repository
-```console
-android list sdk -e
-```
-
-* Update the SDK
+* Update all installed packages to the latest version
 ```bash
-# by name
-echo "y" | android update sdk --no-ui --all --filter tools,platform-tools,extra-android-m2repository,build-tools-25.0.0,android-25
+sdkmanager --update
+```
 
-# by id
-echo "y" | android update sdk -u -a -t 1,2,3,...,n
+* Install packages
+> The packages argument is an SDK-style path as shown with the `--list` command, wrapped in quotes (for example, `"extras;android;m2repository"`). You can pass multiple package paths, separated with a space, but they must each be wrapped in their own set of quotes.
+```bash
+sdkmanager "extras;android;m2repository" "extras;google;m2repository" "extras;google;google_play_services" "extras;google;instantapps" "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" "build-tools;26.0.0" "platforms;android-26"
 ```
 
 * Stop emulator
