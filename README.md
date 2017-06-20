@@ -79,7 +79,7 @@ docker pull thyrlian/android-sdk
 # below commands assume that you've pulled the image
 
 # copy the pre-downloaded SDK to the mounted 'sdk' directory
-docker stop $(docker ps -aqf "ancestor=android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=android-sdk") &> /dev/null; docker run -d -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker exec -it `docker ps -aqf "ancestor=android-sdk"` bash -c 'cp -a $ANDROID_HOME/. /sdk' && docker stop $(docker ps -aqf "ancestor=android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=android-sdk") &> /dev/null
+docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null; docker run -d -v $(pwd)/sdk:/sdk thyrlian/android-sdk && docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c 'cp -a $ANDROID_HOME/. /sdk' && docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") > /dev/null
 
 # go to the 'sdk' directory on the host, update the SDK
 # ONLY IF the host machine is the same target architecture as the container
@@ -123,7 +123,7 @@ docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
 docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk
 
 # Copy the just created local authorized_keys file to the running container
-docker cp $(pwd)/authorized_keys `docker ps -aqf "ancestor=android-sdk"`:/root/.ssh
+docker cp $(pwd)/authorized_keys `docker ps -aqf "ancestor=thyrlian/android-sdk"`:/root/.ssh
 ```
 
 That's it!  Now it's up and running, you can ssh to it
@@ -192,11 +192,11 @@ docker run -d -p 80:80 -p 443:443 -v [DOWNLOAD_DIRECTORY]:/var/www/gradle.org/pu
 # copy the SSL certificate from gradle server container to host machine
 docker cp `docker ps -aqf "ancestor=gradle-server"`:/etc/apache2/ssl/apache.crt apache.crt
 # copy the SSL certificate from host machine to AndroidSDK container
-docker cp apache.crt `docker ps -aqf "ancestor=android-sdk"`:/home/apache.crt
+docker cp apache.crt `docker ps -aqf "ancestor=thyrlian/android-sdk"`:/home/apache.crt
 # add self-signed SSL certificate to Java keystore
-docker exec -it `docker ps -aqf "ancestor=android-sdk"` bash -c '$JAVA_HOME/bin/keytool -import -trustcacerts -file /home/apache.crt -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt'
+docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c '$JAVA_HOME/bin/keytool -import -trustcacerts -file /home/apache.crt -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -noprompt'
 # map gradle services domain to your local IP
-docker exec -it `docker ps -aqf "ancestor=android-sdk"` bash -c 'echo "[YOUR_HOST_IP_ADDRESS_FOR_GRADLE_CONTAINER] services.gradle.org" >> /etc/hosts'
+docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c 'echo "[YOUR_HOST_IP_ADDRESS_FOR_GRADLE_CONTAINER] services.gradle.org" >> /etc/hosts'
 ```
 
 Starting from now on, gradle wrapper will download gradle distributions from your local mirror server, lightning fast!  The downloaded distribution will be uncompressed to `/root/.gradle/wrapper/dists`.
