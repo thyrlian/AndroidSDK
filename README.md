@@ -96,6 +96,14 @@ docker run -it -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
 
 # you can mount without read-only option, only if you need to update SDK inside container
 docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
+
+# to stop and remove container
+# when the image was pulled from a registry
+docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null
+# when the image was built locally
+docker stop $(docker ps -aqf "ancestor=android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=android-sdk") &> /dev/null
+# more flexible way - doesn't matter where the image comes from
+docker stop $(docker ps -a | grep 'android-sdk' | awk '{ print $1 }') &> /dev/null && docker rm $(docker ps -a | grep 'android-sdk' | awk '{ print $1 }') &> /dev/null
 ```
 
 ## SSH
