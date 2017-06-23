@@ -40,7 +40,9 @@ RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
 ENV ANDROID_HOME /opt/android-sdk
-ENV PATH ${PATH}:${GRADLE_HOME}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin
+ENV PATH ${PATH}:${GRADLE_HOME}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/emulator
+# temporary workaround for issue https://issuetracker.google.com/issues/37137213
+ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64/qt/lib
 
 # accept the license agreements of the SDK components
 RUN export ANDROID_LICENSES="$ANDROID_HOME/licenses" && \
@@ -54,7 +56,8 @@ RUN export ANDROID_LICENSES="$ANDROID_HOME/licenses" && \
 ADD banner.net /etc/
 ADD authorized_keys /tmp/
 EXPOSE 22
-RUN apt-get install -y openssh-server supervisor locales && \
+RUN apt-get update -y && \
+    apt-get install -y openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisor && \
     locale-gen en en_US en_US.UTF-8 && \
     FILE_SSHD_CONFIG="/etc/ssh/sshd_config" && \
