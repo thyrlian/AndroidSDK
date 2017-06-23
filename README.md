@@ -304,7 +304,7 @@ accel
 ```bash
 echo "no" | avdmanager create avd -n <name> -k <sdk_id>
 # e.g.:
-echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;x86_64"
+echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
 ```
 
 * List existing Android Virtual Devices
@@ -315,21 +315,25 @@ Available Android Virtual Devices:
     Name: test
     Path: /root/.android/avd/test.avd
   Target:
-          Based on: Android 7.0 (Nougat) Tag/ABI: default/x86_64
+          Based on: Android 7.0 (Nougat) Tag/ABI: default/armeabi-v7a
 # ==================================================
 
 # or
 
 emulator -list-avds
+# 32-bit Linux Android emulator binaries are DEPRECATED
 # ==================================================
 test
 # ==================================================
 ```
 
-> 32-bit Linux Android emulator binaries are DEPRECATED
-
 * Launch emulator in background
-```console
+```bash
+# use different command per architecture
+emulator64-arm -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -noskin -accel on &
+# or
+emulator64-mips -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -noskin -accel on &
+# or
 emulator64-x86 -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -noskin -accel on &
 ```
 
