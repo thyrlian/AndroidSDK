@@ -393,6 +393,25 @@ adb -s <device_sn> emu kill
 
 ## Change Log
 
+### 1.5
+
+```console
+docker pull thyrlian/android-sdk:1.5
+```
+
+**What's New**
+* Applied emulator fix
+
+Component | Version
+--------- | -------
+Ubuntu | 16.04.2 LTS (Xenial Xerus)
+Java | 1.8.0_131
+Gradle | 4.0
+AndroidSDK | 26.0.1
+OpenSSH | 7.2p2
+
+---
+
 ### 1.4
 
 ```console
