@@ -164,8 +164,8 @@ sudo mkdir -p /var/nfs/android-sdk
 sudo apt-get install -y wget zip
 cd /var/nfs/android-sdk
 sudo wget -q $(wget -q -O- 'https://developer.android.com/sdk' | grep -o "\"https://.*android.*tools.*linux.*\"" | sed "s/\"//g")
-sudo unzip tools_*-linux*.zip
-sudo rm tools_*-linux*.zip
+sudo unzip *tools*linux*.zip
+sudo rm *tools*linux*.zip
 sudo mkdir licenses
 echo 8933bad161af4178b1185d1a37fbf41ea5269c55 | sudo tee licenses/android-sdk-license > /dev/null
 echo 84831b9409646a918e30573bab4c9c91346d8abd | sudo tee licenses/android-sdk-preview-license > /dev/null
