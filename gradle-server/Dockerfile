@@ -8,7 +8,7 @@ FROM ubuntu:16.04
 
 # Author
 # ---------------------------------------------------------------------- #
-MAINTAINER Jing Li <thyrlian@gmail.com>
+LABEL maintainer "thyrlian@gmail.com"
 
 # install essential tools
 RUN apt-get update -y && \

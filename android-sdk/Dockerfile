@@ -8,7 +8,7 @@ FROM ubuntu:16.04
 
 # Author
 # ---------------------------------------------------------------------- #
-MAINTAINER Jing Li <thyrlian@gmail.com>
+LABEL maintainer "thyrlian@gmail.com"
 
 # support multiarch: i386 architecture
 # install Java
