@@ -150,9 +150,13 @@ docker exec -it <container_id> /bin/bash
 
 ## NFS
 
-You can host the Android SDK in one place, and share it with different containers.  One solution is using NFS (Network File System).
+You can host the Android SDK in one host-independent place, and share it across different containers.  One solution is using NFS (Network File System).
 
-Here are instructions for configuring a NFS server (on Ubuntu):
+To make the container consume the NFS, you can try either way below:
+* Mount the NFS onto your host machine, then run container with volume option (`-v`).
+* Use a Docker volume plugin, for instance [Convoy plugin](https://github.com/rancher/convoy).
+
+And here are instructions for configuring a NFS server (on Ubuntu):
 
 ```bash
 sudo apt-get update
