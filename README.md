@@ -282,7 +282,7 @@ sdkmanager "system_image_1" "system_image_2"
 # system-images;android-24;google_apis_playstore;x86
 ```
 
-* Run Docker container in privileged mode, so that it's able to access to all devices on the host
+* Run Docker container in privileged mode
 ```console
 docker run -it --privileged -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
 ```
