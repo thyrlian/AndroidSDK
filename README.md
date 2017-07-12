@@ -335,10 +335,15 @@ test
 ```bash
 # use different command per architecture
 emulator64-arm -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -noskin -accel on &
+
 # or
 emulator64-mips -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -noskin -accel on &
+
 # or
 emulator64-x86 -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -noskin -accel on &
+#=> emulator: ERROR: x86_64 emulation currently requires hardware acceleration!
+#=> Please ensure KVM is properly installed and usable.
+#=> CPU acceleration status: KVM requires a CPU that supports vmx or svm
 ```
 
 * Check the virtual device status
