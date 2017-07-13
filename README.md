@@ -367,6 +367,28 @@ Now you can for instance run UI tests on the emulator (just remember, the perfor
 <your_android_project>/gradlew connectedAndroidTest
 ```
 
+## Android Device
+
+You can give a container access to host's USB Android devices.
+```console
+# on Linux
+docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
+
+# or
+# try to avoid privileged flag, just add necessary capabilities when possible
+# --device option allows you to run devices inside the container without the --privileged flag
+docker run -it --device=/dev/bus/usb:/dev/bus/usb -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
+```
+
+Note:
+* Connect Android device via USB on host first;
+* Launch container;
+* Disconnect and connect Android device on USB;
+* Select OK for "Allow USB debugging" on Android device;
+* Now the Android device will show up inside the container (`adb devices`).
+
+Don't worry about `adbkey` or `adbkey.pub` under `/.android`, not required.
+
 ## Android Commands Reference
 
 * Check installed Android SDK tools version
