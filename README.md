@@ -392,6 +392,10 @@ Note:
 
 Don't worry about `adbkey` or `adbkey.pub` under `/.android`, not required.
 
+[Docker for Mac FAQ](https://docs.docker.com/docker-for-mac/faqs/#can-i-pass-through-a-usb-device-to-a-container) says:
+
+> Unfortunately it is not possible to pass through a USB device (or a serial port) to a container.
+
 ## Android Commands Reference
 
 * Check installed Android SDK tools version
