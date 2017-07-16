@@ -380,7 +380,7 @@ docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb -v $(pwd)/sdk:/opt/andr
 # or
 # try to avoid privileged flag, just add necessary capabilities when possible
 # --device option allows you to run devices inside the container without the --privileged flag
-docker run -it --device=/dev/bus/usb:/dev/bus/usb -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
+docker run -it --device=/dev/ttyUSB0 -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
 ```
 
 Note:
