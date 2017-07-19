@@ -29,6 +29,14 @@ RUN cd /opt && \
     ls -d */ | sed 's/\/*$//g' | xargs -I{} mv {} gradle && \
     rm gradle*.zip
 
+# download and install Kotlin compiler
+RUN cd /opt && \
+    wget -q $(wget -q -O- 'https://github.com/JetBrains/kotlin/releases/latest' | \
+    grep -o "\".*/releases/.*\.zip\"" | sed "s/\"//g" | \
+    (echo -n https://github.com && cat)) && \
+    unzip *kotlin*.zip && \
+    rm *kotlin*.zip
+
 # download and install Android SDK
 RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
     wget -q $(wget -q -O- 'https://developer.android.com/sdk' | \
@@ -39,8 +47,9 @@ RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
 # set the environment variables
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
+ENV KOTLIN_HOME /opt/kotlinc
 ENV ANDROID_HOME /opt/android-sdk
-ENV PATH ${PATH}:${GRADLE_HOME}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/emulator
+ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/emulator
 # temporary workaround for issue https://issuetracker.google.com/issues/37137213
 ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64/qt/lib
 
