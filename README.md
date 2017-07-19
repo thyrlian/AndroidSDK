@@ -97,6 +97,9 @@ docker run -it -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
 # you can mount without read-only option, only if you need to update SDK inside container
 docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
 
+# to keep and reuse Gradle cache
+docker run -it -v $(pwd)/sdk:/opt/android-sdk -v $(pwd)/gradle_caches:/root/.gradle/caches thyrlian/android-sdk /bin/bash
+
 # to stop and remove container
 # when the image was pulled from a registry
 docker stop $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null && docker rm $(docker ps -aqf "ancestor=thyrlian/android-sdk") &> /dev/null
