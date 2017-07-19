@@ -434,6 +434,26 @@ adb -s <device_sn> emu kill
 
 ## Change Log
 
+### 1.6
+
+```console
+docker pull thyrlian/android-sdk:1.6
+```
+
+**What's New**
+* Added Kotlin compiler
+
+Component | Version
+--------- | -------
+Ubuntu | 16.04.2 LTS (Xenial Xerus)
+Java | 1.8.0_131
+Gradle | 4.0.1
+Kotlin compiler | 1.1.3-2
+AndroidSDK | 26.0.1
+OpenSSH | 7.2p2
+
+---
+
 ### 1.5
 
 ```console
