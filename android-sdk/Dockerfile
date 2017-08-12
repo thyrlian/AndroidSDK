@@ -50,8 +50,8 @@ ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
 ENV ANDROID_HOME /opt/android-sdk
 ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/emulator
-# temporary workaround for issue https://issuetracker.google.com/issues/37137213
-ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64/qt/lib
+# WORKAROUND: for issue https://issuetracker.google.com/issues/37137213
+ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
 
 # accept the license agreements of the SDK components
 RUN export ANDROID_LICENSES="$ANDROID_HOME/licenses" && \
