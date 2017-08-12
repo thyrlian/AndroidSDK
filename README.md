@@ -223,6 +223,8 @@ If you don't want to bother with SSL certificate, you can simply change the `dis
 
 ## Emulator
 
+ARM emulator is host machine independent, can run anywhere - Linux, macOS, VM and etc.  While the performance is a bit poor.  On the contrary, x86 emulator requires KVM, which means only runnable on Linux.
+
 According to [Google's documentation](https://developer.android.com/studio/run/emulator-acceleration.html#accel-vm):
 
 > **VM acceleration restrictions**
@@ -233,7 +235,7 @@ According to [Google's documentation](https://developer.android.com/studio/run/e
 
 > * You can't run software that uses another virtualization technology at the same time that you run the accelerated emulator. For example, VirtualBox, VMWare, and Docker currently use a different virtualization technology, so you can't run them at the same time as the accelerated emulator.
 
-### Preconditions on the host machine
+### Preconditions on the host machine (for x86 emulator)
 
 Read [How to Start Intel Hardware-assisted Virtualization (hypervisor) on Linux](https://software.intel.com/en-us/blogs/2012/03/12/how-to-start-intel-hardware-assisted-virtualization-hypervisor-on-linux-to-speed-up-intel-android-x86-emulator) for more details.
 
@@ -286,12 +288,13 @@ sdkmanager "system_image_1" "system_image_2"
 # system-images;android-24;google_apis_playstore;x86
 ```
 
-* Run Docker container in privileged mode
-```console
+* Run Docker container in privileged mode (not necessary for ARM emulator)
+```bash
+# required by KVM
 docker run -it --privileged -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
 ```
 
-* Check acceleration ability
+* Check acceleration ability (not necessary for ARM emulator)
 ```bash
 emulator -accel-check
 
