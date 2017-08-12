@@ -223,8 +223,6 @@ If you don't want to bother with SSL certificate, you can simply change the `dis
 
 ## Emulator
 
-Running emulator inside container is not a problem, but the performance is quite limited.
-
 According to [Google's documentation](https://developer.android.com/studio/run/emulator-acceleration.html#accel-vm):
 
 > **VM acceleration restrictions**
@@ -347,8 +345,12 @@ emulator64-mips -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -ac
 
 # or
 emulator64-x86 -avd <virtual_device_name> -noaudio -no-boot-anim -no-window -accel on &
+
+# if the container is not running in privileged mode, you should see below errors:
 #=> emulator: ERROR: x86_64 emulation currently requires hardware acceleration!
 #=> Please ensure KVM is properly installed and usable.
+#=> CPU acceleration status: /dev/kvm is not found: VT disabled in BIOS or KVM kernel module not loaded
+# or it's running on top of a VM
 #=> CPU acceleration status: KVM requires a CPU that supports vmx or svm
 ```
 
