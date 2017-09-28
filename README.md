@@ -437,6 +437,14 @@ sdkmanager "extras;android;m2repository" "extras;google;m2repository" "extras;go
 adb -s <device_sn> emu kill
 ```
 
+## Demythologizing Memory
+
+### Facts
+
+* JVM is not container aware, and always guesses about the memory resource.
+* Many tools (such as `free`, `vmstat`, `top`) were invented before the existence of [cgroups](https://en.wikipedia.org/wiki/Cgroups), thus they have no clue about the resources limits.
+
+
 ## Change Log
 
 ### 1.7
