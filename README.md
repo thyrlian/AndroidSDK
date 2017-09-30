@@ -445,6 +445,8 @@ adb -s <device_sn> emu kill
 
 ### OOM behaviour
 
+Sometimes you may encounter OOM (Out of Memory) issue.  The issues vary in logs, while you could find the essence by checking the exit code (`echo $?`).
+
 * **Exit Code** `137` (= 128 + 9 = SIGKILL = Killed)
 
   Logs:
