@@ -447,7 +447,15 @@ adb -s <device_sn> emu kill
 
 Sometimes you may encounter OOM (Out of Memory) issue.  The issues vary in logs, while you could find the essence by checking the exit code (`echo $?`).
 
+For demonstration, below examples are trying with [MemoryFiller](https://github.com/thyrlian/AndroidSDK/blob/master/misc/MemoryFiller/MemoryFiller.java).
+
 * **Exit Code** `137` (= 128 + 9 = SIGKILL = Killed)
+
+  Example code:
+  ```console
+  docker run -it -m 128m -v $(pwd)/misc/MemoryFiller:/root/MemoryFiller thyrlian/android-sdk /bin/bash
+  cd /root/MemoryFiller && javac MemoryFiller.java && java MemoryFiller
+  ```
 
   Logs:
   ```console
@@ -455,6 +463,10 @@ Sometimes you may encounter OOM (Out of Memory) issue.  The issues vary in logs,
   ```
 
 * **Exit Code** `1` (= SIGHUP = Hangup)
+
+  Example code:
+  ```console
+  ```
 
   Logs:
   ```console
@@ -464,12 +476,20 @@ Sometimes you may encounter OOM (Out of Memory) issue.  The issues vary in logs,
 
 * **Exit Code** `3` (= SIGQUIT = Quit)
 
+  Example code:
+  ```console
+  ```
+
   Logs:
   ```console
   Terminating due to java.lang.OutOfMemoryError: Java heap space
   ```
 
 * **Exit Code** `134` (= 128 + 6 = SIGABRT = Abort)
+
+  Example code:
+  ```console
+  ```
 
   Logs:
   ```console
