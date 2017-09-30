@@ -242,7 +242,6 @@ Read [How to Start Intel Hardware-assisted Virtualization (hypervisor) on Linux]
 Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if you haven't got KVM installed on the host yet.
 
 * Check the capability of running KVM
-
 ```bash
 egrep -c '(vmx|svm)' /proc/cpuinfo
 # or
@@ -444,6 +443,53 @@ adb -s <device_sn> emu kill
 * JVM is not container aware, and always guesses about the memory resource.
 * Many tools (such as `free`, `vmstat`, `top`) were invented before the existence of [cgroups](https://en.wikipedia.org/wiki/Cgroups), thus they have no clue about the resources limits.
 
+### OOM behaviour
+
+* **Exit Code** `137` (= 128 + 9 = SIGKILL = Killed)
+
+  Logs:
+  ```console
+  Killed
+  ```
+
+* **Exit Code** `1` (= SIGHUP = Hangup)
+
+  Logs:
+  ```console
+  Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+  	at MemoryFiller.main(MemoryFiller.java:13)
+  ```
+
+* **Exit Code** `3` (= SIGQUIT = Quit)
+
+  Logs:
+  ```console
+  Terminating due to java.lang.OutOfMemoryError: Java heap space
+  ```
+
+* **Exit Code** `134` (= 128 + 6 = SIGABRT = Abort)
+
+  Logs:
+  ```console
+  Aborting due to java.lang.OutOfMemoryError: Java heap space
+  #
+  # A fatal error has been detected by the Java Runtime Environment:
+  #
+  #  Internal Error (debug.cpp:308), pid=63, tid=0x00007f208708d700
+  #  fatal error: OutOfMemory encountered: Java heap space
+  #
+  # JRE version: OpenJDK Runtime Environment (8.0_131-b11) (build 1.8.0_131-8u131-b11-2ubuntu1.16.04.3-b11)
+  # Java VM: OpenJDK 64-Bit Server VM (25.131-b11 mixed mode linux-amd64 compressed oops)
+  # Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+  #
+  # An error report file with more information is saved as:
+  # /root/MemoryFiller/hs_err_pid63.log
+  #
+  # If you would like to submit a bug report, please visit:
+  #   http://bugreport.java.com/bugreport/crash.jsp
+  #
+  Aborted
+  ```
 
 ## Change Log
 
