@@ -455,7 +455,9 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   ```bash
   # spin up a container with memory limit (128MB)
   docker run -it -m 128m -v $(pwd)/misc/MemoryFiller:/root/MemoryFiller thyrlian/android-sdk /bin/bash
-  cd /root/MemoryFiller && javac MemoryFiller.java && java MemoryFiller
+  # fill memory up
+  cd /root/MemoryFiller && javac MemoryFiller.java
+  java MemoryFiller
   ```
 
   Logs:
@@ -469,6 +471,12 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
   Example code:
   ```bash
+  # spin up a container with memory limit (or without - both lead to the same result)
+  docker run -it -m 128m -v $(pwd)/misc/MemoryFiller:/root/MemoryFiller thyrlian/android-sdk /bin/bash
+  # fill memory up
+  # enable Docker memory limits transparency for JVM
+  cd /root/MemoryFiller && javac MemoryFiller.java
+  java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap MemoryFiller
   ```
 
   Logs:
@@ -476,6 +484,8 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
   	at MemoryFiller.main(MemoryFiller.java:13)
   ```
+
+  Commentary: With [enabling Docker memory limits transparency for JVM](https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits), JVM is able to correctly estimate the max heap size.
 
 * **Exit Code** `3` (= SIGQUIT = Quit)
 
