@@ -491,6 +491,13 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
   Example code:
   ```bash
+  # spin up a container without memory limit
+  docker run -it -v $(pwd)/misc/MemoryFiller:/root/MemoryFiller thyrlian/android-sdk /bin/bash
+  # fill memory up
+  cd /root/MemoryFiller && javac MemoryFiller.java
+  # make sure that Docker memory resource is big enough > JVM max heap size
+  # otherwise it's better to run with UnlockExperimentalVMOptions & UseCGroupMemoryLimitForHeap enabled
+  java -XX:+ExitOnOutOfMemoryError MemoryFiller
   ```
 
   Logs:
@@ -498,10 +505,19 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   Terminating due to java.lang.OutOfMemoryError: Java heap space
   ```
 
+  Commentary: JRockit JVM exits on the first occurrence of an OOM error. It can be used if you prefer restarting an instance of JRockit JVM rather than handling OOM errors.
+
 * **Exit Code** `134` (= 128 + 6 = SIGABRT = Abort)
 
   Example code:
   ```bash
+  # spin up a container without memory limit
+  docker run -it -v $(pwd)/misc/MemoryFiller:/root/MemoryFiller thyrlian/android-sdk /bin/bash
+  # fill memory up
+  cd /root/MemoryFiller && javac MemoryFiller.java
+  # make sure that Docker memory resource is big enough > JVM max heap size
+  # otherwise it's better to run with UnlockExperimentalVMOptions & UseCGroupMemoryLimitForHeap enabled
+  java -XX:+CrashOnOutOfMemoryError MemoryFiller
   ```
 
   Logs:
@@ -525,6 +541,8 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   #
   Aborted
   ```
+
+  Commentary: JRockit JVM crashes and produces text and binary crash files when an OOM error occurs.
 
 ## Change Log
 
