@@ -548,6 +548,7 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 * `-XshowSettings:category`: shows settings and continues. Possible category arguments for this option include the following: `all` (all categories of settings, the default value), `locale` (settings related to locale), `properties` (settings related to system properties), `vm` (settings of the JVM).  To get JVM Max Heap Size, simply run `java -XshowSettings:vm -version`.
 * `PrintFlagsFinal`: print all VM flags after argument and ergonomic processing.  You can run `java -XX:+PrintFlagsFinal -version` to get all information.
 * By default, [Android Gradle Plugin](https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html) sets the maxProcessCount to 4 (the maximum number of concurrent processes that can be used to dex).  `Total Memory = maxProcessCount * javaMaxHeapSize`
+* Set the environment variable `_JAVA_OPTIONS` to `-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`.  Then you'll see such logs like `Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap` during any task execution, which means it takes effect.
 
 ## Change Log
 
