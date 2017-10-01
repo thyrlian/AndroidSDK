@@ -462,8 +462,8 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   ```console
   Killed
   ```
-  
-  Commentary: The process was in extreme resource starvation, thus was killed by the kernel OOM killer.  This happens when **JVM max heap size > actual container memory**.  Similarly, the logs could look like this when running a gradle task in an Android project: `Process 'Gradle Test Executor 1' finished with non-zero exit value 137`.
+
+  Commentary: The process was in extreme resource starvation, thus was killed by the kernel OOM killer.  This happens when **JVM max heap size > actual container memory**.  Similarly, the logs could look like this when running a gradle task in an Android project: `Process 'Gradle Test Executor 1' finished with non-zero exit value 137`.
 
 * **Exit Code** `1` (= SIGHUP = Hangup)
 
