@@ -549,6 +549,9 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 * `PrintFlagsFinal`: print all VM flags after argument and ergonomic processing.  You can run `java -XX:+PrintFlagsFinal -version` to get all information.
 * By default, [Android Gradle Plugin](https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html) sets the maxProcessCount to 4 (the maximum number of concurrent processes that can be used to dex).  `Total Memory = maxProcessCount * javaMaxHeapSize`
 * Set the environment variable `_JAVA_OPTIONS` to `-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`.  Then you'll see such logs like `Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap` during any task execution, which means it takes effect.
+* `JAVA_OPTS` environment variable won't be used by JVM directly, but sometimes get recognized by other apps (e.g. Apache Tomcat) as configuration.  If you want to use it for any Java executable, do it like this: `java $JAVA_OPTS ...`
+* The official `JAVA_TOOL_OPTIONS` environment variable is provided to augment a command line, so that command line options can be passed without accessing or modifying the launch command.  It is recognized by all VMs.
+* You can tweak `-Xms` or `-Xmx` on your own to specify the initial or maximum heap size.
 
 ## Change Log
 
