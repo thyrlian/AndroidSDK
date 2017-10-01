@@ -438,11 +438,6 @@ adb -s <device_sn> emu kill
 
 ## Demythologizing Memory
 
-### Facts
-
-* JVM is not container aware, and always guesses about the memory resource.
-* Many tools (such as `free`, `vmstat`, `top`) were invented before the existence of [cgroups](https://en.wikipedia.org/wiki/Cgroups), thus they have no clue about the resources limits.
-
 ### OOM behaviour
 
 Sometimes you may encounter OOM (Out of Memory) issue.  The issues vary in logs, while you could find the essence by checking the exit code (`echo $?`).
@@ -543,6 +538,11 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   ```
 
   Commentary: JRockit JVM crashes and produces text and binary crash files when an OOM error occurs.
+
+### Facts
+
+* JVM is not container aware, and always guesses about the memory resource.
+* Many tools (such as `free`, `vmstat`, `top`) were invented before the existence of [cgroups](https://en.wikipedia.org/wiki/Cgroups), thus they have no clue about the resources limits.
 
 ## Change Log
 
