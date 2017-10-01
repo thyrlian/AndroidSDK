@@ -543,6 +543,11 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
 * JVM is not container aware, and always guesses about the memory resource.
 * Many tools (such as `free`, `vmstat`, `top`) were invented before the existence of [cgroups](https://en.wikipedia.org/wiki/Cgroups), thus they have no clue about the resources limits.
+* `MaxRAMFraction`: maximum fraction (1/n) of real memory used for maximum heap size, the default value is 4.
+* `MaxMetaspaceSize`: where class metadata reside.  `MaxPermSize` is deprecated in JDK 8.  It used to be Permanent Generation space before JDK 8, which could cause `java.lang.OutOfMemoryError: PermGen` problem.
+* `-XshowSettings:category`: shows settings and continues. Possible category arguments for this option include the following: `all` (all categories of settings, the default value), `locale` (settings related to locale), `properties` (settings related to system properties), `vm` (settings of the JVM).  To get JVM Max Heap Size, simply run `java -XshowSettings:vm -version`.
+* `PrintFlagsFinal`: print all VM flags after argument and ergonomic processing.  You can run `java -XX:+PrintFlagsFinal -version` to get all information.
+* By default, [Android Gradle Plugin](https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html) sets the maxProcessCount to 4 (the maximum number of concurrent processes that can be used to dex).  `Total Memory = maxProcessCount * javaMaxHeapSize`
 
 ## Change Log
 
