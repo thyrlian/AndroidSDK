@@ -447,12 +447,13 @@ adb -s <device_sn> emu kill
 
 Sometimes you may encounter OOM (Out of Memory) issue.  The issues vary in logs, while you could find the essence by checking the exit code (`echo $?`).
 
-For demonstration, below examples are trying with [MemoryFiller](https://github.com/thyrlian/AndroidSDK/blob/master/misc/MemoryFiller/MemoryFiller.java).
+For demonstration, below examples try to execute [MemoryFiller](https://github.com/thyrlian/AndroidSDK/blob/master/misc/MemoryFiller/MemoryFiller.java) which can fill memory up quickly.
 
 * **Exit Code** `137` (= 128 + 9 = SIGKILL = Killed)
 
   Example code:
-  ```console
+  ```bash
+  # spin up a container with memory limit (128MB)
   docker run -it -m 128m -v $(pwd)/misc/MemoryFiller:/root/MemoryFiller thyrlian/android-sdk /bin/bash
   cd /root/MemoryFiller && javac MemoryFiller.java && java MemoryFiller
   ```
@@ -461,11 +462,13 @@ For demonstration, below examples are trying with [MemoryFiller](https://github.
   ```console
   Killed
   ```
+  
+  Commentary: The process was in extreme resource starvation, thus was killed by the kernel OOM killer.  This happens when **JVM max heap size > actual container memory**.  Similarly, the logs could look like this when running a gradle task in an Android project: `Process 'Gradle Test Executor 1' finished with non-zero exit value 137`.
 
 * **Exit Code** `1` (= SIGHUP = Hangup)
 
   Example code:
-  ```console
+  ```bash
   ```
 
   Logs:
@@ -477,7 +480,7 @@ For demonstration, below examples are trying with [MemoryFiller](https://github.
 * **Exit Code** `3` (= SIGQUIT = Quit)
 
   Example code:
-  ```console
+  ```bash
   ```
 
   Logs:
@@ -488,7 +491,7 @@ For demonstration, below examples are trying with [MemoryFiller](https://github.
 * **Exit Code** `134` (= 128 + 6 = SIGABRT = Abort)
 
   Example code:
-  ```console
+  ```bash
   ```
 
   Logs:
