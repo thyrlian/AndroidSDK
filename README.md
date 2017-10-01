@@ -485,7 +485,7 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   	at MemoryFiller.main(MemoryFiller.java:13)
   ```
 
-  Commentary: With [enabling Docker memory limits transparency for JVM](https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits), JVM is able to correctly estimate the max heap size.
+  Commentary: With [enabling Docker memory limits transparency for JVM](https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits), JVM is able to correctly estimate the max heap size, and it won't be killed by the kernel OOM killer any more.
 
 * **Exit Code** `3` (= SIGQUIT = Quit)
 
