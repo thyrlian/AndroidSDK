@@ -30,7 +30,7 @@ RUN cd /opt && \
     rm gradle*.zip
 
 # download and install Kotlin compiler
-ENV KOTLIN_VERSION 1.1.50
+ENV KOTLIN_VERSION 1.1.51
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
