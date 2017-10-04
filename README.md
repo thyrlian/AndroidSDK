@@ -480,7 +480,7 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   	at MemoryFiller.main(MemoryFiller.java:13)
   ```
 
-  Commentary: With [enabling Docker memory limits transparency for JVM](https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits), JVM is able to correctly estimate the max heap size, and it won't be killed by the kernel OOM killer any more.
+  Commentary: With [enabling Docker memory limits transparency for JVM](https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits), JVM is able to correctly estimate the max heap size, and it won't be killed by the kernel OOM killer any more.  Similarly, the logs could look like this when running a gradle task in an Android project: `Process 'Gradle Test Executor 1' finished with non-zero exit value 1`.  In this case, you should either check your code or tweak your memory limit for container (or JVM heap parameters, or even the host memory size).
 
 * **Exit Code** `3` (= SIGQUIT = Quit)
 
