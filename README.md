@@ -537,7 +537,7 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   Aborted
   ```
 
-  Commentary: JRockit JVM crashes and produces text and binary crash files when an OOM error occurs.
+  Commentary: JRockit JVM crashes and produces text and binary crash files when an OOM error occurs.  When JVM crashes with a fatal error, an error report file `hs_err_pid***.log` will be generated in the same working directory.
 
 ### Facts
 
