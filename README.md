@@ -199,10 +199,10 @@ docker build -t gradle-server gradle-server
 # by default it downloads the most recent 14 gradle distributions (excluding rc or milestone)
 ```
 
-The download amount can be changed [here](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/Dockerfile#L30).  Preferably, you should run the [download script](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/downloader.sh) locally, and mount the download directory to the container.
+The download amount can be changed [here](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/Dockerfile#L30).  Preferably, you should run the [download script](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/gradle_downloader.sh) locally, and mount the download directory to the container.
 
 ```bash
-gradle-server/downloader.sh [DOWNLOAD_DIRECTORY] [DOWNLOAD_AMOUNT]
+gradle-server/gradle_downloader.sh [DOWNLOAD_DIRECTORY] [DOWNLOAD_AMOUNT]
 docker run -d -p 80:80 -p 443:443 -v [DOWNLOAD_DIRECTORY]:/var/www/gradle.org/public_html/distributions gradle-server
 ```
 
