@@ -54,12 +54,8 @@ ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForH
 ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
 
 # accept the license agreements of the SDK components
-RUN export ANDROID_LICENSES="$ANDROID_HOME/licenses" && \
-    [ -d $ANDROID_LICENSES ] || mkdir $ANDROID_LICENSES && \
-    [ -f $ANDROID_LICENSES/android-sdk-license ] || echo "8933bad161af4178b1185d1a37fbf41ea5269c55\nd56f5187479451eabf01fb78af6dfcb131a6481e" > $ANDROID_LICENSES/android-sdk-license && \
-    [ -f $ANDROID_LICENSES/android-sdk-preview-license ] || echo 84831b9409646a918e30573bab4c9c91346d8abd > $ANDROID_LICENSES/android-sdk-preview-license && \
-    [ -f $ANDROID_LICENSES/intel-android-extra-license ] || echo d975f751698a77b662f1254ddbeed3901e976f5a > $ANDROID_LICENSES/intel-android-extra-license && \
-    unset ANDROID_LICENSES
+ADD license_accepter.sh /opt/
+RUN /opt/license_accepter.sh $ANDROID_HOME
 
 # install and configure SSH server
 ADD banner.net /etc/
@@ -85,5 +81,5 @@ RUN apt-get update -y && \
     do if [ -f "$file" ]; then echo "\n" >> $FILE_AUTH_KEYS && cat $file >> $FILE_AUTH_KEYS && echo "\n" >> $FILE_AUTH_KEYS; fi; \
     done && \
     (rm /tmp/*.pub 2> /dev/null || true)
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD supervisord.conf /etc/supervisor/conf.d/
 CMD ["/usr/bin/supervisord"]
