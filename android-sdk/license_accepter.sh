@@ -43,5 +43,5 @@ accept_license_of() {
   fi
 }
 
-check_android_home $1
+check_android_home "$@"
 accept_all_android_licenses
