@@ -57,6 +57,11 @@ ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib6
 ADD license_accepter.sh /opt/
 RUN /opt/license_accepter.sh $ANDROID_HOME
 
+# install and configure VNC server
+EXPOSE 5901
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends xfce4 xfce4-goodies xfonts-base tightvncserver
+
 # install and configure SSH server
 ADD banner.net /etc/
 ADD authorized_keys /tmp/
