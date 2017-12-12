@@ -59,13 +59,17 @@ RUN /opt/license_accepter.sh $ANDROID_HOME
 
 # install and configure VNC server
 EXPOSE 5901
+ADD vncpass.sh /tmp/
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends xfce4 xfce4-goodies xfonts-base tightvncserver
+    apt-get install -y --no-install-recommends xfce4 xfce4-goodies xfonts-base tightvncserver expect && \
+	chmod +x /tmp/vncpass.sh && \
+	/tmp/vncpass.sh && \
+	rm /tmp/vncpass.sh
 
 # install and configure SSH server
+EXPOSE 22
 ADD banner.net /etc/
 ADD authorized_keys /tmp/
-EXPOSE 22
 RUN apt-get update -y && \
     apt-get install -y openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisor && \
