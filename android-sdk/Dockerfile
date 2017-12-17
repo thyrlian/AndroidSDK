@@ -58,6 +58,8 @@ ADD license_accepter.sh /opt/
 RUN /opt/license_accepter.sh $ANDROID_HOME
 
 # install and configure VNC server
+ENV USER root
+ENV DISPLAY :1
 EXPOSE 5901
 ADD vncpass.sh /tmp/
 RUN apt-get update -y && \
