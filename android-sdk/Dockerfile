@@ -57,17 +57,6 @@ ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib6
 ADD license_accepter.sh /opt/
 RUN /opt/license_accepter.sh $ANDROID_HOME
 
-# install and configure VNC server
-ENV USER root
-ENV DISPLAY :1
-EXPOSE 5901
-ADD vncpass.sh /tmp/
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends xfce4 xfce4-goodies xfonts-base tightvncserver expect && \
-	chmod +x /tmp/vncpass.sh && \
-	/tmp/vncpass.sh && \
-	rm /tmp/vncpass.sh
-
 # install and configure SSH server
 EXPOSE 22
 ADD banner.net /etc/
@@ -86,6 +75,7 @@ RUN apt-get update -y && \
     echo "GRADLE_HOME=/opt/gradle" >> $FILE_SSH_ENV && \
     echo "ANDROID_HOME=/opt/android-sdk" >> $FILE_SSH_ENV && \
     echo "PATH=$PATH" >> $FILE_SSH_ENV && \
+    echo "LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib" >> $FILE_SSH_ENV && \
     FILE_AUTH_KEYS="/root/.ssh/authorized_keys" && \
     touch $FILE_AUTH_KEYS && chmod 600 $FILE_AUTH_KEYS && \
     for file in /tmp/*.pub; \
