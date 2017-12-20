@@ -74,11 +74,7 @@ RUN apt-get update -y && \
     ssh-keygen -q -N "" -f /root/.ssh/id_rsa && \
     FILE_SSH_ENV="/root/.ssh/environment" && \
     touch $FILE_SSH_ENV && chmod 600 $FILE_SSH_ENV && \
-    echo "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64" >> $FILE_SSH_ENV && \
-    echo "GRADLE_HOME=/opt/gradle" >> $FILE_SSH_ENV && \
-    echo "ANDROID_HOME=/opt/android-sdk" >> $FILE_SSH_ENV && \
-    echo "PATH=$PATH" >> $FILE_SSH_ENV && \
-    echo "LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib" >> $FILE_SSH_ENV && \
+	printenv | grep "JAVA_HOME\|GRADLE_HOME\|KOTLIN_HOME\|ANDROID_HOME\|LD_LIBRARY_PATH" >> $FILE_SSH_ENV && \
     FILE_AUTH_KEYS="/root/.ssh/authorized_keys" && \
     touch $FILE_AUTH_KEYS && chmod 600 $FILE_AUTH_KEYS && \
     for file in /tmp/*.pub; \
