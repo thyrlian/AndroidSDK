@@ -57,6 +57,9 @@ ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib6
 ADD license_accepter.sh /opt/
 RUN /opt/license_accepter.sh $ANDROID_HOME
 
+# setup adb server
+EXPOSE 5037
+
 # install and configure SSH server
 EXPOSE 22
 ADD banner.net /etc/
@@ -82,5 +85,6 @@ RUN apt-get update -y && \
     do if [ -f "$file" ]; then echo "\n" >> $FILE_AUTH_KEYS && cat $file >> $FILE_AUTH_KEYS && echo "\n" >> $FILE_AUTH_KEYS; fi; \
     done && \
     (rm /tmp/*.pub 2> /dev/null || true)
+
 ADD supervisord.conf /etc/supervisor/conf.d/
 CMD ["/usr/bin/supervisord"]
