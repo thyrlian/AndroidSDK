@@ -143,7 +143,7 @@ docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk"` bash -c 'chown 
 That's it!  Now it's up and running, you can ssh to it
 
 ```console
-ssh root@<your_ip_address> -p 2222
+ssh root@<container_ip_address> -p 2222
 ```
 
 And, in case you need, you can still attach to the running container (not via ssh) by
@@ -153,6 +153,41 @@ docker exec -it <container_id> /bin/bash
 ```
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/SSH.png?raw=true">
+
+## VNC
+
+Remote access to the container's desktop might be helpful if you plan to run emulator inside the container.
+
+```bash
+# pull the image with VNC support
+docker pull thyrlian/android-sdk-vnc
+
+# spin up a container
+# with SSH
+docker run -d -p 5901:5901 -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc
+# or with interactive session
+docker run -it -p 5901:5901 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc /bin/bash
+```
+
+When the container is up and running, use your favorite VNC client to connect to it:
+
+* `<container_ip_address>:5901`
+
+* Password (with control): ***android***
+
+* Password (view only): ***docker***
+
+```bash
+# setup and launch emulator inside the container
+# create a new Android Virtual Device
+echo "no" | avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
+# launch emulator
+emulator64-arm -avd test -noaudio -no-boot-anim -gpu offscreen
+```
+
+For more details, please refer to [Emulator section](https://github.com/thyrlian/AndroidSDK#emulator).
+
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/vnc.png?raw=true">
 
 ## NFS
 
@@ -376,6 +411,31 @@ Now you can for instance run UI tests on the emulator (just remember, the perfor
 ```console
 <your_android_project>/gradlew connectedAndroidTest
 ```
+
+### Access the emulator from outside
+
+Default adb server port: `5037`
+
+```bash
+# spin up a container
+# with SSH
+docker run -d -p 5037:5037 -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc
+# or with interactive session
+docker run -it -p 5037:5037 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc /bin/bash
+
+# launch emulator inside the container...
+```
+
+Outside the container:
+
+```bash
+adb connect <container_ip_address>:5037
+adb devices
+#=> List of devices attached
+#=> emulator-5554	device
+```
+
+Make sure that your **adb client** talks to the **adb server** inside the container, but not your local one.
 
 ## Android Device
 
