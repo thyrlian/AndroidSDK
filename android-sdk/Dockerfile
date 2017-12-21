@@ -22,7 +22,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y qt5-default
 
 # download and install Gradle
-ENV GRADLE_VERSION 4.3.1
+ENV GRADLE_VERSION 4.4.1
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
     unzip gradle*.zip && \
@@ -30,7 +30,7 @@ RUN cd /opt && \
     rm gradle*.zip
 
 # download and install Kotlin compiler
-ENV KOTLIN_VERSION 1.2.0
+ENV KOTLIN_VERSION 1.2.10
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
