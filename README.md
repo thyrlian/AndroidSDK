@@ -9,6 +9,8 @@ Android SDK development environment Docker image
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/logo.png?raw=true" width="200">
 
+[![Conference Talk](https://pbs.twimg.com/media/DODnbwmXkAAbXuM.jpg)](https://youtu.be/YwBAqMDYFCU)
+
 ## Goals
 
 * It contains the complete Android SDK enviroment, is able to perform all regular Android jobs.
