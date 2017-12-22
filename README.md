@@ -113,7 +113,7 @@ docker stop $(docker ps -a | grep 'android-sdk' | awk '{ print $1 }') &> /dev/nu
 
 ## SSH
 
-It is also possible if you wanna connect to container via SSH.  There are two different approaches.
+It is also possible if you wanna connect to container via SSH.  There are three different approaches.
 
 * Build an image on your own, with a built-in `authorized_keys`
 
@@ -125,6 +125,12 @@ docker build -t android-sdk android-sdk
 
 # Run a container
 docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
+```
+
+* Mount `authorized_keys` file from the host to the container
+
+```bash
+docker run -d -p 2222:22 -v $(pwd)/authorized_keys:/root/.ssh/authorized_keys thyrlian/android-sdk
 ```
 
 * Copy a local `authorized_keys` file to a container
