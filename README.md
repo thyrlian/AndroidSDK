@@ -127,7 +127,7 @@ docker build -t android-sdk android-sdk
 docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
 ```
 
-* Mount `authorized_keys` file from the host to the container
+* Mount `authorized_keys` file from the host to a container
 
 ```bash
 docker run -d -p 2222:22 -v $(pwd)/authorized_keys:/root/.ssh/authorized_keys thyrlian/android-sdk
