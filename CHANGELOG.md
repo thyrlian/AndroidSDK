@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0
+
+```console
+docker pull thyrlian/android-sdk:2.0
+```
+
+**What's New**
+* Added launching adb server on container start
+* Upgraded Ubuntu from 16.04.2 to 16.04.3
+* Upgraded Java from 1.8.0_131 to 1.8.0_151
+* Upgraded Gradle from 4.2.1 to 4.4.1
+* Upgraded Kotlin compiler from 1.1.51 to 1.2.10
+
+Component | Version
+--------- | -------
+Ubuntu | 16.04.3 LTS (Xenial Xerus)
+Java | 1.8.0_151
+Gradle | 4.4.1
+Kotlin compiler | 1.2.10
+AndroidSDK | 26.0.1
+OpenSSH | 7.2p2
+
+---
+
 ## 1.8
 
 ```console
