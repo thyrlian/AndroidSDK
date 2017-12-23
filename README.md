@@ -9,7 +9,7 @@ Android SDK development environment Docker image
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/logo.png?raw=true" width="200">
 
-[![Conference Talk](https://pbs.twimg.com/media/DODnbwmXkAAbXuM.jpg)](https://youtu.be/YwBAqMDYFCU)
+<a href="https://youtu.be/YwBAqMDYFCU"><img src="https://pbs.twimg.com/media/DODnbwmXkAAbXuM.jpg" alt="Conference Talk" width="600"></a>
 
 ## Goals
 
