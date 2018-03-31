@@ -172,9 +172,9 @@ docker pull thyrlian/android-sdk-vnc
 
 # spin up a container
 # with SSH
-docker run -d -p 5901:5901 -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc
+docker run -d -p 5901:5901 -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk-vnc
 # or with interactive session
-docker run -it -p 5901:5901 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc /bin/bash
+docker run -it -p 5901:5901 -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk-vnc /bin/bash
 ```
 
 When the container is up and running, use your favorite VNC client to connect to it:
@@ -427,9 +427,9 @@ Default adb server port: `5037`
 ```bash
 # spin up a container
 # with SSH
-docker run -d -p 5037:5037 -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc
+docker run -d -p 5037:5037 -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk-vnc
 # or with interactive session
-docker run -it -p 5037:5037 -v $(pwd)/sdk:/opt/android-sdk android-sdk-vnc /bin/bash
+docker run -it -p 5037:5037 -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk-vnc /bin/bash
 
 # launch emulator inside the container...
 ```
