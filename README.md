@@ -309,9 +309,14 @@ lsmod | grep kvm
 
 ### How to run emulator
 
-* Check available emulator system images from remote SDK repository (on the host machine)
+* Check available emulator system images from remote SDK repository
 ```console
 sdkmanager --list --verbose
+```
+
+* Make sure that the required SDK packages are installed, you can find out by above command.  To install, use the command below.  Whenever you see error complains about `ANDROID_SDK_ROOT`, such as `PANIC: Cannot find AVD system path. Please define ANDROID_SDK_ROOT` or `PANIC: Broken AVD system path. Check your ANDROID_SDK_ROOT value`, it means that you need to install following packages.
+```console
+sdkmanager "platform-tools" "platforms;android-<api_level>" "emulator"
 ```
 
 * Download emulator system image(s) (on the host machine)
