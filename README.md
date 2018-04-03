@@ -170,11 +170,9 @@ Remote access to the container's desktop might be helpful if you plan to run emu
 # pull the image with VNC support
 docker pull thyrlian/android-sdk-vnc
 
-# spin up a container
-# with SSH
+# spin up a container with SSH
+# won't work when spin up with interactive session, since the vncserver won't get launched
 docker run -d -p 5901:5901 -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk-vnc
-# or with interactive session
-docker run -it -p 5901:5901 -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk-vnc /bin/bash
 ```
 
 When the container is up and running, use your favorite VNC client to connect to it:
