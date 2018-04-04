@@ -446,7 +446,7 @@ adb devices
 #=> emulator-5554	device
 ```
 
-Make sure that your **adb client** talks to the **adb server** inside the container, but not your local one.
+Make sure that your **adb client** talks to the **adb server** inside the container, instead of the local one on the host machine.  This can be achieved by running `adb kill-server` (to kill the local server if it's already up) before firing `adb connect` command above.
 
 ## Android Device
 
