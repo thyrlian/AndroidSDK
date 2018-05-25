@@ -10,12 +10,19 @@ fi
 docker login
 
 DOCKER_HUB_ACCOUNT=thyrlian
+BASE_IMAGE_NAME=ubuntu
+BASE_IMAGE_VERSION=16.04
 MAIN_IMAGE_NAME=android-sdk
 SUB_IMAGE_NAME=android-sdk-vnc
+IMAGE_DIR=android-sdk
 TEMP_DIR=temp_authorized_keys
 
 # change to the correct working directory
 cd $(dirname "$0")
+cd $IMAGE_DIR
+
+echo "Pulling the latest base image..."
+docker pull $BASE_IMAGE_NAME:$BASE_IMAGE_VERSION
 
 echo "Hiding files inside authorized_keys directory..."
 rm -r $TEMP_DIR 2> /dev/null
