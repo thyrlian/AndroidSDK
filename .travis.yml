@@ -11,5 +11,4 @@ install:
 script:
   - docker build -t android-sdk ~/AndroidSDK/android-sdk
   - docker images
-  - cmd=$(pwd) && echo $cmd
-  - docker run -it --rm android-sdk bash -c "$cmd"
+  - cmd=$(cat ~/AndroidSDK/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
