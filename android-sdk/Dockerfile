@@ -22,7 +22,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y qt5-default
 
 # download and install Gradle
-ENV GRADLE_VERSION 4.7
+ENV GRADLE_VERSION 4.8.1
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
     unzip gradle*.zip && \
@@ -30,14 +30,14 @@ RUN cd /opt && \
     rm gradle*.zip
 
 # download and install Kotlin compiler
-ENV KOTLIN_VERSION 1.2.41
+ENV KOTLIN_VERSION 1.2.50
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
     rm *kotlin*.zip
 
 # download and install Android SDK
-ENV ANDROID_SDK_VERSION 3859397
+ENV ANDROID_SDK_VERSION 4333796
 RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
     wget -q https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_VERSION}.zip && \
     unzip *tools*linux*.zip && \
