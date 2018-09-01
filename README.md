@@ -628,6 +628,19 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
 See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
 
+## Release guide
+
+* Go to the top-level directory of this project
+* Execute [`image_publisher.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/image_publisher.sh) script
+  ```console
+  ./image_publisher.sh [TAG]
+  ```
+* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/version_inspector.sh) script inside a docker container
+  ```console
+  cmd=$(cat version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
+  ```
+* Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md)
+
 ## License
 
 Copyright (c) 2016-2017 Jing Li. It is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/LICENSE) file for details.
