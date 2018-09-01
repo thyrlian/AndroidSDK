@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.4
+
+```console
+docker pull thyrlian/android-sdk:2.4
+```
+
+**What's New**
+* Upgraded Ubuntu from 16.04.4 to 16.04.5
+* Upgraded OpenJDK from 1.8.0_171 to 1.8.0_181
+* Upgraded Gradle from 4.8.1 to 4.10
+* Upgraded Kotlin compiler from 1.2.50 to 1.2.61
+
+Component | Version
+--------- | -------
+Ubuntu | 16.04.5 LTS (Xenial Xerus)
+Java | 1.8.0_181
+Gradle | 4.10
+Kotlin compiler | 1.2.61
+AndroidSDK | 26.1.1
+OpenSSH | 7.2p2
+
+---
+
 ## 2.3
 
 ```console
