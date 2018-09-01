@@ -675,10 +675,6 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
 * You can tweak `-Xms` or `-Xmx` on your own to specify the initial or maximum heap size.
 
-## Changelog
-
-See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
-
 ## Release guide
 
 * Go to the top-level directory of this project
@@ -696,6 +692,10 @@ See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
   ```
 
 * Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md)
+
+## Changelog
+
+See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
 
 ## License
 
