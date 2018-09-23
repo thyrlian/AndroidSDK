@@ -202,6 +202,10 @@ For more details, please refer to [Emulator section](https://github.com/thyrlian
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/vnc.png?raw=true">
 
+### VNC client recommendation
+
+* macOS: [**Screen Sharing**](https://en.wikipedia.org/wiki/Screen_Sharing)
+
 ## NFS
 
 You can host the Android SDK in one host-independent place, and share it across different containers.  One solution is using NFS (Network File System).
