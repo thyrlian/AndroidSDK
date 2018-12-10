@@ -689,7 +689,7 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
   ./image_publisher.sh [TAG]
   ```
 
-* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/version_inspector.sh) script inside a docker container
+* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/version_inspector.sh) script inside a docker container from local machine
 
   ```console
   cmd=$(cat version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
