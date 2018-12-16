@@ -22,6 +22,6 @@ RUN apt-get update -y && \
     chmod +x /tmp/vncpass.sh; sync && \
     /tmp/vncpass.sh && \
     rm /tmp/vncpass.sh && \
-	apt-get remove -y expect && apt-get autoremove -y && \
+    apt-get remove -y expect && apt-get autoremove -y && \
     FILE_SSH_ENV="/root/.ssh/environment" && \
     echo "DISPLAY=:1" >> $FILE_SSH_ENV
