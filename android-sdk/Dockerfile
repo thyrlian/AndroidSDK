@@ -23,7 +23,7 @@ RUN dpkg --add-architecture i386 && \
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
-ENV GRADLE_VERSION 4.10.3
+ARG GRADLE_VERSION=4.10.3
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
     unzip gradle*.zip && \
@@ -32,7 +32,7 @@ RUN cd /opt && \
 
 # download and install Kotlin compiler
 # https://github.com/JetBrains/kotlin/releases/latest
-ENV KOTLIN_VERSION 1.3.11
+ARG KOTLIN_VERSION=1.3.11
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
@@ -40,7 +40,7 @@ RUN cd /opt && \
 
 # download and install Android SDK
 # https://developer.android.com/studio/#downloads
-ENV ANDROID_SDK_VERSION 4333796
+ARG ANDROID_SDK_VERSION=4333796
 RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
     wget -q https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_VERSION}.zip && \
     unzip *tools*linux*.zip && \
