@@ -82,9 +82,9 @@ If you by accident update SDK on a host machine which has a mismatch target arch
 # build the image
 # set the working directory to the project's root directory first
 docker build -t android-sdk android-sdk
-# you can also pass specific tool version based on your needs (it's optional, as there is default version set)
-docker build --build-arg GRADLE_VERSION=5.1-milestone-1 --build-arg KOTLIN_VERSION=1.3.11 --build-arg ANDROID_SDK_VERSION=4333796 -t android-sdk android-sdk
-# or pull the image
+# or you can also pass specific tool version as you wish (optional, while there is default version)
+docker build --build-arg GRADLE_VERSION=<gradle_version> --build-arg KOTLIN_VERSION=<kotlin_version> --build-arg ANDROID_SDK_VERSION=<android_sdk_version> -t android-sdk android-sdk
+# or pull the image instead of building on your own
 docker pull thyrlian/android-sdk
 
 # below commands assume that you've pulled the image
