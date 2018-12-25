@@ -63,14 +63,14 @@ EXPOSE 5037
 
 # install and configure SSH server
 EXPOSE 22
-ADD banner.net /etc/
+ADD sshd-banner /etc/ssh/
 ADD authorized_keys /tmp/
 RUN apt-get update -y && \
     apt-get install -y openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisord && \
     locale-gen en en_US en_US.UTF-8 && \
     FILE_SSHD_CONFIG="/etc/ssh/sshd_config" && \
-    echo "\nBanner /etc/banner.net" >> $FILE_SSHD_CONFIG && \
+    echo "\nBanner /etc/ssh/sshd-banner" >> $FILE_SSHD_CONFIG && \
     echo "\nPermitUserEnvironment=yes" >> $FILE_SSHD_CONFIG && \
     ssh-keygen -q -N "" -f /root/.ssh/id_rsa && \
     FILE_SSH_ENV="/root/.ssh/environment" && \
