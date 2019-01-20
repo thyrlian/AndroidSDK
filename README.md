@@ -25,6 +25,20 @@ Android SDK development environment Docker image
 
 Provide only the barebone SDK (the latest official minimal package) gives you the most flexibility in tailoring your own SDK tools for your project.  You can maintain an external persistent SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.
 
+### Note
+
+**Gradle** and **Kotlin compiler** come together with this Docker image merely for the sake of convenience.
+
+**[Using the Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper)**
+
+> It is recommended to always execute a build with the Wrapper to ensure a reliable, controlled and standardized execution of the build.  Using the Wrapper looks almost exactly like running the build with a Gradle installation.  In case the Gradle distribution is not available on the machine, the Wrapper will download it and store in the local file system.  Any subsequent build invocation is going to reuse the existing local distribution as long as the distribution URL in the Gradle properties doesn’t change.
+
+Using the Gradle Wrapper lets you build with a precise Gradle version, in order to eliminate any Gradle version problem.
+
+* `<your_project>/gradle/wrapper/gradle-wrapper.properties` specifies the Gradle version
+* Gradle will be downloaded and unzipped to `~/.gradle/wrapper/dists/`
+* `kotlin-compiler-embeddable-x.y.z.jar` will be resolved and downloaded when executing a Gradle task, it's defined in `<your_project>/build.gradle` as `classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"`
+
 ## Caveat
 
 Run Android SDK update directly within the **Dockerfile** or inside the **container** would fail if the storage driver is `AUFS` (by default), it is due to some file operations (during updating) are not supported by this storage driver, but changing it to `Btrfs` would work.
