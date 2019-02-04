@@ -713,6 +713,10 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
 * Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md)
 
+## Contributing
+
+Your contribution is always welcome, which will for sure make the Android SDK Docker solution better.  Please check the [contributing guide](./CONTRIBUTING.md) to get started!  Thank you ☺
+
 ## Changelog
 
 See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
