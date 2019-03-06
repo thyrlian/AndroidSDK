@@ -3,6 +3,8 @@
 Android SDK development environment Docker image
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-info-blue.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
+[![Docker Stars](https://img.shields.io/docker/stars/thyrlian/android-sdk.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/thyrlian/android-sdk.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 [![Image Size & Layers](https://images.microbadger.com/badges/image/thyrlian/android-sdk.svg)](https://microbadger.com/images/thyrlian/android-sdk)
 [![Build Status](https://travis-ci.org/thyrlian/AndroidSDK.svg?branch=master)](https://travis-ci.org/thyrlian/AndroidSDK)
 [![Android Dev Digest](https://img.shields.io/badge/AndroidDevDigest-%23127-green.svg)](https://www.androiddevdigest.com/digest-127/)
