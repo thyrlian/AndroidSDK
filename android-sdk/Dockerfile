@@ -69,6 +69,7 @@ RUN apt-get update -y && \
     apt-get install -y --no-install-recommends openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisord && \
     locale-gen en en_US en_US.UTF-8 && \
+    apt-get remove -y locales && apt-get autoremove -y && \
     FILE_SSHD_CONFIG="/etc/ssh/sshd_config" && \
     echo "\nBanner /etc/ssh/sshd-banner" >> $FILE_SSHD_CONFIG && \
     echo "\nPermitUserEnvironment=yes" >> $FILE_SSHD_CONFIG && \
