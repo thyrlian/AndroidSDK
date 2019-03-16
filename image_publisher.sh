@@ -10,20 +10,27 @@ fi
 docker login
 
 DOCKER_HUB_ACCOUNT=thyrlian
-BASE_IMAGE_NAME=ubuntu
-BASE_IMAGE_VERSION=18.04
+DOCKER_FILE_NAME=Dockerfile
 MAIN_IMAGE_NAME=android-sdk
 MAIN_IMAGE_DIR=android-sdk
 SUB_IMAGE_NAME=android-sdk-vnc
 SUB_IMAGE_DIR=vnc
 TEMP_DIR=temp_authorized_keys
 
+# extract base image name and tag from Dockerfile
+regex_name_and_tag='FROM[[:blank:]]([^:]*):([^:]*)'
+base_info=$(grep "^FROM[[:blank:]][^:]*:[^:]*" $MAIN_IMAGE_DIR/$DOCKER_FILE_NAME)
+if [[ $base_info =~ $regex_name_and_tag ]]; then
+  BASE_IMAGE_NAME=${BASH_REMATCH[1]}
+  BASE_IMAGE_TAG=${BASH_REMATCH[2]}
+fi
+
 # change to the correct working directory
 cd $(dirname "$0")
 cd $MAIN_IMAGE_DIR
 
 echo "Pulling the latest base image..."
-docker pull $BASE_IMAGE_NAME:$BASE_IMAGE_VERSION
+docker pull $BASE_IMAGE_NAME:$BASE_IMAGE_TAG
 
 echo "Hiding files inside authorized_keys directory..."
 rm -r $TEMP_DIR 2> /dev/null
