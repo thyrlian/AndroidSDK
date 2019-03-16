@@ -13,13 +13,14 @@ DOCKER_HUB_ACCOUNT=thyrlian
 BASE_IMAGE_NAME=ubuntu
 BASE_IMAGE_VERSION=18.04
 MAIN_IMAGE_NAME=android-sdk
+MAIN_IMAGE_DIR=android-sdk
 SUB_IMAGE_NAME=android-sdk-vnc
-IMAGE_DIR=android-sdk
+SUB_IMAGE_DIR=vnc
 TEMP_DIR=temp_authorized_keys
 
 # change to the correct working directory
 cd $(dirname "$0")
-cd $IMAGE_DIR
+cd $MAIN_IMAGE_DIR
 
 echo "Pulling the latest base image..."
 docker pull $BASE_IMAGE_NAME:$BASE_IMAGE_VERSION
@@ -43,16 +44,16 @@ docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
 
 echo "Change the base image tag in the sub image file..."
 if [ $(uname) = "Darwin" ]; then
-	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" vnc/Dockerfile
+	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_DIR/Dockerfile
 else
-	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" vnc/Dockerfile
+	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_DIR/Dockerfile
 fi
 
 echo "Building the sub image..."
-docker build -t $SUB_IMAGE_NAME vnc
+docker build -t $SUB_IMAGE_NAME $SUB_IMAGE_DIR
 
 echo "Revert the change of the base image tag in the sub image file..."
-git checkout -- vnc/Dockerfile
+git checkout -- $SUB_IMAGE_DIR/Dockerfile
 
 image_id=$(docker images $SUB_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
 echo "Built sub image ID is: $image_id"
