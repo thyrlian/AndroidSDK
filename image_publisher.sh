@@ -11,7 +11,7 @@ docker login
 
 DOCKER_HUB_ACCOUNT=thyrlian
 BASE_IMAGE_NAME=ubuntu
-BASE_IMAGE_VERSION=16.04
+BASE_IMAGE_VERSION=18.04
 MAIN_IMAGE_NAME=android-sdk
 SUB_IMAGE_NAME=android-sdk-vnc
 IMAGE_DIR=android-sdk
