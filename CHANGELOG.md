@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.0
+
+```console
+docker pull thyrlian/android-sdk:3.0
+```
+
+**What's New**
+* Reduced image size by removal of unnecessary package installation
+* Upgraded Ubuntu from 16.04.5 to 18.04.2
+* Upgraded Gradle from 4.10.3 to 5.2.1
+* Upgraded Kotlin compiler from 1.3.11 to 1.3.21
+* Upgraded OpenSSH from 7.2p2-4 to 7.6p1-4
+
+Component | Version
+--------- | -------
+Ubuntu | 18.04.2 LTS (Bionic Beaver)
+Java | 1.8.0_191
+Gradle | 5.2.1
+Kotlin compiler | 1.3.21
+AndroidSDK | 26.1.1
+OpenSSH | 7.6p1-4
+
+---
+
 ## 2.5
 
 ```console
