@@ -468,6 +468,18 @@ Now you can for instance run UI tests on the emulator (just remember, the perfor
   <your_android_project>/gradlew connectedAndroidTest
   ```
 
+### Troubleshooting emulator
+
+If you encounter an error "***Process system isn't responding***" in the emulator, like below:
+
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/emulator_error_process_not_responding.png?raw=true">
+
+You could try:
+
+* Increase the limit of the memory resource available to Docker Engine.
+
+* Increase the amount of physical RAM on the emulator by setting / changing `hw.ramSize` in the AVD's configuration file (`config.ini`).  By default, it's not set and the default value is "96" (in megabytes).  You could simply set a new value via this command: `echo "hw.ramSize=1024" >> /root/.android/avd/<your_avd_name>.avd/config.ini`
+
 ### Access the emulator from outside
 
 Default adb server port: `5037`
