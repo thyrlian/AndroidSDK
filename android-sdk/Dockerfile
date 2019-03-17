@@ -41,7 +41,8 @@ RUN cd /opt && \
 # download and install Android SDK
 # https://developer.android.com/studio/#downloads
 ARG ANDROID_SDK_VERSION=4333796
-RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
+ENV ANDROID_HOME /opt/android-sdk
+RUN mkdir -p ${ANDROID_HOME} && cd ${ANDROID_HOME} && \
     wget -q https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_VERSION}.zip && \
     unzip *tools*linux*.zip && \
     rm *tools*linux*.zip
@@ -50,7 +51,6 @@ RUN mkdir -p /opt/android-sdk && cd /opt/android-sdk && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
-ENV ANDROID_HOME /opt/android-sdk
 ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/emulator:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin
 ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 # WORKAROUND: for issue https://issuetracker.google.com/issues/37137213
