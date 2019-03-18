@@ -58,7 +58,7 @@ ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib6
 
 # accept the license agreements of the SDK components
 ADD license_accepter.sh /opt/
-RUN /opt/license_accepter.sh $ANDROID_HOME
+RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_HOME
 
 # setup adb server
 EXPOSE 5037
