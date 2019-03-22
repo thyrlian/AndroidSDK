@@ -317,8 +317,10 @@ Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if y
 * Check the capability of running KVM
 
   ```bash
+  grep -cw ".*\(vmx\|svm\).*" /proc/cpuinfo
+  # or
   egrep -c '(vmx|svm)' /proc/cpuinfo
-  # when output > 0 it means the host CPU supports hardware virtualization.
+  # a non-zero result means the host CPU supports hardware virtualization.
   
   sudo kvm-ok
   # seeing below info means you can run your virtual machine faster with the KVM extensions
