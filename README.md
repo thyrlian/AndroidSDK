@@ -318,8 +318,6 @@ Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if y
 
   ```bash
   egrep -c '(vmx|svm)' /proc/cpuinfo
-  # or
-  egrep -c ' lm ' /proc/cpuinfo
   # when output > 0 it means the host CPU supports hardware virtualization.
   
   sudo kvm-ok
