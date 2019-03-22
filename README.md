@@ -340,6 +340,22 @@ Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if y
   lsmod | grep kvm
   ```
 
+### Where can I run x86 emulator
+
+* Linux physical machine
+
+* Cloud computing services (must support nested virtualization)
+
+  * [Amazon Web Services](https://aws.amazon.com/blogs/compute/running-hyper-v-on-amazon-ec2-bare-metal-instances/)
+
+  * [Google Cloud Platform](https://cloud.google.com/compute/docs/instances/enable-nested-virtualization-vm-instances)
+  
+  * [IBM Cloud](https://www.ibm.com/developerworks/cloud/library/cl-nestedvirtualization/index.html)
+
+  * [Microsoft Azure](https://azure.microsoft.com/en-us/blog/nested-virtualization-in-azure/)
+
+* [VirtualBox](https://www.virtualbox.org/) (since 6.0.0, it started supporting nested virtualization, which could be turned on by "Enable Nested VT-x/AMD-V", but at the moment, it's only for AMD CPUs)
+
 ### How to run emulator
 
 * Check available emulator system images from remote SDK repository
