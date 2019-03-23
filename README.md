@@ -346,6 +346,8 @@ Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if y
 
 * Cloud computing services (must support nested virtualization)
 
+  **Note**: there will be a performance penalty, primarily for CPU bound workloads and I/O bound workloads.
+
   * [Amazon Web Services](https://aws.amazon.com/blogs/compute/running-hyper-v-on-amazon-ec2-bare-metal-instances/)
 
   * [Google Cloud Platform](https://cloud.google.com/compute/docs/instances/enable-nested-virtualization-vm-instances)
