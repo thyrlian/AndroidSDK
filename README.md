@@ -706,7 +706,7 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
 ### Facts
 
-* JVM is not container aware, and always guesses about the memory resource.
+* JVM is not container aware, and always guesses about the memory resource (for JDK version earlier than 8u131 or 9).
 
 * Many tools (such as `free`, `vmstat`, `top`) were invented before the existence of [cgroups](https://en.wikipedia.org/wiki/Cgroups), thus they have no clue about the resources limits.
 
