@@ -710,17 +710,19 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
 * Many tools (such as `free`, `vmstat`, `top`) were invented before the existence of [cgroups](https://en.wikipedia.org/wiki/Cgroups), thus they have no clue about the resources limits.
 
-* `MaxRAMFraction`: maximum fraction (1/n) of real memory used for maximum heap size, the default value is 4.
+* `-XX:MaxRAMFraction`: maximum fraction (1/n) of real memory used for maximum heap size (`-XX:MaxHeapSize` / `-Xmx`), the default value is 4.
 
-* `MaxMetaspaceSize`: where class metadata reside.  `MaxPermSize` is deprecated in JDK 8.  It used to be Permanent Generation space before JDK 8, which could cause `java.lang.OutOfMemoryError: PermGen` problem.
+* `-XX:MaxMetaspaceSize`: where class metadata reside.  `-XX:MaxPermSize` is deprecated in JDK 8.  It used to be Permanent Generation space before JDK 8, which could cause `java.lang.OutOfMemoryError: PermGen` problem.
 
 * `-XshowSettings:category`: shows settings and continues. Possible category arguments for this option include the following: `all` (all categories of settings, the default value), `locale` (settings related to locale), `properties` (settings related to system properties), `vm` (settings of the JVM).  To get JVM Max Heap Size, simply run `java -XshowSettings:vm -version`
 
-* `PrintFlagsFinal`: print all VM flags after argument and ergonomic processing.  You can run `java -XX:+PrintFlagsFinal -version` to get all information.
+* `-XX:+PrintFlagsFinal`: print all VM flags after argument and ergonomic processing.  You can run `java -XX:+PrintFlagsFinal -version` to get all information.
 
 * By default, [Android Gradle Plugin](https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html) sets the maxProcessCount to 4 (the maximum number of concurrent processes that can be used to dex).  `Total Memory = maxProcessCount * javaMaxHeapSize`
 
 * Set the environment variable `_JAVA_OPTIONS` to `-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`.  Then you'll see such logs like `Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap` during any task execution, which means it takes effect.
+
+* JDK 10 has introduced `-XX:+UseContainerSupport` which is enabled by defaul to improve the execution and configurability of Java running in Docker containers.
 
 * `JAVA_OPTS` environment variable won't be used by JVM directly, but sometimes get recognized by other apps (e.g. Apache Tomcat) as configuration.  If you want to use it for any Java executable, do it like this: `java $JAVA_OPTS ...`
 
