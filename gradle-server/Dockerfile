@@ -4,7 +4,7 @@
 
 # Base image
 # ---------------------------------------------------------------------- #
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # Author
 # ---------------------------------------------------------------------- #
@@ -15,6 +15,7 @@ RUN apt-get update -y && \
     apt-get install -y wget
 
 # install and configure the Apache Web Server
+ARG GRADLE_DOWNLOAD_AMOUNT=14
 ENV GRADLE_DIST /var/www/gradle.org/public_html/distributions
 ADD gradle_downloader.sh $GRADLE_DIST/
 RUN apt-get install -y apache2 && \
@@ -28,6 +29,6 @@ RUN apt-get install -y apache2 && \
     sed -i 's%\(^\s*SSLCertificateKeyFile\s*\).*%\1/etc/apache2/ssl/apache.key%g' /etc/apache2/sites-available/default-ssl.conf && \
     a2ensite default-ssl.conf && \
     chmod +x $GRADLE_DIST/gradle_downloader.sh && \
-    $GRADLE_DIST/gradle_downloader.sh $GRADLE_DIST 14
+    $GRADLE_DIST/gradle_downloader.sh $GRADLE_DIST $GRADLE_DOWNLOAD_AMOUNT
 EXPOSE 80 443
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
