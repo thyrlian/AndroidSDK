@@ -27,6 +27,7 @@ RUN apt-get install -y apache2 && \
     sed -i 's%\(^\s*SSLCertificateFile\s*\).*%\1/etc/apache2/ssl/apache.crt%g' /etc/apache2/sites-available/default-ssl.conf && \
     sed -i 's%\(^\s*SSLCertificateKeyFile\s*\).*%\1/etc/apache2/ssl/apache.key%g' /etc/apache2/sites-available/default-ssl.conf && \
     a2ensite default-ssl.conf && \
+    chmod +x $GRADLE_DIST/gradle_downloader.sh && \
     $GRADLE_DIST/gradle_downloader.sh $GRADLE_DIST 14
 EXPOSE 80 443
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
