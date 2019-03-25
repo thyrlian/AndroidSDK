@@ -263,16 +263,18 @@ And here are instructions for configuring a NFS server (on Ubuntu):
 
 ## Gradle distributions mirror server
 
-There is still a little room for optimization: recent distribution of Gradle is around 90MB, imagine different containers / build jobs have to perform downloading many times, and it has high influence upon your network bandwidth.  Setting up a local Gradle distributions mirror server would significantly boost your download speed.
+There is still room for optimization: recent distribution of Gradle is around 100MB, imagine different containers / build jobs have to perform downloading over and over again, and it has high influence upon your network bandwidth.  Setting up a local Gradle distributions mirror server would significantly boost your download speed.
 
 Fortunately, you can easily build such a mirror server docker image on your own.
 
   ```bash
   docker build -t gradle-server gradle-server
   # by default it downloads the most recent 14 gradle distributions (excluding rc or milestone)
+  # or you can also pass how many gradle distributions should be downloaded
+  docker build --build-arg GRADLE_DOWNLOAD_AMOUNT=<amount_of_gradle_distributions_to_be_downloaded> -t gradle-server gradle-server
   ```
 
-The download amount can be changed [here](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/Dockerfile#L30).  Preferably, you should run the [download script](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/gradle_downloader.sh) locally, and mount the download directory to the container.
+Preferably, you should run the [download script](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/gradle_downloader.sh) locally, and mount the download directory to the container.
 
   ```bash
   gradle-server/gradle_downloader.sh [DOWNLOAD_DIRECTORY] [DOWNLOAD_AMOUNT]
