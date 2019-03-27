@@ -36,12 +36,15 @@ download_from_link_to_dir() {
 
 parse_gradle_distributions_links_and_download() {
   local url="https://services.gradle.org/distributions/"
-  local data=$(wget -q -O- $url | grep -o "\".*distributions.*all\.zip\"" | grep -v "rc\|milestone" | sed "s/\"//g" | sed "s/.*distributions/https:\/\/services.gradle.org\/distributions/g")
-  read -ra links <<< $data
+  local links=(`wget -q -O- $url | grep -o "\".*distributions.*all\.zip\"" | grep -v "rc\|milestone" | sed "s/\"//g" | sed "s/.*distributions/https:\/\/services.gradle.org\/distributions/g"`)
+  local downloaded=0
   for i in "${!links[@]}"; do
     [ $i -eq $DOWNLOAD_AMOUNT ] && break
     download_from_link_to_dir ${links[i]} $DOWNLOAD_DIRECTORY
+    downloaded=$((downloaded+1))
   done
+  echo "$downloaded Gradle distributions have been downloaded."
+  echo "--------------------------------------------------"
 }
 
 check_and_set_parameters "$@"
