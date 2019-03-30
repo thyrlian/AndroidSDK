@@ -30,7 +30,7 @@ Provide only the barebone SDK (the latest official minimal package) gives you th
 
 ### Note
 
-**Gradle** and **Kotlin compiler** come together with this Docker image merely for the sake of convenience.
+**Gradle** and **Kotlin compiler** come together with this Docker image merely for the sake of convenience / trial.
 
 **[Using the Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper)**
 
