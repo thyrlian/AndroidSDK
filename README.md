@@ -44,7 +44,7 @@ Using the Gradle Wrapper lets you build with a precise Gradle version, in order 
 
 ## Caveat
 
-Run Android SDK update directly within the **Dockerfile** or inside the **container** would fail if the storage driver is `AUFS` (by default), it is due to some file operations (during updating) are not supported by this storage driver, but changing it to `Btrfs` would work.
+Previously, running Android SDK update directly within the **Dockerfile** or inside a **container** would fail with [`AUFS`](https://en.wikipedia.org/wiki/Aufs) storage driver, it was due to hardlink move operations (during updating Android SDK) are not supported by AUFS storage driver, but changing it to other storage driver would work.
 
 What happens if the update fails?
 
@@ -74,7 +74,7 @@ To know more about the storage driver:
   cat /proc/filesystems
   ```
 
-To prevent this problem from happening, and you don't wanna bother dealing with storage driver.  The only solution is to mount an external SDK volume from host to container.  Then you are free to try any of below approaches.
+To prevent this problem from happening, and you don't wanna bother modifying storage driver.  The only solution is to mount an external SDK volume from host to container.  Then you are free to try any of below approaches.
 
 * Update SDK in the usual way but directly inside container.
 
@@ -92,6 +92,12 @@ If you by accident update SDK on a host machine which has a mismatch target arch
   adb
   #=> adb: cannot execute binary file: Exec format error
   ```
+
+Note:
+
+* > [Docker Desktop for Mac and Docker Desktop for Windows are intended for development, rather than production. Modifying the storage driver on these platforms is not possible.](https://docs.docker.com/storage/storagedriver/select-storage-driver/#docker-desktop-for-mac-and-docker-desktop-for-windows)
+
+* AUFS storage driver was deprecated in *Docker Community Edition 18.06.0-ce-mac70 2018-07-25*.  And AUFS support was removed in *Docker Community Edition 2.0.0.0-mac78 2018-11-19*.  For more details, please check [Docker for Mac Stable release notes](https://docs.docker.com/docker-for-mac/release-notes/).
 
 ## Getting Started
 
