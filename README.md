@@ -60,7 +60,7 @@ What happens if the update fails?
   #=> bash: /opt/android-sdk/tools/bin/sdkmanager: No such file or directory
   ```
 
-To know more about the storage driver:
+More information about **storage driver**:
 
 * Check Docker's current storage driver option
 
@@ -72,6 +72,16 @@ To know more about the storage driver:
 
   ```console
   cat /proc/filesystems
+  ```
+
+* Some storage drivers only work with specific backing filesystems.  Check [supported backing filesystems](https://docs.docker.com/storage/storagedriver/select-storage-driver/#supported-backing-filesystems) for further details.
+
+* In order to change the storage driver, you need to edit the [**daemon configuration file**](https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file), or go to **Docker Desktop** -> **Preferences...** -> **Daemon** -> **Advanced**.
+
+  ```console
+  {
+    "storage-driver": ""
+  }
   ```
 
 To prevent this problem from happening, and you don't wanna bother modifying storage driver.  The only solution is to mount an external SDK volume from host to container.  Then you are free to try any of below approaches.
