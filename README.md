@@ -60,30 +60,6 @@ What happens if the update fails?
   #=> bash: /opt/android-sdk/tools/bin/sdkmanager: No such file or directory
   ```
 
-More information about **storage driver**:
-
-* Check Docker's current storage driver option
-
-  ```console
-  docker info | grep 'Storage Driver'
-  ```
-
-* Check which filesystems are supported by the running host kernel
-
-  ```console
-  cat /proc/filesystems
-  ```
-
-* Some storage drivers only work with specific backing filesystems.  Check [supported backing filesystems](https://docs.docker.com/storage/storagedriver/select-storage-driver/#supported-backing-filesystems) for further details.
-
-* In order to change the storage driver, you need to edit the [**daemon configuration file**](https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file), or go to **Docker Desktop** -> **Preferences...** -> **Daemon** -> **Advanced**.
-
-  ```console
-  {
-    "storage-driver": ""
-  }
-  ```
-
 To prevent this problem from happening, and you don't wanna bother modifying storage driver.  The only solution is to mount an external SDK volume from host to container.  Then you are free to try any of below approaches.
 
 * Update SDK in the usual way but directly inside container.
@@ -108,6 +84,30 @@ Note:
 * > [Docker Desktop for Mac and Docker Desktop for Windows are intended for development, rather than production. Modifying the storage driver on these platforms is not possible.](https://docs.docker.com/storage/storagedriver/select-storage-driver/#docker-desktop-for-mac-and-docker-desktop-for-windows)
 
 * AUFS storage driver was deprecated in *Docker Community Edition 18.06.0-ce-mac70 2018-07-25*.  And AUFS support was removed in *Docker Community Edition 2.0.0.0-mac78 2018-11-19*.  For more details, please check [Docker for Mac Stable release notes](https://docs.docker.com/docker-for-mac/release-notes/).
+
+More information about **storage driver**:
+
+* Check Docker's current storage driver option
+
+  ```console
+  docker info | grep 'Storage Driver'
+  ```
+
+* Check which filesystems are supported by the running host kernel
+
+  ```console
+  cat /proc/filesystems
+  ```
+
+* Some storage drivers only work with specific backing filesystems.  Check [supported backing filesystems](https://docs.docker.com/storage/storagedriver/select-storage-driver/#supported-backing-filesystems) for further details.
+
+* In order to change the storage driver, you need to edit the [**daemon configuration file**](https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file), or go to **Docker Desktop** -> **Preferences...** -> **Daemon** -> **Advanced**.
+
+  ```console
+  {
+    "storage-driver": ""
+  }
+  ```
 
 ## Getting Started
 
