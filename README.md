@@ -277,7 +277,7 @@ And here are instructions for configuring a NFS server (on Ubuntu):
   sudo service nfs-kernel-server start
   ```
 
-## Gradle distributions mirror server
+## Gradle Distributions Mirror Server
 
 There is still room for optimization: recent distribution of Gradle is around 100MB, imagine different containers / build jobs have to perform downloading over and over again, and it has high influence upon your network bandwidth.  Setting up a local Gradle distributions mirror server would significantly boost your download speed.
 
