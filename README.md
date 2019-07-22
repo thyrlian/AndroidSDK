@@ -230,7 +230,7 @@ When the container is up and running, use your favorite VNC client to connect to
 # create a new Android Virtual Device
 echo "no" | avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
 # launch emulator
-emulator64-arm -avd test -no-audio -no-boot-anim -accel on -gpu swiftshader_indirect &
+emulator -avd test -no-audio -no-boot-anim -accel on -gpu swiftshader_indirect &
 ```
 
 For more details, please refer to [Emulator section](https://github.com/thyrlian/AndroidSDK#emulator).
@@ -464,14 +464,7 @@ Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if y
 * Launch emulator in background
 
   ```bash
-  # use different command per architecture
-  emulator64-arm -avd <virtual_device_name> -no-audio -no-boot-anim -no-window -accel on -gpu off &
-  
-  # or
-  emulator64-mips -avd <virtual_device_name> -no-audio -no-boot-anim -no-window -accel on -gpu off &
-  
-  # or
-  emulator64-x86 -avd <virtual_device_name> -no-audio -no-boot-anim -no-window -accel on -gpu off &
+  emulator -avd <virtual_device_name> -no-audio -no-boot-anim -no-window -accel on -gpu off &
   
   # if the container is not running in privileged mode, you should see below errors:
   #=> emulator: ERROR: x86_64 emulation currently requires hardware acceleration!
