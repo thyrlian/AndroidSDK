@@ -23,7 +23,7 @@ RUN dpkg --add-architecture i386 && \
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=5.2.1
+ARG GRADLE_VERSION=5.4.1
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
     unzip gradle*.zip && \
