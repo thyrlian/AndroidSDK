@@ -155,6 +155,10 @@ docker stop $(docker ps -aqf "ancestor=android-sdk") &> /dev/null && docker rm $
 docker stop $(docker ps -a | grep 'android-sdk' | awk '{ print $1 }') &> /dev/null && docker rm $(docker ps -a | grep 'android-sdk' | awk '{ print $1 }') &> /dev/null
 ```
 
+### Accepting Licenses
+
+A helper function is provided at `/opt/license_accepter.sh` for accepting the SDK and other licenses. This is helpful in non-interactive environments such as CI builds.
+
 ## SSH
 
 It is also possible if you wanna connect to container via SSH.  There are three different approaches.
