@@ -157,7 +157,7 @@ docker stop $(docker ps -a | grep 'android-sdk' | awk '{ print $1 }') &> /dev/nu
 
 ### Accepting Licenses
 
-A helper function is provided at `/opt/license_accepter.sh` for accepting the SDK and other licenses. This is helpful in non-interactive environments such as CI builds.
+A helper script is provided at [`/opt/license_accepter.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/license_accepter.sh) for accepting the SDK and its various licenses.  This is helpful in non-interactive environments such as CI builds.
 
 ## SSH
 
