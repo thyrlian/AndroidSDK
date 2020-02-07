@@ -23,7 +23,7 @@ RUN dpkg --add-architecture i386 && \
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=5.2.1
+ARG GRADLE_VERSION=5.4.1
 ARG GRADLE_DIST=bin
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-${GRADLE_DIST}.zip && \
@@ -33,7 +33,7 @@ RUN cd /opt && \
 
 # download and install Kotlin compiler
 # https://github.com/JetBrains/kotlin/releases/latest
-ARG KOTLIN_VERSION=1.3.21
+ARG KOTLIN_VERSION=1.3.50
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
