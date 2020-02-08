@@ -48,7 +48,6 @@ docker tag $image_id $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
 
 echo "Pushing the main image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
-docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:latest
 
 echo "Change the base image tag in the sub image file..."
 if [ $(uname) = "Darwin" ]; then
@@ -71,7 +70,6 @@ docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_NAME:$TAG
 
 echo "Pushing the sub image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_NAME:$TAG
-docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_NAME:latest
 
 echo "Unhiding files inside authorized_keys directory..."
 mv -v $TEMP_DIR/* authorized_keys
