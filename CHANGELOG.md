@@ -1,5 +1,28 @@
 # Changelog
 
+## 3.1
+
+```console
+docker pull thyrlian/android-sdk:3.1
+```
+
+**What's New**
+* Upgraded Ubuntu from 18.04.2 to 18.04.3
+* Upgraded OpenJDK from 1.8.0_191 to 1.8.0_242
+* Upgraded Gradle from 5.2.1 to 6.1.1
+* Upgraded Kotlin compiler from 1.3.21 to 1.3.61
+
+Component | Version
+--------- | -------
+Ubuntu | 18.04.3 LTS (Bionic Beaver)
+Java | 1.8.0_242
+Gradle | 6.1.1
+Kotlin compiler | 1.3.61
+AndroidSDK | 26.1.1
+OpenSSH | 7.6p1-4
+
+---
+
 ## 3.0
 
 ```console
