@@ -28,7 +28,7 @@ Android SDK development environment Docker image
 
 ## Philosophy
 
-Provide only the barebone SDK (the latest official minimal package) gives you the most flexibility in tailoring your own SDK tools for your project.  You can maintain an external persistent SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.
+Provide only the **barebone SDK** (the latest official minimal package) gives you the **maximum flexibility** in tailoring your own SDK tools for your project.  You can maintain an external **persistent** SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.  Additionally, instead of one dedicated Docker image per Android API level (which will end up with a ton of images), you just have to deal with **one image**.  Last but not least, not to redistribute the SDK is the **legal** behavior.
 
 ### Note
 
@@ -132,7 +132,7 @@ docker run -it --rm -v $(pwd)/sdk:/sdk thyrlian/android-sdk bash -c 'cp -a $ANDR
 # JDK required on the host
 sdk/tools/bin/sdkmanager --update
 # or install specific packages
-sdk/tools/bin/sdkmanager "build-tools;x.y.z" "platforms;android-x" ...
+sdk/tools/bin/sdkmanager "build-tools;x.y.z" "platforms;android-<api_level>" ...
 
 # mount the updated SDK to container again
 # if the host SDK directory is mounted to more than one container
@@ -808,7 +808,7 @@ Copyright (c) 2016-2020 Jing Li. It is released under the [Apache License](https
 
 By continuing to use this Docker Image, you accept the terms in below license agreement.
 
-* [Android Software Development Kit License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSoftwareDevelopmentKitLicenseAgreement) (or read it [here](https://developer.android.com/studio/terms.html))
+* [Android Software Development Kit License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSoftwareDevelopmentKitLicenseAgreement-20190116) (or read it [here](https://developer.android.com/studio/terms.html))
 
 * [Android SDK Preview License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSDKPreviewLicenseAgreement)
 
