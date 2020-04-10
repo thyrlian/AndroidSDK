@@ -24,7 +24,7 @@ Android SDK development environment Docker image
 
 * Some tool (e.g. [Infer](https://github.com/facebook/infer)), which has complex dependencies might be in conflict with your local environment.  Installing the tool within a Docker container is the easiest and perfect solution.
 
-* Directly being used as Android CI build enviroment.
+* Works out of the box as an Android CI build enviroment.
 
 ## Philosophy
 
@@ -46,7 +46,7 @@ Using the Gradle Wrapper lets you build with a precise Gradle version, in order 
 
 ## Caveat
 
-Previously, running Android SDK update directly within the **Dockerfile** or inside a **container** would fail with [`AUFS`](https://en.wikipedia.org/wiki/Aufs) storage driver, it was due to hardlink move operations (during updating Android SDK) are not supported by AUFS storage driver, but changing it to other storage driver would work.
+Previously, running Android SDK update within the **Dockerfile** or inside a **container** would fail with [`AUFS`](https://en.wikipedia.org/wiki/Aufs) storage driver, it was due to hardlink move operations (during updating Android SDK) are not supported by AUFS storage driver, but changing it to other storage driver would work.  Fortunately, it's not the case any more.  With the latest version of Docker Engine, it works like a charm, you can do whatever you prefer.  If you're not interested in the technical cause, simply skip this section (jump to the [next section](https://github.com/thyrlian/AndroidSDK#getting-started)).
 
 What happens if the update fails?
 
