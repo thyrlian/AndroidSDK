@@ -56,6 +56,9 @@ ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/emulator:
 ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 # WORKAROUND: for issue https://issuetracker.google.com/issues/37137213
 ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
+# patch emulator issue: Running as root without --no-sandbox is not supported. See https://crbug.com/638180.
+# https://doc.qt.io/qt-5/qtwebengine-platform-notes.html#sandboxing-support
+ENV QTWEBENGINE_DISABLE_SANDBOX 1
 
 # accept the license agreements of the SDK components
 ADD license_accepter.sh /opt/
