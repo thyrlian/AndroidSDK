@@ -1,5 +1,29 @@
 # Changelog
 
+## 4.0
+
+```console
+docker pull thyrlian/android-sdk:4.0
+```
+
+**What's New**
+* Upgraded Ubuntu from 18.04.3 to 18.04.4
+* Upgraded Gradle from 6.1.1 to 6.3
+* Upgraded Kotlin compiler from 1.3.61 to 1.3.71
+* Upgraded from AndroidSDK 26.1.1 to Android SDK Tools 1.0.0
+* Added environment variable QTWEBENGINE_DISABLE_SANDBOX
+
+Component | Version
+--------- | -------
+Ubuntu | 18.04.4 LTS (Bionic Beaver)
+Java | 1.8.0_242
+Gradle | 6.3
+Kotlin compiler | 1.3.71
+Android SDK Tools | 1.0.0
+OpenSSH | 7.6p1-4
+
+---
+
 ## 3.1
 
 ```console
