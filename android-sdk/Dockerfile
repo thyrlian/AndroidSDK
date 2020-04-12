@@ -43,16 +43,16 @@ RUN cd /opt && \
 # https://developer.android.com/studio#command-tools
 ARG ANDROID_SDK_VERSION=6200805
 ENV ANDROID_HOME /opt/android-sdk
-RUN mkdir -p ${ANDROID_HOME} && \
+RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
     wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
-    unzip *tools*linux*.zip -d ${ANDROID_HOME} && \
+    unzip *tools*linux*.zip -d ${ANDROID_HOME}/cmdline-tools && \
     rm *tools*linux*.zip
 
 # set the environment variables
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
-ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/emulator:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin
+ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
 ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 # WORKAROUND: for issue https://issuetracker.google.com/issues/37137213
 ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
