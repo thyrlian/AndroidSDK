@@ -40,12 +40,12 @@ RUN cd /opt && \
     rm *kotlin*.zip
 
 # download and install Android SDK
-# https://developer.android.com/studio/#downloads
-ARG ANDROID_SDK_VERSION=4333796
+# https://developer.android.com/studio#command-tools
+ARG ANDROID_SDK_VERSION=6200805
 ENV ANDROID_HOME /opt/android-sdk
-RUN mkdir -p ${ANDROID_HOME} && cd ${ANDROID_HOME} && \
-    wget -q https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_VERSION}.zip && \
-    unzip *tools*linux*.zip && \
+RUN mkdir -p ${ANDROID_HOME} && \
+    wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
+    unzip *tools*linux*.zip -d ${ANDROID_HOME} && \
     rm *tools*linux*.zip
 
 # set the environment variables
