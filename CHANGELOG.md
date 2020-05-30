@@ -1,5 +1,30 @@
 # Changelog
 
+## 5.0
+
+```console
+docker pull thyrlian/android-sdk:5.0
+```
+
+**What's New**
+* Upgraded Ubuntu from 18.04.4 to 20.04
+* Upgraded OpenJDK from 1.8.0_242 to 1.8.0_252
+* Upgraded Gradle from 6.3 to 6.4.1
+* Upgraded Kotlin compiler from 1.3.71 to 1.3.72
+* Upgraded Android SDK Command-line Tools from 1.0.0 to 2.0
+* Upgraded OpenSSH from 1:7.6p1-4 to 1:8.2p1-4
+
+Component | Version
+--------- | -------
+Ubuntu | 20.04 LTS (Focal Fossa)
+Java | 1.8.0_252
+Gradle | 6.4.1
+Kotlin compiler | 1.3.72
+Android SDK Command-line Tools | 2.0
+OpenSSH | 1:8.2p1-4
+
+---
+
 ## 4.0
 
 ```console
@@ -58,7 +83,7 @@ docker pull thyrlian/android-sdk:3.0
 * Upgraded Ubuntu from 16.04.x to 18.04.2
 * Upgraded Gradle from 4.10.3 to 5.2.1
 * Upgraded Kotlin compiler from 1.3.11 to 1.3.21
-* Upgraded OpenSSH from 7.2p2-4 to 7.6p1-4
+* Upgraded OpenSSH from 1:7.2p2-4 to 1:7.6p1-4
 
 Component | Version
 --------- | -------
