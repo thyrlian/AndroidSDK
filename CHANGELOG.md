@@ -20,7 +20,7 @@ Java | 1.8.0_242
 Gradle | 6.3
 Kotlin compiler | 1.3.71
 Android SDK Tools | 1.0.0
-OpenSSH | 7.6p1-4
+OpenSSH | 1:7.6p1-4
 
 ---
 
@@ -43,7 +43,7 @@ Java | 1.8.0_242
 Gradle | 6.1.1
 Kotlin compiler | 1.3.61
 AndroidSDK | 26.1.1
-OpenSSH | 7.6p1-4
+OpenSSH | 1:7.6p1-4
 
 ---
 
@@ -67,7 +67,7 @@ Java | 1.8.0_191
 Gradle | 5.2.1
 Kotlin compiler | 1.3.21
 AndroidSDK | 26.1.1
-OpenSSH | 7.6p1-4
+OpenSSH | 1:7.6p1-4
 
 ---
 
@@ -87,7 +87,7 @@ Java | 1.8.0_191
 Gradle | 4.10.3
 Kotlin compiler | 1.3.11
 AndroidSDK | 26.1.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -109,7 +109,7 @@ Java | 1.8.0_191
 Gradle | 4.10.3
 Kotlin compiler | 1.3.11
 AndroidSDK | 26.1.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -132,7 +132,7 @@ Java | 1.8.0_181
 Gradle | 4.10
 Kotlin compiler | 1.2.61
 AndroidSDK | 26.1.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -154,7 +154,7 @@ Java | 1.8.0_171
 Gradle | 4.8.1
 Kotlin compiler | 1.2.50
 AndroidSDK | 26.1.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -177,7 +177,7 @@ Java | 1.8.0_171
 Gradle | 4.7
 Kotlin compiler | 1.2.41
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -198,7 +198,7 @@ Java | 1.8.0_151
 Gradle | 4.6
 Kotlin compiler | 1.2.30
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -222,7 +222,7 @@ Java | 1.8.0_151
 Gradle | 4.4.1
 Kotlin compiler | 1.2.10
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -243,7 +243,7 @@ Java | 1.8.0_131
 Gradle | 4.2.1
 Kotlin compiler | 1.1.51
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -265,7 +265,7 @@ Java | 1.8.0_131
 Gradle | 4.1
 Kotlin compiler | 1.2-M2
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -285,7 +285,7 @@ Java | 1.8.0_131
 Gradle | 4.0.1
 Kotlin compiler | 1.1.3-2
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -304,7 +304,7 @@ Ubuntu | 16.04.2 LTS (Xenial Xerus)
 Java | 1.8.0_131
 Gradle | 4.0
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -324,7 +324,7 @@ Ubuntu | 16.04.2 LTS (Xenial Xerus)
 Java | 1.8.0_131
 Gradle | 4.0
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -344,7 +344,7 @@ Ubuntu | 16.04.1 LTS (Xenial Xerus)
 Java | 1.8.0_131
 Gradle | 3.5
 AndroidSDK | 26.0.1
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -363,7 +363,7 @@ Ubuntu | 16.04.1 LTS (Xenial Xerus)
 Java | 1.8.0_121
 Gradle | 3.3
 AndroidSDK | 25.2.3
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
@@ -382,7 +382,7 @@ Ubuntu | 16.04.1 LTS (Xenial Xerus)
 Java | 1.8.0_121
 Gradle | 3.2.1
 AndroidSDK | 25.2.3
-OpenSSH | 7.2p2-4
+OpenSSH | 1:7.2p2-4
 
 ---
 
