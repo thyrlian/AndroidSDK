@@ -42,27 +42,27 @@ RUN cd /opt && \
 # download and install Android SDK
 # https://developer.android.com/studio#command-tools
 ARG ANDROID_SDK_VERSION=6200805
-ENV ANDROID_HOME /opt/android-sdk
-RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
+ENV ANDROID_SDK_ROOT /opt/android-sdk
+RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
-    unzip *tools*linux*.zip -d ${ANDROID_HOME}/cmdline-tools && \
+    unzip *tools*linux*.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
     rm *tools*linux*.zip
 
 # set the environment variables
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
-ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
+ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/emulator
 ENV _JAVA_OPTIONS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
 # WORKAROUND: for issue https://issuetracker.google.com/issues/37137213
-ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
+ENV LD_LIBRARY_PATH ${ANDROID_SDK_ROOT}/emulator/lib64:${ANDROID_SDK_ROOT}/emulator/lib64/qt/lib
 # patch emulator issue: Running as root without --no-sandbox is not supported. See https://crbug.com/638180.
 # https://doc.qt.io/qt-5/qtwebengine-platform-notes.html#sandboxing-support
 ENV QTWEBENGINE_DISABLE_SANDBOX 1
 
 # accept the license agreements of the SDK components
 ADD license_accepter.sh /opt/
-RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_HOME
+RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_SDK_ROOT
 
 # setup adb server
 EXPOSE 5037
@@ -82,7 +82,7 @@ RUN apt-get update -y && \
     ssh-keygen -q -N "" -f /root/.ssh/id_rsa && \
     FILE_SSH_ENV="/root/.ssh/environment" && \
     touch $FILE_SSH_ENV && chmod 600 $FILE_SSH_ENV && \
-    printenv | grep "JAVA_HOME\|GRADLE_HOME\|KOTLIN_HOME\|ANDROID_HOME\|LD_LIBRARY_PATH\|PATH" >> $FILE_SSH_ENV && \
+    printenv | grep "JAVA_HOME\|GRADLE_HOME\|KOTLIN_HOME\|ANDROID_SDK_ROOT\|LD_LIBRARY_PATH\|PATH" >> $FILE_SSH_ENV && \
     FILE_AUTH_KEYS="/root/.ssh/authorized_keys" && \
     touch $FILE_AUTH_KEYS && chmod 600 $FILE_AUTH_KEYS && \
     for file in /tmp/*.pub; \

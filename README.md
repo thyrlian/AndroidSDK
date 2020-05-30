@@ -51,7 +51,7 @@ Previously, running Android SDK update within the **Dockerfile** or inside a **c
 What happens if the update fails?
 
   ```bash
-  ls $ANDROID_HOME/tools/
+  ls $ANDROID_SDK_ROOT/tools/
   #=> empty, nothing is there
   # tools such as: android, sdkmanager, emulator, lint and etc. are gone
   
@@ -74,7 +74,7 @@ If you by accident update SDK on a host machine which has a mismatch target arch
   gradle <some_task>
   #=> Error: java.util.concurrent.ExecutionException: java.lang.RuntimeException: AAPT process not ready to receive commands
   
-  $ANDROID_HOME/build-tools/x.x.x/aapt
+  $ANDROID_SDK_ROOT/build-tools/x.x.x/aapt
   #=> aapt: cannot execute binary file: Exec format error
   
   adb
@@ -125,7 +125,7 @@ docker pull thyrlian/android-sdk
 # below commands assume that you've pulled the image
 
 # copy the pre-downloaded SDK to the mounted 'sdk' directory
-docker run -it --rm -v $(pwd)/sdk:/sdk thyrlian/android-sdk bash -c 'cp -a $ANDROID_HOME/. /sdk'
+docker run -it --rm -v $(pwd)/sdk:/sdk thyrlian/android-sdk bash -c 'cp -a $ANDROID_SDK_ROOT/. /sdk'
 
 # go to the 'sdk' directory on the host, update the SDK
 # ONLY IF the host machine is the same target architecture as the container
@@ -577,8 +577,9 @@ Don't worry about `adbkey` or `adbkey.pub` under `/.android`, not required.
 * Check installed Android SDK tools version
 
   ```console
-  cat $ANDROID_HOME/tools/source.properties | grep Pkg.Revision
-  cat $ANDROID_HOME/platform-tools/source.properties | grep Pkg.Revision
+  cat $ANDROID_SDK_ROOT/tools/source.properties | grep Pkg.Revision
+  cat $ANDROID_SDK_ROOT/cmdline-tools/tools/source.properties | grep Pkg.Revision
+  cat $ANDROID_SDK_ROOT/platform-tools/source.properties | grep Pkg.Revision
   ```
 
   > The "`android`" command is deprecated.  For command-line tools, use `tools/bin/sdkmanager` and `tools/bin/avdmanager`.

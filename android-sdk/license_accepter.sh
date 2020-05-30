@@ -1,21 +1,21 @@
 #!/bin/bash
 
-check_android_home() {
+check_android_sdk_root() {
   if [ "$#" -lt 1 ]; then
-    if [ -z "${ANDROID_HOME}" ]; then
-      echo "Please either set ANDROID_HOME environment variable, or pass ANDROID_HOME directory as a parameter"
+    if [ -z "${ANDROID_SDK_ROOT}" ]; then
+      echo "Please either set ANDROID_SDK_ROOT environment variable, or pass ANDROID_SDK_ROOT directory as a parameter"
       exit 1
     else
-      ANDROID_HOME="${ANDROID_HOME}"
+      ANDROID_SDK_ROOT="${ANDROID_SDK_ROOT}"
     fi
   else
-    ANDROID_HOME=$1
+    ANDROID_SDK_ROOT=$1
   fi
-  echo "ANDROID_HOME is at $ANDROID_HOME"
+  echo "ANDROID_SDK_ROOT is at $ANDROID_SDK_ROOT"
 }
 
 accept_all_android_licenses() {
-  ANDROID_LICENSES="$ANDROID_HOME/licenses"
+  ANDROID_LICENSES="$ANDROID_SDK_ROOT/licenses"
   if [ ! -d $ANDROID_LICENSES ]; then
     echo "Android licenses directory doesn't exist, creating one..."
     mkdir -p $ANDROID_LICENSES
@@ -48,5 +48,5 @@ accept_license_of() {
   fi
 }
 
-check_android_home "$@"
+check_android_sdk_root "$@"
 accept_all_android_licenses
