@@ -41,7 +41,7 @@ RUN cd /opt && \
 
 # download and install Android SDK
 # https://developer.android.com/studio#command-tools
-ARG ANDROID_SDK_VERSION=6200805
+ARG ANDROID_SDK_VERSION=6514223
 ENV ANDROID_SDK_ROOT /opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
