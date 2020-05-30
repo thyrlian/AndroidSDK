@@ -803,6 +803,10 @@ Your contribution is always welcome, which will for sure make the Android SDK Do
 
 See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/thyrlian/AndroidSDK.svg)](https://starchart.cc/thyrlian/AndroidSDK)
+
 ## License
 
 Copyright (c) 2016-2020 Jing Li. It is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/LICENSE) file for details.
