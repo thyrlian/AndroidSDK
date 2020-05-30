@@ -4,7 +4,7 @@
 
 # Base image
 # ---------------------------------------------------------------------- #
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Author
 # ---------------------------------------------------------------------- #
@@ -16,7 +16,7 @@ LABEL maintainer "thyrlian@gmail.com"
 # install Qt
 RUN dpkg --add-architecture i386 && \
     apt-get update -y && \
-    apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc1 lib32ncurses5 lib32z1 zlib1g:i386 && \
+    apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc1 lib32ncurses6 lib32z1 zlib1g:i386 && \
     apt-get install -y --no-install-recommends openjdk-8-jdk && \
     apt-get install -y --no-install-recommends git wget unzip && \
     apt-get install -y --no-install-recommends qt5-default
@@ -83,6 +83,7 @@ RUN apt-get update -y && \
     FILE_SSH_ENV="/root/.ssh/environment" && \
     touch $FILE_SSH_ENV && chmod 600 $FILE_SSH_ENV && \
     printenv | grep "JAVA_HOME\|GRADLE_HOME\|KOTLIN_HOME\|ANDROID_SDK_ROOT\|LD_LIBRARY_PATH\|PATH" >> $FILE_SSH_ENV && \
+    echo "\nauth required pam_env.so envfile=$FILE_SSH_ENV" >> /etc/pam.d/sshd && \
     FILE_AUTH_KEYS="/root/.ssh/authorized_keys" && \
     touch $FILE_AUTH_KEYS && chmod 600 $FILE_AUTH_KEYS && \
     for file in /tmp/*.pub; \
