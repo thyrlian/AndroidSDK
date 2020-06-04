@@ -15,7 +15,7 @@ LABEL maintainer "thyrlian@gmail.com"
 # install essential tools
 # install Qt
 RUN dpkg --add-architecture i386 && \
-    apt-get update -y && \
+    apt-get update && \
     apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc1 lib32ncurses6 lib32z1 zlib1g:i386 && \
     apt-get install -y --no-install-recommends openjdk-8-jdk && \
     apt-get install -y --no-install-recommends git wget unzip && \
@@ -71,7 +71,7 @@ EXPOSE 5037
 EXPOSE 22
 ADD sshd-banner /etc/ssh/
 ADD authorized_keys /tmp/
-RUN apt-get update -y && \
+RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisord && \
     locale-gen en en_US en_US.UTF-8 && \

@@ -17,7 +17,7 @@ EXPOSE 5901
 ADD vncpass.sh /tmp/
 ADD watchdog.sh /usr/local/bin/
 ADD supervisord_vncserver.conf /etc/supervisor/conf.d/
-RUN apt-get update -y && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends xfce4 xfce4-goodies xfonts-base dbus-x11 tightvncserver expect && \
     chmod +x /tmp/vncpass.sh; sync && \
     /tmp/vncpass.sh && \

@@ -11,7 +11,7 @@ FROM ubuntu:18.04
 LABEL maintainer "thyrlian@gmail.com"
 
 # install essential tools
-RUN apt-get update -y && \
+RUN apt-get update && \
     apt-get install -y wget
 
 # install and configure the Apache Web Server
