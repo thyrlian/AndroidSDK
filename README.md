@@ -246,6 +246,7 @@ For more details, please refer to [Emulator section](https://github.com/thyrlian
 ### VNC client recommendation
 
 * macOS: [**Screen Sharing**](https://en.wikipedia.org/wiki/Screen_Sharing)
+* Cross-Platform: [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)
 
 ## NFS
 
