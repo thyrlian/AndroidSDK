@@ -10,6 +10,7 @@ FROM ubuntu:20.04
 # ---------------------------------------------------------------------- #
 LABEL maintainer "thyrlian@gmail.com"
 
+ARG JDK_VERSION=8
 # support multiarch: i386 architecture
 # install Java
 # install essential tools
@@ -17,7 +18,7 @@ LABEL maintainer "thyrlian@gmail.com"
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc1 lib32ncurses6 lib32z1 zlib1g:i386 && \
-    apt-get install -y --no-install-recommends openjdk-8-jdk && \
+    apt-get install -y --no-install-recommends openjdk-${JDK_VERSION}-jdk && \
     apt-get install -y --no-install-recommends git wget unzip && \
     apt-get install -y --no-install-recommends qt5-default
 
@@ -49,7 +50,7 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     rm *tools*linux*.zip
 
 # set the environment variables
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-${JDK_VERSION}-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
 ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools:${ANDROID_SDK_ROOT}/emulator
