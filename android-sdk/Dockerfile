@@ -10,16 +10,13 @@ FROM ubuntu:20.04
 # ---------------------------------------------------------------------- #
 LABEL maintainer "thyrlian@gmail.com"
 
-# Disable Debian interactive by default, so automatic build won't hang on tzdata config
-ARG DEBIAN_FRONTEND=noninteractive
-
 # support multiarch: i386 architecture
 # install Java
 # install essential tools
 # install Qt
 ARG JDK_VERSION=8
 RUN dpkg --add-architecture i386 && \
-    apt-get update -y && \
+    apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc1 lib32ncurses6 lib32z1 zlib1g:i386 && \
     apt-get install -y --no-install-recommends openjdk-${JDK_VERSION}-jdk && \
