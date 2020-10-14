@@ -5,10 +5,7 @@ language: bash
 services:
   - docker
 
-install:
-  - git clone https://github.com/thyrlian/AndroidSDK.git ~/AndroidSDK
-
 script:
-  - docker build -t android-sdk ~/AndroidSDK/android-sdk
+  - docker build -t android-sdk ./android-sdk
   - docker images
-  - cmd=$(cat ~/AndroidSDK/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
+  - cmd=$(cat ./version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
