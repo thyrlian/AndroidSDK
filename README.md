@@ -579,7 +579,7 @@ create a service account with an “editor” role in the [Google Cloud Platform
 and enable [Google Cloud Testing API and Google Cloud Results API](https://console.developers.google.com/apis/library?pli=1). Later, in your Google Cloud Console go to “Credentials” > “Create Credentials” > “Create Service Account Key” fill the data and select key type as JSON.
 
 
-* Now you should pull and run the Docker Docker image with Google Cloud SDK
+* Now let's pull and run the Docker image with Google Cloud SDK
 
 ```bash
 # pull the image
