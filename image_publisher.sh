@@ -75,7 +75,6 @@ docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
 echo "Pushing the sub vnc image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
 
-
 echo "Building the sub gcloud image..."
 docker build -t $SUB_IMAGE_GCLOUD_NAME $SUB_IMAGE_GCLOUD_DIR
 
