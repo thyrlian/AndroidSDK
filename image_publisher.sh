@@ -87,7 +87,7 @@ echo "Built sub image ID is: $image_id"
 echo "Tagging the sub gcloud image with $TAG..."
 docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_GCLOUD_NAME:$TAG
 
-echo "Pushing the sub vnc image to Docker Hub..."
+echo "Pushing the sub gcloud image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_GCLOUD_NAME:$TAG
 
 echo "Unhiding files inside authorized_keys directory..."
