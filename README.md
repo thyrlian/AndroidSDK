@@ -573,6 +573,51 @@ Don't worry about `adbkey` or `adbkey.pub` under `/.android`, not required.
 
   > Unfortunately it is not possible to pass through a USB device (or a serial port) to a container.
 
+## Firebase Test Lab and Google Cloud SDK
+You can also run your UI tests on Google Cloud Device Farm using emulators and physical devices, to do so first you need to
+create a service account with an “editor” role in the [Google Cloud Platform](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts?pli=1&supportedpurview=project) 
+and enable [Google Cloud Testing API and Google Cloud Results API](https://console.developers.google.com/apis/library?pli=1). Later, in your Google Cloud Console go to “Credentials” > “Create Credentials” > “Create Service Account Key” fill the data and select key type as JSON.
+
+
+* Now you should pull and run the Docker Docker image with Google Cloud SDK
+
+```bash
+# pull the image
+docker pull thyrlian/android-sdk-gcloud
+# run the container passing the service account Json (at least the first time) as external volume
+docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v /path/on/host/file.json:/path/in/container thyrlian/android-sdk-gcloudsdk
+```
+* Log in and run your tests
+
+```bash
+# check the running process and get a interactive shell
+Docker ps
+Docker exec -it <container-id> /bin/bash
+
+# check Google Cloud is installed properly
+gcloud info --format="value(installation.sdk_root)"
+# init Google Cloud and press no
+gcloud init
+# authenticate and create any config that you want
+gcloud auth activate-service-account -q --key-file myservicefile.json
+
+# list available devices to run your tests
+gcloud firebase test android models list
+
+# run your tests (make sure you have previosly assemble your app and test apk's)
+APK="--app=debug.apk --test=androidTest.apk"
+TYPE="instrumentation"
+DEVICES="--device model=Pixel2,version=27,locale=en,orientation=portrait" 
+RESULT_DIR="build-result"
+gcloud firebase test android run $APK $DEVICES --type=$TYPE --results-dir=$RESULT_DIR/
+```
+
+**Important**: To not loose your Google Cloud configurations copy ~/.config/gcloud to the host machine and
+pass it as external volume the next time you run the container.
+```bash
+docker cp <containerId>:/file/path/within/container /host/path/target
+```
+
 ## Android Commands Reference
 
 * Check installed Android SDK tools version
