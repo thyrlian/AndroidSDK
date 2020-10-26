@@ -1,5 +1,5 @@
 # ====================================================================== #
-# Android SDK Docker Image (Google Cloud SDK enabled)
+# Android SDK Docker Image (Firebase Test Lab enabled)
 # ====================================================================== #
 
 # Base image
