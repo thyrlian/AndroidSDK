@@ -616,7 +616,7 @@ gcloud firebase test android models list
 │ OnePlus3T         │ OnePlus            │ OnePlus 3T                           │ PHYSICAL │ 1920 x 1080 │ 26                      │               │
 └───────────────────┴────────────────────┴──────────────────────────────────────┴──────────┴─────────────┴─────────────────────────┴───────────────┘
 
-# compile your apk both app and testing
+# compile your apks both app and testing
 
 # to build the application apk
 ./gradlew :<your_module>:assemble
