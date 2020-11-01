@@ -1,0 +1,14 @@
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+install:
+  - git clone https://github.com/thyrlian/AndroidSDK.git ~/AndroidSDK
+
+script:
+  - docker build -t android-sdk-firebase-test-lab ~/AndroidSDK/android-sdk/firebase-test-lab
+  - docker images
+  - cmd=$(cat ~/AndroidSDK/android-sdk/firebase-test-lab/version_inspector.sh) && docker run -it --rm android-sdk-firebase-test-lab bash -c "$cmd"

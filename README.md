@@ -574,43 +574,74 @@ Don't worry about `adbkey` or `adbkey.pub` under `/.android`, not required.
   > Unfortunately it is not possible to pass through a USB device (or a serial port) to a container.
 
 ## Firebase Test Lab 
-You can also run your UI tests on Firebase Test Lab using emulators and physical devices, to do so first you need to
-create a service account with an “editor” role in the [Google Cloud Platform](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts?pli=1&supportedpurview=project) 
-and enable [Google Cloud Testing API and Google Cloud Results API](https://console.developers.google.com/apis/library?pli=1). Later, in your Google Cloud Console go to “Credentials” > “Create Credentials” > “Create Service Account Key” fill the data and select key type as JSON.
+You can also run your UI tests on [Firebase Test Lab](https://firebase.google.com/docs/test-lab) using emulators and physical devices, to do so first you need to
 
+* Create a project in [Google Cloud Platform](https://console.cloud.google.com/cloud-resource-manager) if you haven't created one yet.
+* Create a project in [Firebase](https://console.firebase.google.com/):
+    * Choose the recently created Google Cloud Platform project to add Firebase services to it.
+    * Confirm Firebase billing plan.
+* Go to **IAM & Admin** -> **Service Accounts** in [Google Cloud Platform](https://console.cloud.google.com/iam-admin/serviceaccounts):
+    * Edit the Firebase Admin SDK Service Agent account.
+    * **Keys** -> **ADD KEY** -> **Create new key** -> **Key type**: **JSON** -> **CREATE**.
+    * Download and save the created private key to your computer.
+* Go to **IAM & Admin** -> **IAM** in [Google Cloud Platform](https://console.cloud.google.com/iam-admin/iam):
+    * Edit the Firebase Admin SDK Service Agent account.
+    * **ADD ANOTHER ROLE** -> **Role**: **Project** -> **Editor** -> **SAVE**.
+* Go to [API Library](https://console.developers.google.com/apis/library) -> search for **Cloud Testing API** and **Cloud Tool Results API** -> enable them.
 
 * Now let's pull and run the Docker image with Google Cloud SDK
 
 ```bash
 # pull the image
-docker pull thyrlian/android-firebase-test-lab
+docker pull thyrlian/android-sdk-firebase-test-lab
 # run the container passing the service account Json (at least the first time) as external volume
-docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v /path/on/host/auth.json:/auth.json thyrlian/android-firebase-test-lab
-```
-* Log in and run your tests
+docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v /path/on/host/auth.json:/auth.json thyrlian/android-sdk-firebase-test-lab
 
-```bash
 # check the running process and get a interactive shell
 Docker ps
 Docker exec -it <container-id> /bin/bash
 
-# check Google Cloud is installed properly
-gcloud info --format="value(installation.sdk_root)"
 # authenticate and create any config that you want
 gcloud auth activate-service-account -q --key-file myservicefile.json
 
 # list available devices to run your tests
 gcloud firebase test android models list
 
-# run your tests (make sure you have previosly assemble your app and test apk's)
-APK="--app=debug.apk --test=androidTest.apk"
-TYPE="instrumentation"
-DEVICES="--device model=Pixel2,version=27,locale=en,orientation=portrait" 
-RESULT_DIR="build-result"
-gcloud firebase test android run $APK $DEVICES --type=$TYPE --results-dir=$RESULT_DIR/
+# you should get a matrix output similar to this one but bigger
+┌───────────────────┬────────────────────┬──────────────────────────────────────┬──────────┬─────────────┬─────────────────────────┬───────────────┐
+│      MODEL_ID     │        MAKE        │              MODEL_NAME              │   FORM   │  RESOLUTION │      OS_VERSION_IDS     │      TAGS     │
+├───────────────────┼────────────────────┼──────────────────────────────────────┼──────────┼─────────────┼─────────────────────────┼───────────────┤
+│ Nexus9            │ HTC                │ Nexus 9                              │ VIRTUAL  │ 2048 x 1536 │ 21,22,23,24,25          │               │
+│ NexusLowRes       │ Generic            │ Low-resolution MDPI phone            │ VIRTUAL  │  640 x 360  │ 23,24,25,26,27,28,29,30 │ beta=30       │
+│ OnePlus3T         │ OnePlus            │ OnePlus 3T                           │ PHYSICAL │ 1920 x 1080 │ 26                      │               │
+└───────────────────┴────────────────────┴──────────────────────────────────────┴──────────┴─────────────┴─────────────────────────┴───────────────┘
+
+# compile your apk both app and testing
+
+# to build the application apk
+./gradlew :<your_module>:assemble
+# apk will be generated at: <your_module>/build/outputs/apk/<build_type>
+
+# to build the test apk
+./gradlew :<your_module>:assembleAndroidTest
+# apk will be generated at: <your_module>/build/outputs/apk/androidTest/<build_type>
+
+# run your tests 
+UI_TEST_APK="--app=dir/debug.apk --test=dir/androidTest.apk"
+UI_TEST_TYPE="instrumentation"
+UI_TEST_DEVICES="--device model=MODEL_ID,version=OS_VERSION_IDS,locale=en,orientation=portrait" 
+UI_TEST_RESULT_DIR="build-result"
+UI_TEST_PROJECT="<your_project_id>"
+gcloud firebase test android run $UI_TEST_APK $UI_TEST_DEVICES --type=$UI_TEST_TYPE --results-dir=$UI_TEST_RESULTS_DIR --project=$UI_TEST_PROJECT
+
+# if you want to split your test suite into multiple parallel devices add the command --num-uniform-shards=int 
+# example: 20 test to run in 4 parallel devices (5 test per device) --num-uniform-shards=4
+
+# for more info about other configurations such as network-profile, locale, env variables etc ...  
+# go to https://cloud.google.com/sdk/gcloud/reference/beta/firebase/test/android/run
 ```
 
-**Important**: To not loose your configurations copy ~/.config/gcloud to the host machine and
+**Important**: To not lose your configurations copy ~/.config/gcloud to the host machine and
 pass it as external volume the next time you run the container.
 ```bash
 docker cp <containerId>:/file/path/within/container /host/path/target

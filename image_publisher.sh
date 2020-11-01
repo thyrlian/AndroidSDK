@@ -15,8 +15,8 @@ MAIN_IMAGE_NAME=android-sdk
 MAIN_IMAGE_DIR=android-sdk
 SUB_IMAGE_VNC_NAME=android-sdk-vnc
 SUB_IMAGE_VNC_DIR=vnc
-SUB_IMAGE_FIREBASE_TEST_LAB_NAME=android-firebase-test-lab
-SUB_IMAGE_FIREBASE_TEST_LAB_DIR=firebase_test_lab
+SUB_IMAGE_FIREBASE_TEST_LAB_NAME=android-sdk-firebase-test-lab
+SUB_IMAGE_FIREBASE_TEST_LAB_DIR=firebase-test-lab
 TEMP_DIR=temp_authorized_keys
 
 # extract base image name and tag from Dockerfile
