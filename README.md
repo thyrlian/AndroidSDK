@@ -574,7 +574,7 @@ Don't worry about `adbkey` or `adbkey.pub` under `/.android`, not required.
   > Unfortunately it is not possible to pass through a USB device (or a serial port) to a container.
 
 ## Firebase Test Lab 
-You can also run your UI tests on [Firebase Test Lab](https://firebase.google.com/docs/test-lab) using emulators and physical devices, to do so first you need to
+You can also run your UI tests on [Firebase Test Lab](https://firebase.google.com/docs/test-lab) using emulators or physical devices, to do so first you need to
 
 * Create a project in [Google Cloud Platform](https://console.cloud.google.com/cloud-resource-manager) if you haven't created one yet.
 * Create a project in [Firebase](https://console.firebase.google.com/):
@@ -598,8 +598,7 @@ docker pull thyrlian/android-sdk-firebase-test-lab
 docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v /path/on/host/auth.json:/auth.json thyrlian/android-sdk-firebase-test-lab
 
 # check the running process and get a interactive shell
-Docker ps
-Docker exec -it <container-id> /bin/bash
+docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk-firebase-test-lab"` /bin/bash
 
 # authenticate and create any config that you want
 gcloud auth activate-service-account -q --key-file myservicefile.json
