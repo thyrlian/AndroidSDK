@@ -118,7 +118,7 @@ More information about **storage driver**:
 # set the working directory to the project's root directory first
 docker build -t android-sdk android-sdk
 # or you can also pass specific tool version as you wish (optional, while there is default version)
-docker build --build-arg GRADLE_VERSION=<gradle_version> --build-arg KOTLIN_VERSION=<kotlin_version> --build-arg ANDROID_SDK_VERSION=<android_sdk_version> -t android-sdk android-sdk
+docker build --build-arg JDK_VERSION=<jdk_version> --build-arg GRADLE_VERSION=<gradle_version> --build-arg KOTLIN_VERSION=<kotlin_version> --build-arg ANDROID_SDK_VERSION=<android_sdk_version> -t android-sdk android-sdk
 # or pull the image instead of building on your own
 docker pull thyrlian/android-sdk
 
