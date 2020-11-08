@@ -60,19 +60,19 @@ else
 	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
 fi
 
-echo "Building the sub vnc image..."
+echo "Building the sub VNC image..."
 docker build -t $SUB_IMAGE_VNC_NAME $SUB_IMAGE_VNC_DIR
 
-echo "Revert the change of the base image tag in the sub vnc image file..."
+echo "Revert the change of the base image tag in the sub VNC image file..."
 git checkout -- $SUB_IMAGE_VNC_DIR/Dockerfile
 
 image_id=$(docker images $SUB_IMAGE_VNC_NAME | awk '{if (NR!=1) {print $3}}')
-echo "Built sub image ID is: $image_id"
+echo "Built sub VNC image ID is: $image_id"
 
-echo "Tagging the sub vnc image with $TAG..."
+echo "Tagging the sub VNC image with $TAG..."
 docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
 
-echo "Pushing the sub vnc image to Docker Hub..."
+echo "Pushing the sub VNC image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
 
 echo "Building the sub Firebase Test Lab image..."
@@ -82,7 +82,7 @@ echo "Revert the change of the base image tag in the sub Firebase Test Lab image
 git checkout -- $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
 
 image_id=$(docker images $SUB_IMAGE_FIREBASE_TEST_LAB_NAME | awk '{if (NR!=1) {print $3}}')
-echo "Built sub image ID is: $image_id"
+echo "Built sub Firebase Test Lab image ID is: $image_id"
 
 echo "Tagging the sub Firebase Test Lab image with $TAG..."
 docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
