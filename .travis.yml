@@ -9,5 +9,5 @@ script:
   - docker build -t android-sdk ./android-sdk
   - docker build -t android-sdk-firebase-test-lab ./android-sdk/firebase-test-lab
   - docker images
-  - cmd=$(cat ./version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
+  - cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
   - cmd=$(cat ./android-sdk/firebase-test-lab/version_inspector.sh) && docker run -it --rm android-sdk-firebase-test-lab bash -c "$cmd"

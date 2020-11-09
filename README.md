@@ -860,10 +860,10 @@ sudo netstat -tulpn | grep LISTEN
   ./image_publisher.sh [TAG]
   ```
 
-* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/version_inspector.sh) script inside a docker container from local machine
+* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/version_inspector.sh) script inside a docker container from local machine
 
   ```console
-  cmd=$(cat version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
+  cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
   ```
 
 * Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md)
