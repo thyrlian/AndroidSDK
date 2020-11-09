@@ -601,7 +601,7 @@ docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk-firebase-test-lab
 
 # authorize access to Google Cloud Platform and Firebase with your service account
 # for this step gcloud SDK needs to read the JSON file that contains your sevice account key (it was generated in the previous section)
-gcloud auth activate-service-account -q --key-file myservicefile.json
+gcloud auth activate-service-account -q --key-file auth.json
 
 # list available devices to run your tests
 gcloud firebase test android models list
