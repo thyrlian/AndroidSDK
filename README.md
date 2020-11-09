@@ -573,40 +573,58 @@ Don't worry about `adbkey` or `adbkey.pub` under `/.android`, not required.
 
   > Unfortunately it is not possible to pass through a USB device (or a serial port) to a container.
 
-## Firebase Test Lab 
-You can also run your UI tests on [Firebase Test Lab](https://firebase.google.com/docs/test-lab) using emulators or physical devices, to do so first you need to
+## Firebase Test Lab
+
+You can also run UI tests on Google's [Firebase Test Lab](https://firebase.google.com/docs/test-lab) with emulators or physical devices.
+
+To create and configure a project on the platform:
 
 * Create a project in [Google Cloud Platform](https://console.cloud.google.com/cloud-resource-manager) if you haven't created one yet.
+
 * Create a project in [Firebase](https://console.firebase.google.com/):
+
     * Choose the recently created Google Cloud Platform project to add Firebase services to it.
+    
     * Confirm Firebase billing plan.
+
 * Go to **IAM & Admin** -> **Service Accounts** in [Google Cloud Platform](https://console.cloud.google.com/iam-admin/serviceaccounts):
+
     * Edit the Firebase Admin SDK Service Agent account.
+    
     * **Keys** -> **ADD KEY** -> **Create new key** -> **Key type**: **JSON** -> **CREATE**.
+    
     * Download and save the created private key to your computer.
+
 * Go to **IAM & Admin** -> **IAM** in [Google Cloud Platform](https://console.cloud.google.com/iam-admin/iam):
+
     * Edit the Firebase Admin SDK Service Agent account.
+    
     * **ADD ANOTHER ROLE** -> **Role**: **Project** -> **Editor** -> **SAVE**.
+
 * Go to [API Library](https://console.developers.google.com/apis/library) -> search for **Cloud Testing API** and **Cloud Tool Results API** -> enable them.
 
-Now we're able to connect to Firebase Test Lab inside the container and deploy UI tests over there
+Once finished setup, you can then launch a container to deploy UI tests to Firebase Test Lab:
+
 ```bash
-# pull the image
+# pull the image with Google Cloud SDK integrated
 docker pull thyrlian/android-sdk-firebase-test-lab
-# run the container passing the service account Json (at least the first time) as external volume
-docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v <your_private_key_dir>/auth.json:/auth.json thyrlian/android-sdk-firebase-test-lab
 
-# check the running process and get a interactive shell
-docker exec -it `docker ps -aqf "ancestor=thyrlian/android-sdk-firebase-test-lab"` /bin/bash
+# spin up a container
+# don't forget to mount the previously created private key, assume it's saved as firebase.json
+# we'll persist all your gcloud configuration which would be created at ~/.config/gcloud/
 
-# authorize access to Google Cloud Platform and Firebase with your service account
-# for this step gcloud SDK needs to read the JSON file that contains your sevice account key (it was generated in the previous section)
-gcloud auth activate-service-account -q --key-file auth.json
+# spin up a container with interactive mode
+docker run -it -v $(pwd)/sdk:/opt/android-sdk -v <your_private_key_dir>/firebase.json:/root/firebase.json -v $(pwd)/gcloud_config:/root/.config/gcloud thyrlian/android-sdk-firebase-test-lab /bin/bash
+# or spin up a container with SSH
+docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v <your_private_key_dir>/firebase.json:/root/firebase.json -v $(pwd)/gcloud_config:/root/.config/gcloud -v $(pwd)/authorized_keys:/root/.ssh/authorized_keys thyrlian/android-sdk-firebase-test-lab
 
-# list available devices to run your tests
+# authorize access to Google Cloud Platform with a service account (by its private key)
+gcloud auth activate-service-account -q --key-file /root/firebase.json
+
+# list all Android models available for testing
 gcloud firebase test android models list
 
-# you should get a matrix output similar to this one but bigger
+# below are just some examples, to give you an idea how it looks like
 ┌───────────────────┬────────────────────┬──────────────────────────────────────┬──────────┬─────────────┬─────────────────────────┬───────────────┐
 │      MODEL_ID     │        MAKE        │              MODEL_NAME              │   FORM   │  RESOLUTION │      OS_VERSION_IDS     │      TAGS     │
 ├───────────────────┼────────────────────┼──────────────────────────────────────┼──────────┼─────────────┼─────────────────────────┼───────────────┤
@@ -615,35 +633,34 @@ gcloud firebase test android models list
 │ OnePlus3T         │ OnePlus            │ OnePlus 3T                           │ PHYSICAL │ 1920 x 1080 │ 26                      │               │
 └───────────────────┴────────────────────┴──────────────────────────────────────┴──────────┴─────────────┴─────────────────────────┴───────────────┘
 
-# compile your apks for both app and instrumented tests
+# build both the app and the instrumented tests APKs
 
-# to build the application apk
+# build the application APK
 ./gradlew :<your_module>:assemble
-# apk will be generated at: <your_module>/build/outputs/apk/<build_type>
+# APK will be generated at: <your_module>/build/outputs/apk/<build_type>
 
-# to build the test apk
+# build the instrumented tests APK
 ./gradlew :<your_module>:assembleAndroidTest
-# apk will be generated at: <your_module>/build/outputs/apk/androidTest/<build_type>
+# APK will be generated at: <your_module>/build/outputs/apk/androidTest/<build_type>
 
-# run your tests 
-UI_TEST_APK="--app=dir/debug.apk --test=dir/androidTest.apk"
+# run UI tests
+UI_TEST_APK="--app=<your_apk_path>/debug.apk --test=<your_apk_path>/androidTest.apk"
 UI_TEST_TYPE="instrumentation"
-UI_TEST_DEVICES="--device model=MODEL_ID,version=OS_VERSION_IDS,locale=en,orientation=portrait" 
+UI_TEST_DEVICES="--device model=MODEL_ID,version=OS_VERSION_IDS,locale=en,orientation=portrait"
 UI_TEST_RESULT_DIR="build-result"
 UI_TEST_PROJECT="<your_project_id>"
 gcloud firebase test android run $UI_TEST_APK $UI_TEST_DEVICES --type=$UI_TEST_TYPE --results-dir=$UI_TEST_RESULTS_DIR --project=$UI_TEST_PROJECT
 
-# if you want to split your test suite into multiple devices in parallel add the command --num-uniform-shards=int 
-# example: 20 test to run in 4 parallel devices (5 test per device) --num-uniform-shards=4
-
-# for more info about other configurations such as network-profile, locale, env variables etc ...  
-# go to https://cloud.google.com/sdk/gcloud/reference/beta/firebase/test/android/run
+# it's capable of running in parallel on separate devices with a number of shards
+# if you want to evenly distribute test cases into a number of shards, specify the flag: --num-uniform-shards=int
+# e.g.: to run 20 tests in parallel on 4 devices (5 tests per device): --num-uniform-shards=4
 ```
 
-**Important**: To not lose your configurations copy ~/.config/gcloud to the host machine and mount it next time you run the container.
-```bash
-docker cp <containerId>:/file/path/within/container /host/path/target
-```
+To learn more about Firebase Test Lab and Google Cloud SDK, please go and visit below links:
+
+* [Firebase Test Lab Overview](https://firebase.google.com/docs/test-lab/android/overview)
+
+* [Google Cloud SDK CLI Command Group for Android Application Testing](https://cloud.google.com/sdk/gcloud/reference/beta/firebase/test/android)
 
 ## Android Commands Reference
 
