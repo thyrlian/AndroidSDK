@@ -42,11 +42,11 @@ mv -v authorized_keys/* $TEMP_DIR
 echo "Building the main image..."
 docker build -t $MAIN_IMAGE_NAME .
 
-image_id=$(docker images $MAIN_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
-echo "Built main image ID is: $image_id"
+main_image_id=$(docker images $MAIN_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
+echo "Built main image ID is: $main_image_id"
 
 echo "Tagging the main image with $TAG..."
-docker tag $image_id $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
+docker tag $main_image_id $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
 
 echo "Pushing the main image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
@@ -66,11 +66,11 @@ docker build -t $SUB_IMAGE_VNC_NAME $SUB_IMAGE_VNC_DIR
 echo "Revert the change of the base image tag in the sub VNC image file..."
 git checkout -- $SUB_IMAGE_VNC_DIR/Dockerfile
 
-image_id=$(docker images $SUB_IMAGE_VNC_NAME | awk '{if (NR!=1) {print $3}}')
-echo "Built sub VNC image ID is: $image_id"
+sub_image_vnc_id=$(docker images $SUB_IMAGE_VNC_NAME | awk '{if (NR!=1) {print $3}}')
+echo "Built sub VNC image ID is: $sub_image_vnc_id"
 
 echo "Tagging the sub VNC image with $TAG..."
-docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
+docker tag $sub_image_vnc_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
 
 echo "Pushing the sub VNC image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
@@ -81,11 +81,11 @@ docker build -t $SUB_IMAGE_FIREBASE_TEST_LAB_NAME $SUB_IMAGE_FIREBASE_TEST_LAB_D
 echo "Revert the change of the base image tag in the sub Firebase Test Lab image file..."
 git checkout -- $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
 
-image_id=$(docker images $SUB_IMAGE_FIREBASE_TEST_LAB_NAME | awk '{if (NR!=1) {print $3}}')
-echo "Built sub Firebase Test Lab image ID is: $image_id"
+sub_image_firebase_test_lab_id=$(docker images $SUB_IMAGE_FIREBASE_TEST_LAB_NAME | awk '{if (NR!=1) {print $3}}')
+echo "Built sub Firebase Test Lab image ID is: $sub_image_firebase_test_lab_id"
 
 echo "Tagging the sub Firebase Test Lab image with $TAG..."
-docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
+docker tag $sub_image_firebase_test_lab_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
 
 echo "Pushing the sub Firebase Test Lab image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
