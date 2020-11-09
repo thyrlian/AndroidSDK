@@ -13,8 +13,10 @@ DOCKER_HUB_ACCOUNT=thyrlian
 DOCKER_FILE_NAME=Dockerfile
 MAIN_IMAGE_NAME=android-sdk
 MAIN_IMAGE_DIR=android-sdk
-SUB_IMAGE_NAME=android-sdk-vnc
-SUB_IMAGE_DIR=vnc
+SUB_IMAGE_VNC_NAME=android-sdk-vnc
+SUB_IMAGE_VNC_DIR=vnc
+SUB_IMAGE_FIREBASE_TEST_LAB_NAME=android-sdk-firebase-test-lab
+SUB_IMAGE_FIREBASE_TEST_LAB_DIR=firebase-test-lab
 TEMP_DIR=temp_authorized_keys
 
 # extract base image name and tag from Dockerfile
@@ -51,25 +53,42 @@ docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
 
 echo "Change the base image tag in the sub image file..."
 if [ $(uname) = "Darwin" ]; then
-	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_DIR/Dockerfile
+	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_VNC_DIR/Dockerfile
+	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
 else
-	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_DIR/Dockerfile
+	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_VNC_DIR/Dockerfile
+	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
 fi
 
-echo "Building the sub image..."
-docker build -t $SUB_IMAGE_NAME $SUB_IMAGE_DIR
+echo "Building the sub VNC image..."
+docker build -t $SUB_IMAGE_VNC_NAME $SUB_IMAGE_VNC_DIR
 
-echo "Revert the change of the base image tag in the sub image file..."
-git checkout -- $SUB_IMAGE_DIR/Dockerfile
+echo "Revert the change of the base image tag in the sub VNC image file..."
+git checkout -- $SUB_IMAGE_VNC_DIR/Dockerfile
 
-image_id=$(docker images $SUB_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
-echo "Built sub image ID is: $image_id"
+image_id=$(docker images $SUB_IMAGE_VNC_NAME | awk '{if (NR!=1) {print $3}}')
+echo "Built sub VNC image ID is: $image_id"
 
-echo "Tagging the sub image with $TAG..."
-docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_NAME:$TAG
+echo "Tagging the sub VNC image with $TAG..."
+docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
 
-echo "Pushing the sub image to Docker Hub..."
-docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_NAME:$TAG
+echo "Pushing the sub VNC image to Docker Hub..."
+docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
+
+echo "Building the sub Firebase Test Lab image..."
+docker build -t $SUB_IMAGE_FIREBASE_TEST_LAB_NAME $SUB_IMAGE_FIREBASE_TEST_LAB_DIR
+
+echo "Revert the change of the base image tag in the sub Firebase Test Lab image file..."
+git checkout -- $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
+
+image_id=$(docker images $SUB_IMAGE_FIREBASE_TEST_LAB_NAME | awk '{if (NR!=1) {print $3}}')
+echo "Built sub Firebase Test Lab image ID is: $image_id"
+
+echo "Tagging the sub Firebase Test Lab image with $TAG..."
+docker tag $image_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
+
+echo "Pushing the sub Firebase Test Lab image to Docker Hub..."
+docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
 
 echo "Unhiding files inside authorized_keys directory..."
 mv -v $TEMP_DIR/* authorized_keys
