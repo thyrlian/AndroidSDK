@@ -11,4 +11,3 @@ script:
   - docker images
   - cmd=$(cat ./version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
   - cmd=$(cat ./android-sdk/firebase-test-lab/version_inspector.sh) && docker run -it --rm android-sdk-firebase-test-lab bash -c "$cmd"
-

@@ -640,8 +640,7 @@ gcloud firebase test android run $UI_TEST_APK $UI_TEST_DEVICES --type=$UI_TEST_T
 # go to https://cloud.google.com/sdk/gcloud/reference/beta/firebase/test/android/run
 ```
 
-**Important**: To not lose your configurations copy ~/.config/gcloud to the host machine and
-mount it next time you run the container.
+**Important**: To not lose your configurations copy ~/.config/gcloud to the host machine and mount it next time you run the container.
 ```bash
 docker cp <containerId>:/file/path/within/container /host/path/target
 ```
