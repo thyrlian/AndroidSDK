@@ -1,6 +1,7 @@
 # SDK host directory (to be mounted into container)
 sdk/
 authorized_keys
+gcloud_config/
 
 ### Certificate ###
 *.key
