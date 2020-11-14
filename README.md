@@ -656,6 +656,8 @@ gcloud firebase test android run $UI_TEST_APK $UI_TEST_DEVICES --type=$UI_TEST_T
 # e.g.: to run 20 tests in parallel on 4 devices (5 tests per device): --num-uniform-shards=4
 ```
 
+Later you can view the test results (including recorded video of test execution) in [Firebase Console](https://console.firebase.google.com), open your ***project***, navigate to **Test Lab**.
+
 To learn more about Firebase Test Lab and Google Cloud SDK, please go and visit below links:
 
 * [Firebase Test Lab Overview](https://firebase.google.com/docs/test-lab/android/overview)
