@@ -13,7 +13,7 @@ Before filling out this bug template, please **think twice**: if the issue is re
 
 ---
 
-<***Please remove above section when submitting a bug report***>
+<***Please REMOVE above section when submitting a bug report***>
 
 ### Description
 
