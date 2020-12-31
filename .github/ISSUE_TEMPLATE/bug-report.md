@@ -21,9 +21,9 @@ A concise description of what the bug is.
 
 Steps to reproduce the issue (do make sure that you're able to reproduce the issue when following the steps below).
 
-1. '...'
-2. '...'
-3. '...'
+1. `...`
+2. `...`
+3. `...`
 
 ### Actual Result
 
