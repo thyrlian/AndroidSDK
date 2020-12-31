@@ -13,6 +13,8 @@ Before filling out this bug template, please **think twice**: if the issue is re
 
 ---
 
+<***Please remove above section when submitting a bug report***>
+
 ### Description
 
 A concise description of what the bug is.
