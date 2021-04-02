@@ -17,6 +17,8 @@ SUB_IMAGE_VNC_NAME=android-sdk-vnc
 SUB_IMAGE_VNC_DIR=vnc
 SUB_IMAGE_FIREBASE_TEST_LAB_NAME=android-sdk-firebase-test-lab
 SUB_IMAGE_FIREBASE_TEST_LAB_DIR=firebase-test-lab
+SUB_IMAGE_BUNDLER_NAME=android-sdk-bundler
+SUB_IMAGE_BUNDLER_DIR=bundler
 TEMP_DIR=temp_authorized_keys
 
 # extract base image name and tag from Dockerfile
@@ -89,6 +91,21 @@ docker tag $sub_image_firebase_test_lab_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBA
 
 echo "Pushing the sub Firebase Test Lab image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
+
+echo "Building the sub Bundler image..."
+docker build -t $SUB_IMAGE_BUNDLER_NAME $SUB_IMAGE_BUNDLER_DIR
+
+echo "Revert the change of the base image tag in the sub Bundler image file..."
+git checkout -- $SUB_IMAGE_BUNDLER_DIR/Dockerfile
+
+sub_image_bundler_id=$(docker images $SUB_IMAGE_BUNDLER_NAME | awk '{if (NR!=1) {print $3}}')
+echo "Built sub Bundler image ID is: $sub_image_bundler_id"
+
+echo "Tagging the sub Bundler image with $TAG..."
+docker tag $sub_image_bundler_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_BUNDLER_NAME:$TAG
+
+echo "Pushing the sub Bundler image to Docker Hub..."
+docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_BUNDLER_NAME:$TAG
 
 echo "Unhiding files inside authorized_keys directory..."
 mv -v $TEMP_DIR/* authorized_keys

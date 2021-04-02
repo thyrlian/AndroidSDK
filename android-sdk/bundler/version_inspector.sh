@@ -1,0 +1,1 @@
+gem --version && bundler --version
