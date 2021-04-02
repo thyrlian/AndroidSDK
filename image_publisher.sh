@@ -57,9 +57,11 @@ echo "Change the base image tag in the sub image file..."
 if [ $(uname) = "Darwin" ]; then
 	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_VNC_DIR/Dockerfile
 	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
+	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_BUNDLER_DIR/Dockerfile
 else
 	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_VNC_DIR/Dockerfile
 	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
+	sed -i"" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_BUNDLER_DIR/Dockerfile
 fi
 
 echo "Building the sub VNC image..."
