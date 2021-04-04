@@ -14,4 +14,5 @@ LABEL maintainer "anggablokj6@gmail.com, thyrlian@gmail.com"
 # Install Ruby Dev
 # Gem Install Bundler
 # Install Build Essential
-RUN apt-get update && apt-get install -y bundler
+RUN apt-get -y update && apt-get install -y bundler && \ 
+	apt-get install -y ruby-dev && gem install bundler
