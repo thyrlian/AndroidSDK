@@ -7,6 +7,7 @@ services:
 
 script:
   - docker build -t android-sdk ./android-sdk
+  - docker build -t android-sdk-vnc ./android-sdk/vnc
   - docker build -t android-sdk-firebase-test-lab ./android-sdk/firebase-test-lab
   - docker images
   - cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
