@@ -38,7 +38,9 @@ docker pull $BASE_IMAGE_NAME:$BASE_IMAGE_TAG
 echo "Hiding files inside accredited_keys directory..."
 rm -r $TEMP_DIR 2> /dev/null
 mkdir -p $TEMP_DIR
-mv -v $KEYS_DIR/* $TEMP_DIR
+if [ ! -z "$(ls $KEYS_DIR)" ]; then
+  mv -v $KEYS_DIR/* $TEMP_DIR
+fi
 
 echo "Building the main image..."
 docker build -t $MAIN_IMAGE_NAME .
@@ -92,5 +94,7 @@ echo "Pushing the sub Firebase Test Lab image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
 
 echo "Unhiding files inside accredited_keys directory..."
-mv -v $TEMP_DIR/* $KEYS_DIR
+if [ ! -z "$(ls $TEMP_DIR)" ]; then
+  mv -v $TEMP_DIR/* $KEYS_DIR
+fi
 rm -r $TEMP_DIR
