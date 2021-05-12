@@ -73,7 +73,7 @@ EXPOSE 5037
 # install and configure SSH server
 EXPOSE 22
 ADD sshd-banner /etc/ssh/
-ADD authorized_keys /tmp/
+ADD accredited_keys /tmp/
 RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisord && \

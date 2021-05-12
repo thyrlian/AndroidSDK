@@ -168,9 +168,9 @@ It is also possible if you wanna connect to container via SSH.  There are three 
 * Build an image on your own, with a built-in `authorized_keys`
 
   ```bash
-  # Put your `id_rsa.pub` under `android-sdk/authorized_keys` (as many as you want)
-  
-  # Build an image
+  # Put your `id_rsa.pub` under `android-sdk/accredited_keys` directory (as many as you want)
+
+  # Build an image, then an `authorized_keys` file will be composed automatically, based on the keys from `android-sdk/accredited_keys` directory
   docker build -t android-sdk android-sdk
   
   # Run a container

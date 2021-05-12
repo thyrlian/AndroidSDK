@@ -17,7 +17,8 @@ SUB_IMAGE_VNC_NAME=android-sdk-vnc
 SUB_IMAGE_VNC_DIR=vnc
 SUB_IMAGE_FIREBASE_TEST_LAB_NAME=android-sdk-firebase-test-lab
 SUB_IMAGE_FIREBASE_TEST_LAB_DIR=firebase-test-lab
-TEMP_DIR=temp_authorized_keys
+KEYS_DIR=accredited_keys
+TEMP_DIR=temp_accredited_keys
 
 # extract base image name and tag from Dockerfile
 regex_name_and_tag='FROM[[:blank:]]([^:]*):([^:]*)'
@@ -34,10 +35,10 @@ cd $MAIN_IMAGE_DIR
 echo "Pulling the latest base image..."
 docker pull $BASE_IMAGE_NAME:$BASE_IMAGE_TAG
 
-echo "Hiding files inside authorized_keys directory..."
+echo "Hiding files inside accredited_keys directory..."
 rm -r $TEMP_DIR 2> /dev/null
 mkdir -p $TEMP_DIR
-mv -v authorized_keys/* $TEMP_DIR
+mv -v $KEYS_DIR/* $TEMP_DIR
 
 echo "Building the main image..."
 docker build -t $MAIN_IMAGE_NAME .
@@ -90,6 +91,6 @@ docker tag $sub_image_firebase_test_lab_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBA
 echo "Pushing the sub Firebase Test Lab image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
 
-echo "Unhiding files inside authorized_keys directory..."
-mv -v $TEMP_DIR/* authorized_keys
+echo "Unhiding files inside accredited_keys directory..."
+mv -v $TEMP_DIR/* $KEYS_DIR
 rm -r $TEMP_DIR
