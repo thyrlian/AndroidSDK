@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build the main Docker image (android-sdk)
+      run: docker build -t android-sdk ./android-sdk
+    - name: Display tool version information of the main Docker image (android-sdk)
+      run: cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
+    - name: Build the sub Docker image (android-sdk-vnc)
+      run: docker build -t android-sdk-vnc ./android-sdk/vnc
+    - name: Display tool version information of the sub Docker image (android-sdk-vnc)
+      run: cmd=$(cat ./android-sdk/vnc/version_inspector.sh) && docker run -it --rm android-sdk-vnc bash -c "$cmd"
+    - name: Build the sub Docker image (android-sdk-firebase-test-lab)
+      run: docker build -t android-sdk-firebase-test-lab ./android-sdk/firebase-test-lab
+    - name: Display tool version information of the sub Docker image (android-sdk-firebase-test-lab)
+      run: cmd=$(cat ./android-sdk/firebase-test-lab/version_inspector.sh) && docker run -it --rm android-sdk-firebase-test-lab bash -c "$cmd"
