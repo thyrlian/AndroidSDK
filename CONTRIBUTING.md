@@ -12,6 +12,7 @@ The [primary Docker image](./android-sdk/Dockerfile) was created in barebone, fo
 
 * Create a specific directory under [android-sdk](./android-sdk) directory and a `Dockerfile` inside it.
 * A `version_inspector.sh` file is necessary to print out tools' version information (don't forget to call it in the [CI script](./.travis.yml)).
+* Update corresponding CI workflow: [GitHub Action](https://github.com/thyrlian/AndroidSDK/blob/master/.github/workflows/docker-image.yml) & [TravisCI](https://github.com/thyrlian/AndroidSDK/blob/master/.travis.yml).
 * Add corresponding Docker image building and publishing steps to [`image_publisher.sh`](./image_publisher.sh) script.
 
 ## Accept New SDK Licenses
