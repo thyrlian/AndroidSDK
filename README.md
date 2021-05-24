@@ -7,7 +7,6 @@ Android SDK development environment Docker image
 [![Docker Pulls](https://img.shields.io/docker/pulls/thyrlian/android-sdk.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 [![Image Size & Layers](https://images.microbadger.com/badges/image/thyrlian/android-sdk.svg)](https://microbadger.com/images/thyrlian/android-sdk)
 [![CI](https://github.com/thyrlian/AndroidSDK/actions/workflows/docker-image.yml/badge.svg)](https://github.com/thyrlian/AndroidSDK/actions/workflows/docker-image.yml)
-[![Build Status](https://travis-ci.org/thyrlian/AndroidSDK.svg?branch=master)](https://travis-ci.org/thyrlian/AndroidSDK)
 [![Join the chat at https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker](https://badges.gitter.im/AndroidSDK-Docker/AndroidSDK-Docker.svg)](https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker)
 [![Android Dev Digest](https://img.shields.io/badge/AndroidDevDigest-%23127-green.svg)](https://www.androiddevdigest.com/digest-127/)
 [![Android开发技术周报](https://img.shields.io/badge/Android%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E5%91%A8%E6%8A%A5-%23114-yellowgreen.svg)](http://www.androidweekly.cn/android-dev-weekly-issue-114/)

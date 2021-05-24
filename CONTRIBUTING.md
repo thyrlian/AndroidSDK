@@ -11,8 +11,8 @@ Contributions are made by forking this repository, making the changes, and openi
 The [primary Docker image](./android-sdk/Dockerfile) was created in barebone, for the sake of providing Android environment only.  If you have other needs, please build a dedicated Docker image:
 
 * Create a specific directory under [android-sdk](./android-sdk) directory and a `Dockerfile` inside it.
-* A `version_inspector.sh` file is necessary to print out tools' version information (don't forget to call it in the [CI script](./.travis.yml)).
-* Update corresponding CI workflow: [GitHub Action](https://github.com/thyrlian/AndroidSDK/blob/master/.github/workflows/docker-image.yml) & [TravisCI](https://github.com/thyrlian/AndroidSDK/blob/master/.travis.yml).
+* A `version_inspector.sh` file is necessary to print out tools' version information.
+* Update corresponding CI workflow: [GitHub Action](https://github.com/thyrlian/AndroidSDK/blob/master/.github/workflows/docker-image.yml).
 * Add corresponding Docker image building and publishing steps to [`image_publisher.sh`](./image_publisher.sh) script.
 
 ## Accept New SDK Licenses
@@ -23,4 +23,4 @@ If a new agreement is accepted, a file should be created in the directory [`EULA
 
 ## Pass All Checks
 
-Make sure that all [tests](./.travis.yml) pass on the CI.
+Make sure that all [tests](https://github.com/thyrlian/AndroidSDK/actions/workflows/docker-image.yml) pass on the CI.
