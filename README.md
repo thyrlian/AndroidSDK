@@ -8,6 +8,7 @@ Android SDK development environment Docker image
 [![Image Size & Layers](https://images.microbadger.com/badges/image/thyrlian/android-sdk.svg)](https://microbadger.com/images/thyrlian/android-sdk)
 [![CI](https://github.com/thyrlian/AndroidSDK/actions/workflows/docker-image.yml/badge.svg)](https://github.com/thyrlian/AndroidSDK/actions/workflows/docker-image.yml)
 [![Build Status](https://travis-ci.org/thyrlian/AndroidSDK.svg?branch=master)](https://travis-ci.org/thyrlian/AndroidSDK)
+[![Join the chat at https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker](https://badges.gitter.im/AndroidSDK-Docker/AndroidSDK-Docker.svg)](https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker)
 [![Android Dev Digest](https://img.shields.io/badge/AndroidDevDigest-%23127-green.svg)](https://www.androiddevdigest.com/digest-127/)
 [![Android开发技术周报](https://img.shields.io/badge/Android%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E5%91%A8%E6%8A%A5-%23114-yellowgreen.svg)](http://www.androidweekly.cn/android-dev-weekly-issue-114/)
 [![HelloGitHub](https://img.shields.io/badge/HelloGitHub-%2359-blue.svg)](https://hellogithub.com/periodical/volume/59/#AndroidSDK)
@@ -900,7 +901,7 @@ See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/thyrlian/AndroidSDK.svg)](https://starchart.cc/thyrlian/AndroidSDK) [![Join the chat at https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker](https://badges.gitter.im/AndroidSDK-Docker/AndroidSDK-Docker.svg)](https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Stargazers over time](https://starchart.cc/thyrlian/AndroidSDK.svg)](https://starchart.cc/thyrlian/AndroidSDK)
 
 ## License
 
