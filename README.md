@@ -900,7 +900,7 @@ See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/thyrlian/AndroidSDK.svg)](https://starchart.cc/thyrlian/AndroidSDK)
+[![Stargazers over time](https://starchart.cc/thyrlian/AndroidSDK.svg)](https://starchart.cc/thyrlian/AndroidSDK) [![Join the chat at https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker](https://badges.gitter.im/AndroidSDK-Docker/AndroidSDK-Docker.svg)](https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## License
 
