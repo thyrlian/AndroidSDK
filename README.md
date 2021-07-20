@@ -5,7 +5,6 @@ Android SDK development environment Docker image
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-info-blue.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 [![Docker Stars](https://img.shields.io/docker/stars/thyrlian/android-sdk.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/thyrlian/android-sdk.svg)](https://hub.docker.com/r/thyrlian/android-sdk/)
-[![Image Size & Layers](https://images.microbadger.com/badges/image/thyrlian/android-sdk.svg)](https://microbadger.com/images/thyrlian/android-sdk)
 [![CI](https://github.com/thyrlian/AndroidSDK/actions/workflows/docker-image.yml/badge.svg)](https://github.com/thyrlian/AndroidSDK/actions/workflows/docker-image.yml)
 [![Join the chat at https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker](https://badges.gitter.im/AndroidSDK-Docker/AndroidSDK-Docker.svg)](https://gitter.im/AndroidSDK-Docker/AndroidSDK-Docker)
 [![Android Dev Digest](https://img.shields.io/badge/AndroidDevDigest-%23127-green.svg)](https://www.androiddevdigest.com/digest-127/)
@@ -833,9 +832,7 @@ For demonstration, below examples try to execute [MemoryFiller](https://github.c
 
 * By default, [Android Gradle Plugin](https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DexOptions.html) sets the maxProcessCount to 4 (the maximum number of concurrent processes that can be used to dex).  `Total Memory = maxProcessCount * javaMaxHeapSize`
 
-* Set the environment variable `_JAVA_OPTIONS` to `-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`.  Then you'll see such logs like `Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap` during any task execution, which means it takes effect.
-
-* JDK 10 has introduced `-XX:+UseContainerSupport` which is enabled by defaul to improve the execution and configurability of Java running in Docker containers.
+* Earlier in JDK 8, you need to set the environment variable `_JAVA_OPTIONS` to `-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`.  Then you'll see such logs like `Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap` during any task execution, which means it takes effect.  JDK 10 has introduced `-XX:+UseContainerSupport` which is enabled by default to improve the execution and configurability of Java running in Docker containers.  Since JDK 1.8.0_191, `-XX:+UseContainerSupport` was also backported, then you don't need to set `-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap` any more.  `UseCGroupMemoryLimitForHeap` was deprecated in JDK 10 and removed in JDK 11.
 
 * `JAVA_OPTS` environment variable won't be used by JVM directly, but sometimes get recognized by other apps (e.g. Apache Tomcat) as configuration.  If you want to use it for any Java executable, do it like this: `java $JAVA_OPTS ...`
 
