@@ -13,6 +13,8 @@ DOCKER_HUB_ACCOUNT=thyrlian
 DOCKER_FILE_NAME=Dockerfile
 MAIN_IMAGE_NAME=android-sdk
 MAIN_IMAGE_DIR=android-sdk
+VARIANT_IMAGE_NAME=android-sdk-jdk8
+VARIANT_IMAGE_BUILD_ARG=JDK_VERSION=8
 SUB_IMAGE_VNC_NAME=android-sdk-vnc
 SUB_IMAGE_VNC_DIR=vnc
 SUB_IMAGE_FIREBASE_TEST_LAB_NAME=android-sdk-firebase-test-lab
@@ -53,6 +55,18 @@ docker tag $main_image_id $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
 
 echo "Pushing the main image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
+
+echo "Building the variant image..."
+docker build --build-arg $VARIANT_IMAGE_BUILD_ARG -t $VARIANT_IMAGE_NAME .
+
+variant_image_id=$(docker images $VARIANT_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
+echo "Built variant image ID is: $variant_image_id"
+
+echo "Tagging the variant image with $TAG..."
+docker tag $variant_image_id $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG
+
+echo "Pushing the variant image to Docker Hub..."
+docker push $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG
 
 echo "Change the base image tag in the sub image file..."
 if [ $(uname) = "Darwin" ]; then
