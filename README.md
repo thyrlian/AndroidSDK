@@ -53,7 +53,7 @@ Previously, running Android SDK update within the **Dockerfile** or inside a **c
 What happens if the update fails?
 
   ```bash
-  ls $ANDROID_SDK_ROOT/tools/
+  ls $ANDROID_SDK_ROOT/cmdline-tools/tools/
   #=> empty, nothing is there
   # tools such as: android, sdkmanager, emulator, lint and etc. are gone
   
@@ -61,7 +61,7 @@ What happens if the update fails?
   #=> bash: android: command not found
   
   sdkmanager
-  #=> bash: /opt/android-sdk/tools/bin/sdkmanager: No such file or directory
+  #=> bash: /opt/android-sdk/cmdline-tools/tools/bin/sdkmanager: No such file or directory
   ```
 
 To prevent this problem from happening, and you don't wanna bother modifying storage driver.  The only solution is to mount an external SDK volume from host to container.  Then you are free to try any of below approaches.
@@ -132,9 +132,9 @@ docker run -it --rm -v $(pwd)/sdk:/sdk thyrlian/android-sdk bash -c 'cp -a $ANDR
 # go to the 'sdk' directory on the host, update the SDK
 # ONLY IF the host machine is the same target architecture as the container
 # JDK required on the host
-sdk/tools/bin/sdkmanager --update
+sdk/cmdline-tools/tools/bin/sdkmanager --update
 # or install specific packages
-sdk/tools/bin/sdkmanager "build-tools;x.y.z" "platforms;android-<api_level>" ...
+sdk/cmdline-tools/tools/bin/sdkmanager "build-tools;x.y.z" "platforms;android-<api_level>" ...
 
 # mount the updated SDK to container again
 # if the host SDK directory is mounted to more than one container
@@ -676,7 +676,7 @@ To learn more about Firebase Test Lab and Google Cloud SDK, please go and visit 
   cat $ANDROID_SDK_ROOT/platform-tools/source.properties | grep Pkg.Revision
   ```
 
-  > The "`android`" command is deprecated.  For command-line tools, use `tools/bin/sdkmanager` and `tools/bin/avdmanager`.
+  > The "`android`" command is deprecated.  For command-line tools, use `cmdline-tools/tools/bin/sdkmanager` and `cmdline-tools/tools/bin/avdmanager`.
 
 * List installed and available packages
 
