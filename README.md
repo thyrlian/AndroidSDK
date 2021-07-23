@@ -671,8 +671,7 @@ To learn more about Firebase Test Lab and Google Cloud SDK, please go and visit 
 * Check installed Android SDK tools version
 
   ```console
-  cat $ANDROID_SDK_ROOT/tools/source.properties | grep Pkg.Revision
-  cat $ANDROID_SDK_ROOT/cmdline-tools/source.properties | grep Pkg.Revision
+  cat $ANDROID_SDK_ROOT/cmdline-tools/tools/source.properties | grep Pkg.Revision
   cat $ANDROID_SDK_ROOT/platform-tools/source.properties | grep Pkg.Revision
   ```
 
