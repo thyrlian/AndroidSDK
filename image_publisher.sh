@@ -19,6 +19,7 @@ SUB_IMAGE_VNC_NAME=android-sdk-vnc
 SUB_IMAGE_VNC_DIR=vnc
 SUB_IMAGE_FIREBASE_TEST_LAB_NAME=android-sdk-firebase-test-lab
 SUB_IMAGE_FIREBASE_TEST_LAB_DIR=firebase-test-lab
+TAG_LATEST=latest
 KEYS_DIR=accredited_keys
 TEMP_DIR=temp_accredited_keys
 
@@ -52,9 +53,11 @@ echo "Built main image ID is: $main_image_id"
 
 echo "Tagging the main image with $TAG..."
 docker tag $main_image_id $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
+docker tag $main_image_id $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG_LATEST
 
 echo "Pushing the main image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
+docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG_LATEST
 
 echo "Building the variant image..."
 docker build --build-arg $VARIANT_IMAGE_BUILD_ARG -t $VARIANT_IMAGE_NAME .
@@ -64,9 +67,11 @@ echo "Built variant image ID is: $variant_image_id"
 
 echo "Tagging the variant image with $TAG..."
 docker tag $variant_image_id $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG
+docker tag $variant_image_id $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG_LATEST
 
 echo "Pushing the variant image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG
+docker push $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG_LATEST
 
 echo "Change the base image tag in the sub image file..."
 if [ $(uname) = "Darwin" ]; then
@@ -88,9 +93,11 @@ echo "Built sub VNC image ID is: $sub_image_vnc_id"
 
 echo "Tagging the sub VNC image with $TAG..."
 docker tag $sub_image_vnc_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
+docker tag $sub_image_vnc_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG_LATEST
 
 echo "Pushing the sub VNC image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
+docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG_LATEST
 
 echo "Building the sub Firebase Test Lab image..."
 docker build -t $SUB_IMAGE_FIREBASE_TEST_LAB_NAME $SUB_IMAGE_FIREBASE_TEST_LAB_DIR
@@ -103,9 +110,11 @@ echo "Built sub Firebase Test Lab image ID is: $sub_image_firebase_test_lab_id"
 
 echo "Tagging the sub Firebase Test Lab image with $TAG..."
 docker tag $sub_image_firebase_test_lab_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
+docker tag $sub_image_firebase_test_lab_id $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG_LATEST
 
 echo "Pushing the sub Firebase Test Lab image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG
+docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_FIREBASE_TEST_LAB_NAME:$TAG_LATEST
 
 echo "Unhiding files inside accredited_keys directory..."
 if [ ! -z "$(ls $TEMP_DIR)" ]; then
