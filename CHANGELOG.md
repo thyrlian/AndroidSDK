@@ -1,5 +1,63 @@
 # Changelog
 
+## 7.1
+
+**Main Image**
+
+```console
+docker pull thyrlian/android-sdk:7.1
+```
+
+**What's New**
+* Upgraded Ubuntu from 20.04.2 to 20.04.3
+* Upgraded Gradle from 7.1.1 to 7.2
+* Upgraded Kotlin compiler from 1.5.21 to 1.5.31
+* Upgraded Android SDK Command-line Tools from 4.0 to 5.0
+
+Component | Version
+--------- | -------
+Ubuntu | 20.04.3 LTS (Focal Fossa)
+Java | 11.0.11
+Gradle | 7.2
+Kotlin compiler | 1.5.31
+Android SDK Command-line Tools | 5.0
+OpenSSH | 1:8.2p1-4
+
+**Variant Image**
+
+```console
+docker pull thyrlian/android-sdk-jdk8:7.1
+```
+
+Component | Version
+--------- | -------
+Java | 1.8.0_292
+
+**Sub-image**: VNC
+
+```console
+docker pull thyrlian/android-sdk-vnc:7.1
+```
+
+Component | Version
+--------- | -------
+TightVNC | 1.3.10
+
+**Sub-image**: Firebase Test Lab
+
+```console
+docker pull thyrlian/android-sdk-firebase-test-lab:7.1
+```
+
+**What's New**
+* Upgraded Google Cloud SDK from 349.0.0 to 360.0.0
+
+Component | Version
+--------- | -------
+Google Cloud SDK | 360.0.0
+
+---
+
 ## 7.0
 
 **Main Image**
