@@ -20,12 +20,13 @@ RUN dpkg --add-architecture i386 && \
     apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc-s1 lib32ncurses6 lib32z1 zlib1g:i386 && \
     apt-get install -y --no-install-recommends openjdk-${JDK_VERSION}-jdk && \
-    apt-get install -y --no-install-recommends git wget unzip && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends qt5-default
+    apt-get install -y --no-install-recommends git wget curl unzip zip && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends qt5-default && \
+    apt-get clean && rm -rf /var/lib/apt/list/*
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=7.3.3
+ARG GRADLE_VERSION=7.4.2
 ARG GRADLE_DIST=bin
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-${GRADLE_DIST}.zip && \
@@ -35,7 +36,7 @@ RUN cd /opt && \
 
 # download and install Kotlin compiler
 # https://github.com/JetBrains/kotlin/releases/latest
-ARG KOTLIN_VERSION=1.6.10
+ARG KOTLIN_VERSION=1.6.21
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
@@ -77,7 +78,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisord && \
     locale-gen en en_US en_US.UTF-8 && \
-    apt-get remove -y locales && apt-get autoremove -y && \
+    apt-get remove -y locales && apt-get autoremove -y  && \
+    apt-get clean && rm -rf /var/lib/apt/list/* && \
     FILE_SSHD_CONFIG="/etc/ssh/sshd_config" && \
     echo "\nBanner /etc/ssh/sshd-banner" >> $FILE_SSHD_CONFIG && \
     echo "\nPermitUserEnvironment=yes" >> $FILE_SSHD_CONFIG && \
