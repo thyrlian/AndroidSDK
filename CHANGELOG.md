@@ -1,5 +1,64 @@
 # Changelog
 
+## 8.0
+
+**Main Image**
+
+```console
+docker pull thyrlian/android-sdk:8.0
+```
+
+**What's New**
+* Upgraded Ubuntu from 20.04.3 to 22.04.1
+* Upgraded OpenJDK from 11.0.13 to 11.0.15
+* Upgraded Gradle from 7.3.3 to 7.4.2
+* Upgraded Kotlin compiler from 1.6.10 to 1.6.21
+* Upgraded OpenSSH from 1:8.2p1-4 to 1:8.9p1-3
+
+Component | Version
+--------- | -------
+Ubuntu | 22.04.1 LTS (Jammy Jellyfish)
+Java | 11.0.15
+Gradle | 7.4.2
+Kotlin compiler | 1.6.21
+Android SDK Command-line Tools | 6.0
+OpenSSH | 1:8.9p1-3
+
+**Variant Image**
+
+```console
+docker pull thyrlian/android-sdk-jdk8:8.0
+```
+
+Component | Version
+--------- | -------
+Java | 1.8.0_312
+
+**Sub-image**: VNC
+
+```console
+docker pull thyrlian/android-sdk-vnc:8.0
+```
+
+Component | Version
+--------- | -------
+TightVNC | 1.3.10
+
+**Sub-image**: Firebase Test Lab
+
+```console
+docker pull thyrlian/android-sdk-firebase-test-lab:8.0
+```
+
+**What's New**
+* Upgraded Google Cloud SDK from 371.0.0 to 385.0.0
+
+Component | Version
+--------- | -------
+Google Cloud SDK | 385.0.0
+
+---
+
 ## 7.2
 
 **Main Image**
