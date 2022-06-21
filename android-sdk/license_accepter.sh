@@ -18,3 +18,5 @@ check_android_sdk_root "$@"
 
 $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --update
 yes | $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --licenses
+
+$ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager "cmake;3.10.2.4988404"
