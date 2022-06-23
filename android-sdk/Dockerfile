@@ -13,7 +13,6 @@ LABEL maintainer "thyrlian@gmail.com"
 # support multiarch: i386 architecture
 # install Java
 # install essential tools
-# install Qt
 ARG JDK_VERSION=11
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
@@ -35,7 +34,7 @@ RUN cd /opt && \
 
 # download and install Kotlin compiler
 # https://github.com/JetBrains/kotlin/releases/latest
-ARG KOTLIN_VERSION=1.6.21
+ARG KOTLIN_VERSION=1.7.0
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
@@ -43,7 +42,7 @@ RUN cd /opt && \
 
 # download and install Android SDK
 # https://developer.android.com/studio#command-tools
-ARG ANDROID_SDK_VERSION=8092744
+ARG ANDROID_SDK_VERSION=8512546
 ENV ANDROID_SDK_ROOT /opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
     wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
