@@ -12,7 +12,7 @@ Android SDK development environment Docker image
 [![HelloGitHub](https://img.shields.io/badge/HelloGitHub-%2359-blue.svg)](https://hellogithub.com/periodical/volume/59/#AndroidSDK)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fthyrlian%2FAndroidSDK&count_bg=%233DDC84&title_bg=%230DB7ED&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://github.com/thyrlian/AndroidSDK)
 
-[![Docker Badge](https://dockeri.co/image/thyrlian/android-sdk)](https://hub.docker.com/r/thyrlian/android-sdk)
+[![Docker Badge](https://dockerico.blankenship.io/image/thyrlian/android-sdk)](https://hub.docker.com/r/thyrlian/android-sdk)
 
 <img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/logo.png?raw=true" width="200">
 
