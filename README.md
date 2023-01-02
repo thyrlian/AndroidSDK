@@ -180,6 +180,9 @@ It is also possible if you wanna connect to container via SSH.  There are three 
 * Mount `authorized_keys` file from the host to a container
 
   ```bash
+  # Make sure your local authorized_keys file has the correct permission set
+  chmod 600 $(pwd)/authorized_keys
+  
   docker run -d -p 2222:22 -v $(pwd)/authorized_keys:/root/.ssh/authorized_keys thyrlian/android-sdk
   ```
 
@@ -187,6 +190,8 @@ It is also possible if you wanna connect to container via SSH.  There are three 
 
   ```bash
   # Create a local `authorized_keys` file, which contains the content from your `id_rsa.pub`
+  # Make sure your local authorized_keys file has the correct permission set
+  chmod 600 $(pwd)/authorized_keys
   
   # Run a container
   docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk
