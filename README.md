@@ -182,6 +182,7 @@ It is also possible if you wanna connect to container via SSH.  There are three 
   ```bash
   # Make sure your local authorized_keys file has the correct permission set
   chmod 600 $(pwd)/authorized_keys
+  sudo chown root:root authorized_keys
   
   docker run -d -p 2222:22 -v $(pwd)/authorized_keys:/root/.ssh/authorized_keys thyrlian/android-sdk
   ```
