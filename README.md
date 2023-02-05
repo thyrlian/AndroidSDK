@@ -30,7 +30,7 @@ Android SDK development environment Docker image
 
 ## Philosophy
 
-Provide only the **barebone SDK** (the latest official minimal package) gives you the **maximum flexibility** in tailoring your own SDK tools for your project.  You can maintain an external **persistent** SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.  Additionally, instead of one dedicated Docker image per Android API level (which will end up with a ton of images), you just have to deal with **one image**.  Last but not least, not to redistribute the SDK is the **legal** behavior.
+Provide only the **barebone SDK** (the latest official minimal package) gives you the **maximum flexibility** in tailoring your own SDK tools for your project.  You can maintain an external **persistent** SDK directory, and mount it to any container.  In this way, you don't have to waste time on downloading over and over again, meanwhile, without having any unnecessary package.  Additionally, instead of one dedicated Docker image per Android API level (which will end up with a ton of images), you just have to deal with **one image**.  Last but not least, according to Android's [terms and conditions](https://developer.android.com/studio/terms), one may not **redistribute** the SDK or any part of the SDK.
 
 ### Note
 
