@@ -20,7 +20,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc-s1 lib32ncurses6 lib32z1 zlib1g:i386 && \
     apt-get install -y --no-install-recommends openjdk-${JDK_VERSION}-jdk && \
     apt-get install -y --no-install-recommends git wget unzip && \
-    apt-get clean && rm -rf /var/lib/apt/list/*
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
@@ -77,7 +77,7 @@ RUN apt-get update && \
     mkdir -p /var/run/sshd /var/log/supervisord && \
     locale-gen en en_US en_US.UTF-8 && \
     apt-get remove -y locales && apt-get autoremove -y && \
-    apt-get clean && rm -rf /var/lib/apt/list/* && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* && \
     FILE_SSHD_CONFIG="/etc/ssh/sshd_config" && \
     echo "\nBanner /etc/ssh/sshd-banner" >> $FILE_SSHD_CONFIG && \
     echo "\nPermitUserEnvironment=yes" >> $FILE_SSHD_CONFIG && \
