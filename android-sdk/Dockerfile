@@ -13,7 +13,7 @@ LABEL maintainer "thyrlian@gmail.com"
 # support multiarch: i386 architecture
 # install Java
 # install essential tools
-ARG JDK_VERSION=11
+ARG JDK_VERSION=17
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get dist-upgrade -y && \
@@ -24,7 +24,7 @@ RUN dpkg --add-architecture i386 && \
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=7.5.1
+ARG GRADLE_VERSION=8.1
 ARG GRADLE_DIST=bin
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-${GRADLE_DIST}.zip && \
