@@ -46,7 +46,7 @@ if [ ! -z "$(ls $KEYS_DIR)" ]; then
 fi
 
 echo "Building the main image..."
-docker build -t $MAIN_IMAGE_NAME .
+docker build --no-cache -t $MAIN_IMAGE_NAME .
 
 main_image_id=$(docker images $MAIN_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
 echo "Built main image ID is: $main_image_id"
@@ -60,7 +60,7 @@ docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
 docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG_LATEST
 
 echo "Building the variant image..."
-docker build --build-arg $VARIANT_IMAGE_BUILD_ARG -t $VARIANT_IMAGE_NAME .
+docker build --no-cache --build-arg $VARIANT_IMAGE_BUILD_ARG -t $VARIANT_IMAGE_NAME .
 
 variant_image_id=$(docker images $VARIANT_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
 echo "Built variant image ID is: $variant_image_id"
@@ -83,7 +83,7 @@ else
 fi
 
 echo "Building the sub VNC image..."
-docker build -t $SUB_IMAGE_VNC_NAME $SUB_IMAGE_VNC_DIR
+docker build --no-cache -t $SUB_IMAGE_VNC_NAME $SUB_IMAGE_VNC_DIR
 
 echo "Revert the change of the base image tag in the sub VNC image file..."
 git checkout -- $SUB_IMAGE_VNC_DIR/Dockerfile
@@ -100,7 +100,7 @@ docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG
 docker push $DOCKER_HUB_ACCOUNT/$SUB_IMAGE_VNC_NAME:$TAG_LATEST
 
 echo "Building the sub Firebase Test Lab image..."
-docker build -t $SUB_IMAGE_FIREBASE_TEST_LAB_NAME $SUB_IMAGE_FIREBASE_TEST_LAB_DIR
+docker build --no-cache -t $SUB_IMAGE_FIREBASE_TEST_LAB_NAME $SUB_IMAGE_FIREBASE_TEST_LAB_DIR
 
 echo "Revert the change of the base image tag in the sub Firebase Test Lab image file..."
 git checkout -- $SUB_IMAGE_FIREBASE_TEST_LAB_DIR/Dockerfile
