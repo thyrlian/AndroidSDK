@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Build the main Docker image (android-sdk)
       run: docker build -t android-sdk ./android-sdk
     - name: Display tool version information of the main Docker image (android-sdk)
