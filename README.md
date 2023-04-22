@@ -892,6 +892,8 @@ sudo netstat -tulpn | grep LISTEN
 
 * Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md)
 
+* Create a new tag (name it the version number, just like: `x.x`) with the corresponding commit in Git and publish the tag
+
 ## Contributing
 
 Your contribution is always welcome, which will for sure make the Android SDK Docker solution better.  Please check the [contributing guide](./CONTRIBUTING.md) to get started!  Thank you ☺
