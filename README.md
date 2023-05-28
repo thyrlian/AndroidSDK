@@ -53,7 +53,7 @@ Previously, running Android SDK update within the **Dockerfile** or inside a **c
 What happens if the update fails?
 
   ```bash
-  ls $ANDROID_SDK_ROOT/cmdline-tools/tools/
+  ls $ANDROID_HOME/cmdline-tools/tools/
   #=> empty, nothing is there
   # tools such as: android, sdkmanager, emulator, lint and etc. are gone
   
@@ -76,7 +76,7 @@ If you by accident update SDK on a host machine which has a mismatch target arch
   gradle <some_task>
   #=> Error: java.util.concurrent.ExecutionException: java.lang.RuntimeException: AAPT process not ready to receive commands
   
-  $ANDROID_SDK_ROOT/build-tools/x.x.x/aapt
+  $ANDROID_HOME/build-tools/x.x.x/aapt
   #=> aapt: cannot execute binary file: Exec format error
   
   adb
@@ -127,7 +127,7 @@ docker pull thyrlian/android-sdk
 # below commands assume that you've pulled the image
 
 # copy the pre-downloaded SDK to the mounted 'sdk' directory
-docker run -it --rm -v $(pwd)/sdk:/sdk thyrlian/android-sdk bash -c 'cp -a $ANDROID_SDK_ROOT/. /sdk'
+docker run -it --rm -v $(pwd)/sdk:/sdk thyrlian/android-sdk bash -c 'cp -a $ANDROID_HOME/. /sdk'
 
 # go to the 'sdk' directory on the host, update the SDK
 # ONLY IF the host machine is the same target architecture as the container
@@ -399,7 +399,7 @@ Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if y
   sdkmanager --list --verbose
   ```
 
-* Make sure that the required SDK packages are installed, you can find out by above command.  To install, use the command below.  Whenever you see error complains about `ANDROID_SDK_ROOT`, such as `PANIC: Cannot find AVD system path. Please define ANDROID_SDK_ROOT` or `PANIC: Broken AVD system path. Check your ANDROID_SDK_ROOT value`, it means that you need to install following packages.
+* Make sure that the required SDK packages are installed, you can find out by above command.  To install, use the command below.  Whenever you see error complains about `ANDROID_SDK_ROOT` (or `ANDROID_HOME`), such as `PANIC: Cannot find AVD system path. Please define ANDROID_SDK_ROOT` or `PANIC: Broken AVD system path. Check your ANDROID_SDK_ROOT value`, it means that you need to install following packages.
 
   ```console
   sdkmanager "platform-tools" "platforms;android-<api_level>" "emulator"
@@ -677,8 +677,8 @@ To learn more about Firebase Test Lab and Google Cloud SDK, please go and visit 
 * Check installed Android SDK tools version
 
   ```console
-  cat $ANDROID_SDK_ROOT/cmdline-tools/tools/source.properties | grep Pkg.Revision
-  cat $ANDROID_SDK_ROOT/platform-tools/source.properties | grep Pkg.Revision
+  cat $ANDROID_HOME/cmdline-tools/tools/source.properties | grep Pkg.Revision
+  cat $ANDROID_HOME/platform-tools/source.properties | grep Pkg.Revision
   ```
 
   > The "`android`" command is deprecated.  For command-line tools, use `cmdline-tools/tools/bin/sdkmanager` and `cmdline-tools/tools/bin/avdmanager`.
