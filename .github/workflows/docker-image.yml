@@ -16,10 +16,6 @@ jobs:
       run: docker build -t android-sdk ./android-sdk
     - name: Display tool version information of the main Docker image (android-sdk)
       run: cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -i --rm android-sdk bash -c "$cmd"
-    - name: Build the variant Docker image (android-sdk-jdk11)
-      run: docker build --build-arg JDK_VERSION=11 -t android-sdk-jdk11 ./android-sdk
-    - name: Display tool version information of the variant Docker image (android-sdk-jdk11)
-      run: cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -i --rm android-sdk-jdk11 bash -c "$cmd"
     - name: Build the sub Docker image (android-sdk-vnc)
       run: docker build -t android-sdk-vnc ./android-sdk/vnc
     - name: Display tool version information of the sub Docker image (android-sdk-vnc)
