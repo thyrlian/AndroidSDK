@@ -1,5 +1,54 @@
 # Changelog
 
+## 9.2
+
+**Main Image**
+
+```console
+docker pull thyrlian/android-sdk:9.2
+```
+
+**What's New**
+* Upgraded Ubuntu from 22.04.2 to 22.04.3
+* Upgraded OpenJDK from 17.0.7 to 17.0.8.1
+* Upgraded Gradle from 8.1.1 to 8.3
+* Upgraded Kotlin compiler from 1.8.21 to 1.9.10
+* Upgraded Android SDK Command-line Tools from 9.0 to 11.0
+
+Component | Version
+--------- | -------
+Ubuntu | 22.04.3 LTS (Jammy Jellyfish)
+Java | 17.0.8.1
+Gradle | 8.3
+Kotlin compiler | 1.9.10
+Android SDK Command-line Tools | 11.0
+OpenSSH | 1:8.9p1-3
+
+**Sub-image**: VNC
+
+```console
+docker pull thyrlian/android-sdk-vnc:9.2
+```
+
+Component | Version
+--------- | -------
+TightVNC | 1.3.10
+
+**Sub-image**: Firebase Test Lab
+
+```console
+docker pull thyrlian/android-sdk-firebase-test-lab:9.2
+```
+
+**What's New**
+* Upgraded Google Cloud SDK from 432.0.0 to 447.0.0
+
+Component | Version
+--------- | -------
+Google Cloud SDK | 447.0.0
+
+---
+
 ## 9.1
 
 Replace [environment variable](https://developer.android.com/tools/variables#envar) `ANDROID_SDK_ROOT` (deprecated) with `ANDROID_HOME`
