@@ -884,13 +884,13 @@ sudo netstat -tulpn | grep LISTEN
   ./image_publisher.sh [TAG]
   ```
 
-* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/version_inspector.sh) script inside a docker container from local machine
+* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/version_inspector.sh) script inside a docker container from local machine to check versions of tools
 
   ```console
   cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
   ```
 
-* Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md)
+* Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md) based on the versions info printed by the above commands
 
 * Create a new tag (name it the version number, just like: `x.x`) with the corresponding commit in Git and publish the tag
 
