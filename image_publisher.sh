@@ -57,20 +57,6 @@ echo "Pushing the main image to Docker Hub..."
 docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG
 docker push $DOCKER_HUB_ACCOUNT/$MAIN_IMAGE_NAME:$TAG_LATEST
 
-echo "Building the variant image..."
-docker build --no-cache --build-arg $VARIANT_IMAGE_BUILD_ARG -t $VARIANT_IMAGE_NAME .
-
-variant_image_id=$(docker images $VARIANT_IMAGE_NAME | awk '{if (NR!=1) {print $3}}')
-echo "Built variant image ID is: $variant_image_id"
-
-echo "Tagging the variant image with $TAG..."
-docker tag $variant_image_id $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG
-docker tag $variant_image_id $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG_LATEST
-
-echo "Pushing the variant image to Docker Hub..."
-docker push $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG
-docker push $DOCKER_HUB_ACCOUNT/$VARIANT_IMAGE_NAME:$TAG_LATEST
-
 echo "Change the base image tag in the sub image file..."
 if [ $(uname) = "Darwin" ]; then
 	sed -i "" "s/$MAIN_IMAGE_NAME:latest/$MAIN_IMAGE_NAME:$TAG/" $SUB_IMAGE_VNC_DIR/Dockerfile
