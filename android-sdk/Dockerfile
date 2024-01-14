@@ -51,7 +51,8 @@ RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
     rm *tools*linux*.zip
 
 # set the environment variables
-ENV JAVA_HOME /usr/lib/jvm/java-${JDK_VERSION}-openjdk-amd64
+RUN JAVA_HOME=$(ls -d /usr/lib/jvm/java-${JDK_VERSION}-openjdk-* | head -n 1) && \
+    echo "export JAVA_HOME=$JAVA_HOME" > /tmp/java_home.sh
 ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
 ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
@@ -92,6 +93,10 @@ RUN apt-get update && \
     do if [ -f "$file" ]; then echo "\n" >> $FILE_AUTH_KEYS && cat $file >> $FILE_AUTH_KEYS && echo "\n" >> $FILE_AUTH_KEYS; fi; \
     done && \
     (rm /tmp/*.pub 2> /dev/null || true)
+
+ADD entrypoint.sh /tmp/entrypoint.sh
+RUN chmod +x /tmp/entrypoint.sh
+ENTRYPOINT ["/tmp/entrypoint.sh"]
 
 ADD supervisord.conf /etc/supervisor/conf.d/
 CMD ["/usr/bin/supervisord"]
