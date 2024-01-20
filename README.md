@@ -118,10 +118,9 @@ More information about **storage driver**:
 ```bash
 # build the image
 # set the working directory to the project's root directory first
-# replace `<amd64|arm64>` with your desired platform
-docker build --build-arg PLATFORM=<amd64|arm64> -t android-sdk android-sdk
+docker build -t android-sdk android-sdk
 # or you can also pass specific tool version as you wish (optional, while there is default version)
-docker build --build-arg PLATFORM=<platform_name> --build-arg JDK_VERSION=<jdk_version> --build-arg GRADLE_VERSION=<gradle_version> --build-arg KOTLIN_VERSION=<kotlin_version> --build-arg ANDROID_SDK_VERSION=<android_sdk_version> -t android-sdk android-sdk
+docker build --build-arg PLATFORM=<amd64|arm64> --build-arg JDK_VERSION=<jdk_version> --build-arg GRADLE_VERSION=<gradle_version> --build-arg KOTLIN_VERSION=<kotlin_version> --build-arg ANDROID_SDK_VERSION=<android_sdk_version> -t android-sdk android-sdk
 # or pull the image instead of building on your own
 docker pull thyrlian/android-sdk
 
@@ -172,7 +171,7 @@ It is also possible if you wanna connect to container via SSH.  There are three 
   # Put your `id_rsa.pub` under `android-sdk/accredited_keys` directory (as many as you want)
 
   # Build an image, then an `authorized_keys` file will be composed automatically, based on the keys from `android-sdk/accredited_keys` directory
-  docker build --build-arg PLATFORM=<platform_name> -t android-sdk android-sdk
+  docker build -t android-sdk android-sdk
   
   # Run a container
   docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk:ro android-sdk
