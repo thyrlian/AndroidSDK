@@ -10,9 +10,6 @@ FROM ubuntu:22.04
 # ---------------------------------------------------------------------- #
 LABEL maintainer "thyrlian@gmail.com"
 
-# set PLATFORM with available values for building the image: 'amd64' or 'arm64'
-ARG PLATFORM=amd64
-
 # support multiarch: i386 architecture
 # install Java
 # install essential tools
@@ -54,7 +51,7 @@ RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
     rm *tools*linux*.zip
 
 # set the environment variables
-ENV JAVA_HOME /usr/lib/jvm/java-${JDK_VERSION}-openjdk-${PLATFORM}
+ENV JAVA_HOME /usr/lib/jvm/java-${JDK_VERSION}-openjdk-amd64
 ENV GRADLE_HOME /opt/gradle
 ENV KOTLIN_HOME /opt/kotlinc
 ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
