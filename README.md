@@ -908,7 +908,7 @@ See [here](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md).
 
 ## License
 
-Copyright © 2016-2023 Jing Li. It is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/LICENSE) file for details.
+Copyright © 2016-2024 Jing Li. It is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0). See the [LICENSE](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/LICENSE) file for details.
 
 By continuing to use this Docker Image, you accept the terms in below license agreement.
 
