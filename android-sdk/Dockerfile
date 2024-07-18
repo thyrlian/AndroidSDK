@@ -4,27 +4,24 @@
 
 # Base image
 # ---------------------------------------------------------------------- #
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Author
 # ---------------------------------------------------------------------- #
 LABEL maintainer="thyrlian@gmail.com"
 
-# support multiarch: i386 architecture
 # install Java
 # install essential tools
-ARG JDK_VERSION=17
-RUN dpkg --add-architecture i386 && \
-    apt-get update && \
+ARG JDK_VERSION=21
+RUN apt-get update && \
     apt-get dist-upgrade -y && \
-    apt-get install -y --no-install-recommends libncurses5:i386 libc6:i386 libstdc++6:i386 lib32gcc-s1 lib32ncurses6 lib32z1 zlib1g:i386 && \
     apt-get install -y --no-install-recommends openjdk-${JDK_VERSION}-jdk && \
     apt-get install -y --no-install-recommends git wget unzip && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=8.7
+ARG GRADLE_VERSION=8.9
 ARG GRADLE_DIST=bin
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-${GRADLE_DIST}.zip && \
@@ -34,7 +31,7 @@ RUN cd /opt && \
 
 # download and install Kotlin compiler
 # https://github.com/JetBrains/kotlin/releases/latest
-ARG KOTLIN_VERSION=1.9.23
+ARG KOTLIN_VERSION=2.0.0
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
