@@ -8,13 +8,13 @@ FROM thyrlian/android-sdk:latest
 
 # Authors
 # ---------------------------------------------------------------------- #
-LABEL maintainer "jaime.toca.munoz@gmail.com, thyrlian@gmail.com"
+LABEL maintainer="jaime.toca.munoz@gmail.com, thyrlian@gmail.com"
 
 # download Google Cloud SDK and dependencies needed
 # https://cloud.google.com/sdk/docs/install#deb
 # disable update checker for installation
 # change JSON for futures updates
-ENV GCLOUD_SDK_CONFIG /usr/lib/google-cloud-sdk/lib/googlecloudsdk/core/config.json
+ENV GCLOUD_SDK_CONFIG=/usr/lib/google-cloud-sdk/lib/googlecloudsdk/core/config.json
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates gnupg && \
     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \

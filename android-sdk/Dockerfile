@@ -8,7 +8,7 @@ FROM ubuntu:22.04
 
 # Author
 # ---------------------------------------------------------------------- #
-LABEL maintainer "thyrlian@gmail.com"
+LABEL maintainer="thyrlian@gmail.com"
 
 # support multiarch: i386 architecture
 # install Java
@@ -43,7 +43,7 @@ RUN cd /opt && \
 # download and install Android SDK
 # https://developer.android.com/studio#command-line-tools-only
 ARG ANDROID_SDK_VERSION=11076708
-ENV ANDROID_HOME /opt/android-sdk
+ENV ANDROID_HOME=/opt/android-sdk
 RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
     wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
     unzip *tools*linux*.zip -d ${ANDROID_HOME}/cmdline-tools && \
@@ -51,15 +51,15 @@ RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
     rm *tools*linux*.zip
 
 # set the environment variables
-ENV JAVA_HOME /usr/lib/jvm/java-${JDK_VERSION}-openjdk-amd64
-ENV GRADLE_HOME /opt/gradle
-ENV KOTLIN_HOME /opt/kotlinc
-ENV PATH ${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
+ENV JAVA_HOME=/usr/lib/jvm/java-${JDK_VERSION}-openjdk-amd64
+ENV GRADLE_HOME=/opt/gradle
+ENV KOTLIN_HOME=/opt/kotlinc
+ENV PATH=${PATH}:${GRADLE_HOME}/bin:${KOTLIN_HOME}/bin:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator
 # WORKAROUND: for issue https://issuetracker.google.com/issues/37137213
-ENV LD_LIBRARY_PATH ${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
+ENV LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
 # patch emulator issue: Running as root without --no-sandbox is not supported. See https://crbug.com/638180.
 # https://doc.qt.io/qt-5/qtwebengine-platform-notes.html#sandboxing-support
-ENV QTWEBENGINE_DISABLE_SANDBOX 1
+ENV QTWEBENGINE_DISABLE_SANDBOX=1
 
 # accept the license agreements of the SDK components
 ADD license_accepter.sh /opt/

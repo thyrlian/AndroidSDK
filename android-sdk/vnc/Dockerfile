@@ -8,11 +8,11 @@ FROM thyrlian/android-sdk:latest
 
 # Author
 # ---------------------------------------------------------------------- #
-LABEL maintainer "thyrlian@gmail.com"
+LABEL maintainer="thyrlian@gmail.com"
 
 # install and configure VNC server
-ENV USER root
-ENV DISPLAY :1
+ENV USER=root
+ENV DISPLAY=:1
 EXPOSE 5901
 ADD vncpass.sh /tmp/
 ADD watchdog.sh /usr/local/bin/
