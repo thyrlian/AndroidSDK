@@ -364,7 +364,11 @@ Read [KVM Installation](https://help.ubuntu.com/community/KVM/Installation) if y
 * Load KVM module on the host
 
   ```console
-  modprobe kvm_intel
+  sudo modprobe kvm
+  # or for Intel processors
+  sudo modprobe kvm-intel
+  # or for AMD processors
+  sudo modprobe kvm-amd
   ```
 
 * Check if KVM module is successfully loaded
