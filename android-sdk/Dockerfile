@@ -12,7 +12,7 @@ LABEL maintainer="thyrlian@gmail.com"
 
 # install Java
 # install essential tools
-ARG JDK_VERSION=21
+ARG JDK_VERSION=17
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y --no-install-recommends openjdk-${JDK_VERSION}-jdk && \
@@ -21,7 +21,7 @@ RUN apt-get update && \
 
 # download and install Gradle
 # https://services.gradle.org/distributions/
-ARG GRADLE_VERSION=8.9
+ARG GRADLE_VERSION=8.7
 ARG GRADLE_DIST=bin
 RUN cd /opt && \
     wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-${GRADLE_DIST}.zip && \
@@ -31,7 +31,7 @@ RUN cd /opt && \
 
 # download and install Kotlin compiler
 # https://github.com/JetBrains/kotlin/releases/latest
-ARG KOTLIN_VERSION=2.0.0
+ARG KOTLIN_VERSION=1.9.23
 RUN cd /opt && \
     wget -q https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip && \
     unzip *kotlin*.zip && \
