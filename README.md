@@ -253,7 +253,8 @@ For more details, please refer to [Emulator section](https://github.com/thyrlian
 
 ### VNC client recommendation
 
-* macOS: [**Screen Sharing**](https://en.wikipedia.org/wiki/Screen_Sharing)
+* macOS: [Screen Sharing](https://support.apple.com/guide/mac-help/share-the-screen-of-another-mac-mh14066/mac)
+* Linux: [Remmina](https://remmina.org/)
 * Cross-Platform: [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)
 
 ## NFS
