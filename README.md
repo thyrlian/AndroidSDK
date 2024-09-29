@@ -917,7 +917,7 @@ Copyright © 2016-2024 Jing Li. It is released under the [Apache License](https:
 
 By continuing to use this Docker Image, you accept the terms in below license agreement.
 
-* [Android Software Development Kit License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSoftwareDevelopmentKitLicenseAgreement-20190116) (or read it [here](https://developer.android.com/studio/terms.html))
+* [Android Software Development Kit License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSoftwareDevelopmentKitLicenseAgreement-20210727) (or read it [here](https://developer.android.com/studio/terms))
 
 * [Android SDK Preview License Agreement](https://raw.githubusercontent.com/thyrlian/AndroidSDK/master/EULA/AndroidSDKPreviewLicenseAgreement)
 
