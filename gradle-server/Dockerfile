@@ -17,7 +17,7 @@ RUN apt-get update && \
 # install and configure the Apache Web Server
 ARG GRADLE_DOWNLOAD_AMOUNT=14
 ENV GRADLE_DIST /var/www/gradle.org/public_html/distributions
-ADD gradle_downloader.sh $GRADLE_DIST/
+ADD gradle-downloader.sh $GRADLE_DIST/
 RUN apt-get install -y apache2 && \
     sed -i 's%\(^\s*DocumentRoot\s*\).*%\1/var/www/gradle.org/public_html%g' /etc/apache2/sites-available/000-default.conf && \
     echo "\n<Directory /var/www/gradle.org>\n        Options Indexes FollowSymLinks\n</Directory>\n" >> /etc/apache2/apache2.conf && \
@@ -28,7 +28,7 @@ RUN apt-get install -y apache2 && \
     sed -i 's%\(^\s*SSLCertificateFile\s*\).*%\1/etc/apache2/ssl/apache.crt%g' /etc/apache2/sites-available/default-ssl.conf && \
     sed -i 's%\(^\s*SSLCertificateKeyFile\s*\).*%\1/etc/apache2/ssl/apache.key%g' /etc/apache2/sites-available/default-ssl.conf && \
     a2ensite default-ssl.conf && \
-    chmod +x $GRADLE_DIST/gradle_downloader.sh && \
-    $GRADLE_DIST/gradle_downloader.sh $GRADLE_DIST $GRADLE_DOWNLOAD_AMOUNT
+    chmod +x $GRADLE_DIST/gradle-downloader.sh && \
+    $GRADLE_DIST/gradle-downloader.sh $GRADLE_DIST $GRADLE_DOWNLOAD_AMOUNT
 EXPOSE 80 443
 CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]

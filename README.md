@@ -14,7 +14,7 @@ Android SDK development environment Docker image
 
 [![Docker Badge](https://dockerico.blankenship.io/image/thyrlian/android-sdk)](https://hub.docker.com/r/thyrlian/android-sdk)
 
-<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/logo.png?raw=true" width="200">
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/assets/logo.png?raw=true" width="200">
 
 <a href="https://youtu.be/YwBAqMDYFCU"><img src="https://pbs.twimg.com/media/DODnbwmXkAAbXuM.jpg" alt="Conference Talk" width="600"></a>
 
@@ -146,7 +146,7 @@ docker run -it -v $(pwd)/sdk:/opt/android-sdk:ro thyrlian/android-sdk /bin/bash
 docker run -it -v $(pwd)/sdk:/opt/android-sdk thyrlian/android-sdk /bin/bash
 
 # to keep and reuse Gradle cache
-docker run -it -v $(pwd)/sdk:/opt/android-sdk -v $(pwd)/gradle_caches:/root/.gradle/caches thyrlian/android-sdk /bin/bash
+docker run -it -v $(pwd)/sdk:/opt/android-sdk -v $(pwd)/gradle-caches:/root/.gradle/caches thyrlian/android-sdk /bin/bash
 
 # to stop and remove container
 # when the image was pulled from a registry
@@ -159,7 +159,7 @@ docker stop $(docker ps -a | grep 'android-sdk' | awk '{ print $1 }') &> /dev/nu
 
 ### Accepting Licenses
 
-A helper script is provided at [`/opt/license_accepter.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/license_accepter.sh) for accepting the SDK and its various licenses.  This is helpful in non-interactive environments such as CI builds.
+A helper script is provided at [`/opt/license-accepter.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/license-accepter.sh) for accepting the SDK and its various licenses.  This is helpful in non-interactive environments such as CI builds.
 
 ## SSH
 
@@ -168,9 +168,9 @@ It is also possible if you wanna connect to container via SSH.  There are three 
 * Build an image on your own, with a built-in `authorized_keys`
 
   ```bash
-  # Put your `id_rsa.pub` under `android-sdk/accredited_keys` directory (as many as you want)
+  # Put your `id_rsa.pub` under `android-sdk/accredited-keys` directory (as many as you want)
 
-  # Build an image, then an `authorized_keys` file will be composed automatically, based on the keys from `android-sdk/accredited_keys` directory
+  # Build an image, then an `authorized_keys` file will be composed automatically, based on the keys from `android-sdk/accredited-keys` directory
   docker build -t android-sdk android-sdk
   
   # Run a container
@@ -216,7 +216,7 @@ And, in case you need, you can still attach to the running container (not via ss
   docker exec -it <container_id> /bin/bash
   ```
 
-<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/SSH.png?raw=true">
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/assets/SSH.png?raw=true">
 
 ## VNC
 
@@ -249,7 +249,7 @@ emulator -avd test -no-audio -no-boot-anim -accel on -gpu swiftshader_indirect &
 
 For more details, please refer to [Emulator section](https://github.com/thyrlian/AndroidSDK#emulator).
 
-<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/vnc.png?raw=true">
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/assets/vnc.png?raw=true">
 
 ### VNC client recommendation
 
@@ -306,10 +306,10 @@ Fortunately, you can easily build such a mirror server docker image on your own.
   docker build --build-arg GRADLE_DOWNLOAD_AMOUNT=<amount_of_gradle_distributions_to_be_downloaded> -t gradle-server gradle-server
   ```
 
-Preferably, you should run the [download script](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/gradle_downloader.sh) locally, and mount the download directory to the container.
+Preferably, you should run the [download script](https://github.com/thyrlian/AndroidSDK/blob/master/gradle-server/gradle-downloader.sh) locally, and mount the download directory to the container.
 
   ```bash
-  gradle-server/gradle_downloader.sh [DOWNLOAD_DIRECTORY] [DOWNLOAD_AMOUNT]
+  gradle-server/gradle-downloader.sh [DOWNLOAD_DIRECTORY] [DOWNLOAD_AMOUNT]
   docker run -d -p 80:80 -p 443:443 -v [DOWNLOAD_DIRECTORY]:/var/www/gradle.org/public_html/distributions gradle-server
   ```
 
@@ -521,7 +521,7 @@ Now you can for instance run UI tests on the emulator (just remember, the perfor
 
 If you encounter an error "***Process system isn't responding***" in the emulator, like below:
 
-<img src="https://github.com/thyrlian/AndroidSDK/blob/master/images/emulator_error_process_not_responding.png?raw=true">
+<img src="https://github.com/thyrlian/AndroidSDK/blob/master/assets/emulator-error-process-not-responding.png?raw=true">
 
 You could try:
 
@@ -627,9 +627,9 @@ docker pull thyrlian/android-sdk-firebase-test-lab
 # we'll persist all your gcloud configuration which would be created at ~/.config/gcloud/
 
 # spin up a container with interactive mode
-docker run -it -v $(pwd)/sdk:/opt/android-sdk -v <your_private_key_dir>/firebase.json:/root/firebase.json -v $(pwd)/gcloud_config:/root/.config/gcloud thyrlian/android-sdk-firebase-test-lab /bin/bash
+docker run -it -v $(pwd)/sdk:/opt/android-sdk -v <your_private_key_dir>/firebase.json:/root/firebase.json -v $(pwd)/gcloud-config:/root/.config/gcloud thyrlian/android-sdk-firebase-test-lab /bin/bash
 # or spin up a container with SSH
-docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v <your_private_key_dir>/firebase.json:/root/firebase.json -v $(pwd)/gcloud_config:/root/.config/gcloud -v $(pwd)/authorized_keys:/root/.ssh/authorized_keys thyrlian/android-sdk-firebase-test-lab
+docker run -d -p 2222:22 -v $(pwd)/sdk:/opt/android-sdk -v <your_private_key_dir>/firebase.json:/root/firebase.json -v $(pwd)/gcloud-config:/root/.config/gcloud -v $(pwd)/authorized_keys:/root/.ssh/authorized_keys thyrlian/android-sdk-firebase-test-lab
 
 # authorize access to Google Cloud Platform with a service account (by its private key)
 gcloud auth activate-service-account -q --key-file /root/firebase.json
@@ -883,16 +883,16 @@ sudo netstat -tulpn | grep LISTEN
 
 * Go to the top-level directory of this project
 
-* Execute [`image_publisher.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/image_publisher.sh) script
+* Execute [`image-publisher.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/image-publisher.sh) script
 
   ```console
-  ./image_publisher.sh [TAG]
+  ./image-publisher.sh [TAG]
   ```
 
-* Execute [`version_inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/version_inspector.sh) script inside a docker container from local machine to check versions of tools
+* Execute [`version-inspector.sh`](https://github.com/thyrlian/AndroidSDK/blob/master/android-sdk/version-inspector.sh) script inside a docker container from local machine to check versions of tools
 
   ```console
-  cmd=$(cat ./android-sdk/version_inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
+  cmd=$(cat ./android-sdk/version-inspector.sh) && docker run -it --rm android-sdk bash -c "$cmd"
   ```
 
 * Update [Changelog](https://github.com/thyrlian/AndroidSDK/blob/master/CHANGELOG.md) based on the versions info printed by the above commands

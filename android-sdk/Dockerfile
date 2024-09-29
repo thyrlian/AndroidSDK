@@ -59,8 +59,8 @@ ENV LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib6
 ENV QTWEBENGINE_DISABLE_SANDBOX=1
 
 # accept the license agreements of the SDK components
-ADD license_accepter.sh /opt/
-RUN chmod +x /opt/license_accepter.sh && /opt/license_accepter.sh $ANDROID_HOME
+ADD license-accepter.sh /opt/
+RUN chmod +x /opt/license-accepter.sh && /opt/license-accepter.sh $ANDROID_HOME
 
 # setup adb server
 EXPOSE 5037
@@ -68,7 +68,7 @@ EXPOSE 5037
 # install and configure SSH server
 EXPOSE 22
 ADD sshd-banner /etc/ssh/
-ADD accredited_keys /tmp/
+ADD accredited-keys /tmp/
 RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-server supervisor locales && \
     mkdir -p /var/run/sshd /var/log/supervisord && \
