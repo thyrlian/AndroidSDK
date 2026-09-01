@@ -1,0 +1,8 @@
+# Force all files in the repository to be detected as Dockerfile
+* linguist-language=Dockerfile
+
+# Exclude documentation and config files from language statistics
+*.md linguist-documentation
+*.json linguist-vendored
+*.yaml linguist-vendored
+*.yml linguist-vendored
