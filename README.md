@@ -20,13 +20,13 @@ Android SDK development environment Docker image
 
 ## Goals
 
-* It contains the complete Android SDK enviroment, is able to perform all regular Android jobs.
+* It contains the complete Android SDK environment, is able to perform all regular Android jobs.
 
 * Solves the problem of "*It works on my machine, but not on XXX machine*".
 
 * Some tool (e.g. [Infer](https://github.com/facebook/infer)), which has complex dependencies might be in conflict with your local environment.  Installing the tool within a Docker container is the easiest and perfect solution.
 
-* Works out of the box as an Android CI build enviroment.
+* Works out of the box as an Android CI build environment.
 
 ## Philosophy
 
